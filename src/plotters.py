@@ -44,6 +44,7 @@ def plot_system(system, path):
     plot_entities(system, 'freqs, THz', 'Tc_AD (gamma), K', axs[2, 1], label=r' $T_{\mathrm{C}}$ ($\gamma$)')
 
     smoothing, resolution, interp_name = system.smoothing, system.resolution, system.interp_name
-    plt.suptitle(f'Smoothing: {smoothing} THz, resolution = {resolution}, interpolation: {interp_name}')
+    plt.suptitle(f'Smoothing: {smoothing} THz, resolution = {resolution}, interpolation: {interp_name}, ' 
+                 r'$\mu$=' + f'{system.mu}')
     plt.savefig(os.path.join(path, 'results', f'plot_s{smoothing}_r{resolution}_{interp_name}.pdf'))
     plt.show()
