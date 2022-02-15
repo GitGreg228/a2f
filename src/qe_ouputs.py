@@ -1,7 +1,9 @@
-import pandas as pd
 import os
 
 import numpy as np
+from pymatgen.core.structure import IStructure
+
+from constants import k_bohr_A
 
 
 class Folder(object):
@@ -145,6 +147,12 @@ class PhOuts(object):
     """
     __lines = list()
     weights = list()
+    __alat = float()
+    __matrix = np.zeros((3, 3))
+    __n_atoms = int()
+    __species = list()
+    __coords = list()
+    structure = IStructure
     __paths = list()
 
     def __init__(self, paths):
@@ -168,7 +176,7 @@ class PhOuts(object):
                 weight_lines = list(filter(lambda x: 'number of k points=' in x and 'method' in x, _lines))
                 occupancies = [i for i, x in enumerate(_lines) if 'Number of q in the star' in x]
                 for occupancy in occupancies:
-                    q_point = tuple([float(x) for x in _lines[occupancy+2].strip().split()[-3:]])
+                    q_point = tuple([float(x) for x in _lines[occupancy + 2].strip().split()[-3:]])
                     weight = int(_lines[occupancy].split()[-1])
                     print(f'q = ({", ".join(["%.3f" % round(_q, 3) for _q in q_point])}) '
                           f'with number of q in the star {weight}')
@@ -182,4 +190,40 @@ class PhOuts(object):
         self.weights = list(zip(q_points, weights))
         return self.weights
 
+    def struc(self):
+        idxs = dict()
+        keys = ['lattice parameter (alat)', 'a(1)', 'a(2)', 'a(3)', 'site n.', 'number of atoms/cell']
+        flag = 0
+        for i, lines in enumerate(self.__lines):
+            for j, line in enumerate(lines):
+                for key in keys:
+                    if key in line:
+                        if key not in idxs.keys():
+                            idxs[key] = (i, j)
+                            flag = flag + 1
+            if flag == len(keys):
+                break
 
+        idx = idxs['lattice parameter (alat)']
+        self.__alat = float(self.__lines[idx[0]][idx[1]].split()[4])  # alat in bohr
+        for i, key in enumerate(['a(1)', 'a(2)', 'a(3)']):
+            idx = idxs[key]
+            split = self.__lines[idx[0]][idx[1]].split()
+            self.__matrix[i] = np.array([float(split[3]), float(split[4]), float(split[5])])
+        self.__matrix = self.__matrix * self.__alat
+        idx = idxs['number of atoms/cell']
+        self.__n_atoms = int(self.__lines[idx[0]][idx[1]].split()[-1])
+        idx = idxs['site n.']
+        for i in range(idx[1] + 1, idx[1] + 1 + self.__n_atoms):
+            split = self.__lines[idx[0]][i].split()
+            a1, a2, a3 = self.__matrix
+            coords = [float(split[-4]) * self.__alat,
+                      float(split[-3]) * self.__alat,
+                      float(split[-2]) * self.__alat]
+            self.__coords.append(coords)
+            self.__species.append(split[1])
+        self.__coords = np.array(self.__coords) * k_bohr_A
+        self.__matrix = np.array(self.__matrix) * k_bohr_A
+        self.structure = IStructure(lattice=self.__matrix, species=self.__species, coords=self.__coords, coords_are_cartesian=True)
+        print(self.structure.volume)
+        return self.structure

@@ -1,7 +1,17 @@
 import pandas as pd
 import os
+import re
 
 import numpy as np
+
+from functools import reduce
+from math import gcd
+
+from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
+from pymatgen.io.vasp.inputs import Poscar
+from pymatgen.io.cif import CifWriter
+from pymatgen.core.structure import IStructure
+
 
 
 def compare_q_points(q_point1, q_point2):
@@ -44,6 +54,43 @@ def save_dict(system, path, float_format='%.12f'):
         name = os.path.join(path, 'results', f'a2f_s{smoothing}_r{resolution}_{interp_name}.csv')
         df = pd.DataFrame.from_dict(system.a2f)
         df.to_csv(name, index=False, header=True, sep='\t', float_format=float_format)
+
+
+def parse_formula(structure):
+    formula = structure.formula
+    split = formula.split()
+    if len(split) == 1:
+        return formula
+    else:
+        split = re.split(r'(\d+)', formula)
+        numeric = list()
+        alpha = list()
+        for word in split:
+            if word.isnumeric():
+                numeric.append(int(word))
+            else:
+                alpha.append(word)
+        GCD = reduce(gcd, numeric)
+        result = str()
+        for i in range(len(alpha)):
+            result = result + alpha[i]
+            if not i == len(numeric):
+                if not numeric[i] // GCD == 1:
+                    result = result + str(numeric[i] // GCD)
+        return result.replace(' ', '')
+
+
+def save_structure(struct, tol, path):
+    formula = parse_formula(struct)
+    try:
+        analyzer = SpacegroupAnalyzer(struct, symprec=0.2)
+        num = analyzer.get_space_group_number()
+        symm = analyzer.get_symmetrized_structure()
+        CifWriter(symm, symprec=tol).write_file(os.path.join(path, 'results', f'{formula}_{str(num)}.cif'))
+    except TypeError:
+        print('Unable to symmetrize the structure')
+        pass
+    Poscar(struct).write_file(os.path.join(path, 'results', f'{formula}.vasp'))
 
 
 def stairs(arr, dtype=np.float16):
