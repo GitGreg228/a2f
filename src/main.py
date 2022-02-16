@@ -11,7 +11,7 @@ from plotters import plot_system
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', type=str, help='Path to the file')
+    parser.add_argument('-p', type=str, default='.', help='Path to the file')
     parser.add_argument('-s', type=float, default=3.0, help='Smoothing in THz')
     parser.add_argument('-r', type=int, default=500, help='Interpolation resolution')
     parser.add_argument('-i', type=str, default='lambda', help='Interpolation type')
@@ -32,12 +32,12 @@ def main():
 
     save_structure(structure, args.tol, args.p)
 
-    #_ = system.get_direct(args.s)
-    #_ = system.get_a2f(args.s, args.r, args.i)
-    #system.get_tc(args.mu)
-    #save_dict(system, args.p)
+    _ = system.get_direct(args.s)
+    _ = system.get_a2f(args.s, args.r, args.i)
+    system.get_tc(args.mu)
+    save_dict(system, args.p)
 
-    #plot_system(system, args.p)
+    plot_system(system, args.p)
 
 
 if __name__ == '__main__':
