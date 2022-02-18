@@ -1,16 +1,13 @@
-import pandas as pd
 import os
 import re
-
-import numpy as np
-
 from functools import reduce
 from math import gcd
 
-from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
-from pymatgen.io.vasp.inputs import Poscar
+import numpy as np
+import pandas as pd
 from pymatgen.io.cif import CifWriter
-from pymatgen.core.structure import IStructure
+from pymatgen.io.vasp.inputs import Poscar
+from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 
 def stround(a, d=3):
@@ -34,7 +31,7 @@ def compare_q_points(q_point1, q_point2):
     assert (len(q_point1) == len(q_point2))
     l = len(q_point1)
     for i in range(l):
-        result = result * (round(q_point1[i],5) == round(q_point2[i],5))
+        result = result * (round(q_point1[i], 5) == round(q_point2[i], 5))
     return bool(result)
 
 

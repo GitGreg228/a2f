@@ -1,5 +1,4 @@
 import numpy as np
-
 from scipy.interpolate import interp1d
 from scipy.ndimage.filters import gaussian_filter
 
@@ -40,4 +39,3 @@ def interp_lambda(x, y, r, sigma):
     a2w = a2w * x_new / dx
     y_new = gaussian_filter(a2w, sigma=sigma)
     return x_new, y_new
-

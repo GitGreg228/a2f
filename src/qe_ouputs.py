@@ -3,7 +3,6 @@ import os
 import numpy as np
 from pymatgen.core.structure import IStructure
 
-from utils import parse_formula
 from constants import k_bohr_A
 
 
@@ -224,5 +223,6 @@ class PhOuts(object):
             self.__species.append(split[1])
         self.__coords = np.array(self.__coords) * k_bohr_A
         self.__matrix = np.array(self.__matrix) * k_bohr_A
-        self.structure = IStructure(lattice=self.__matrix, species=self.__species, coords=self.__coords, coords_are_cartesian=True)
+        self.structure = IStructure(lattice=self.__matrix, species=self.__species, coords=self.__coords,
+                                    coords_are_cartesian=True)
         return self.structure

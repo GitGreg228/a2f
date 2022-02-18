@@ -1,10 +1,17 @@
+import numpy as np
+
 from constants import *
 from utils import stround
 
-import numpy as np
-
 
 def l(a2f, r, t):
+    """
+    a2f kernel
+    :param a2f: a2f dictionary of the System object
+    :param r: matrix index difference
+    :param t: temperature in K
+    :return: kernel integral
+    """
     freqs = a2f['freqs, THz']
     a2f = a2f['a2f (gamma), THz']
     dw = freqs[1] - freqs[0]
@@ -12,6 +19,9 @@ def l(a2f, r, t):
 
 
 class Superconducting(object):
+    """
+    Superconducting class describes
+    """
     a2f = dict()
     dim = int()
     t = list()
@@ -44,7 +54,7 @@ class Superconducting(object):
                             d = 2 * (m - 1) + 1 + l(self.a2f, 0, t) + 2 * s[m - 1]
                     else:
                         d = 0
-                    k[n-1, m-1] = l(self.a2f, m-n, t) + l(self.a2f, m+n-1, t) - 2 * mu - d
+                    k[n - 1, m - 1] = l(self.a2f, m - n, t) + l(self.a2f, m + n - 1, t) - 2 * mu - d
             w, _ = np.linalg.eig(k)
             b = np.max(w)
             self.t.append(t)
@@ -55,5 +65,5 @@ class Superconducting(object):
             if dt < 0.001:
                 dt = 0.001
             t = t + dt
-        print(f'Eliashberg Tc = {stround(t-dt)}+-{stround(dt)} K')
+        print(f'Eliashberg Tc = {stround(t - dt)}+-{stround(dt)} K')
         return t

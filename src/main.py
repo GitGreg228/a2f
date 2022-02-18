@@ -1,13 +1,10 @@
 import argparse
-import os
 
-import matplotlib.pyplot as plt
-
-from qe_ouputs import Folder, PhOuts, DynElph
-from system import System
-from sc_e import Superconducting
-from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc
 from plotters import plot_system
+from qe_ouputs import Folder, PhOuts, DynElph
+from sc_e import Superconducting
+from system import System
+from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc
 
 
 def main():

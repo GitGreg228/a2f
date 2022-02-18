@@ -1,6 +1,3 @@
-import numpy as np
-from tqdm import tqdm
-
 from interpolators import interp_lambda
 from sc_a2f import lambdas_a2f, wlogs_a2f, w2s_a2f
 from sc_direct import a2f_direct, lambdas_direct, wlogs_direct, w2s_direct
