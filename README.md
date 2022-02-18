@@ -20,4 +20,6 @@ Script parameters are:
 1. `-p` - path to the directory with `*dyn*.elph*` and `output.ph.*` files (default: '.')
 2. `-s` - exponential smoothing parameter in THz, used to remove acoustic frequancies (default: 3)
 3. `-r` - desired resolution of the a2f function (default: cumulative number of positive frequencies in all `*dyn*.elph*` files)
-4. `-g` - sigma in gaussian filter used for smoothing of a2f
+4. `-g` - sigma in gaussian filter used for smoothing (default: 1)
+5. `--mu` - Coulomb pseudopotential (default: 0.1)
+6. `--tol` - structure tolerance
