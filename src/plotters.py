@@ -86,5 +86,5 @@ def plot_system(system, formula, path):
     fig.suptitle(f'{formula}\n{info}')
 
     fig.tight_layout(rect=[0, 0, 1, 0.95], h_pad=2.5)
-    plt.savefig(os.path.join(path, 'results', f'plot_s{smoothing}_r{resolution}_{sigma}.pdf'))
+    plt.savefig(os.path.join(path, 'results', f'plot_s{smoothing}_r{resolution}_g{sigma}.pdf'))
     plt.show()

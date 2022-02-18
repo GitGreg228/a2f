@@ -39,8 +39,5 @@ def interp_lambda(x, y, r, sigma):
     a2w = np.insert(a2w, 0, 0)
     a2w = a2w * x_new / dx
     y_new = gaussian_filter(a2w, sigma=sigma)
-    while np.max(y_new) > np.max(y) and sigma < 3:
-        sigma = sigma + 0.1
-        y_new = gaussian_filter(a2w, sigma=sigma)
     return x_new, y_new
 
