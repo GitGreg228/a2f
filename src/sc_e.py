@@ -59,6 +59,7 @@ class Superconducting(object):
             b = np.max(w)
             self.t.append(t)
             self.b.append(b)
+            self.k.append(k)
             dt = a * b
             if dt > 10:
                 dt = 10

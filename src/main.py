@@ -1,5 +1,8 @@
 import argparse
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 from plotters import plot_system
 from qe_ouputs import Folder, PhOuts, DynElph
 from sc_e import Superconducting
@@ -44,6 +47,15 @@ def main():
     sc.get_tc_e(args.mu)
     save_dict(system, args.p)
     plot_system(system, parse_formula(structure), args.p)
+    #k = sc.k[-1]
+    #X = np.arange(0, k.shape[0])
+    #Y = np.arange(0, k.shape[1])
+    # X, Y = np.meshgrid(X, Y)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # ax.plot_surface(X, Y, k)
+    #
+    # plt.show()
 
 
 if __name__ == '__main__':
