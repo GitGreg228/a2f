@@ -13,6 +13,10 @@ from pymatgen.io.cif import CifWriter
 from pymatgen.core.structure import IStructure
 
 
+def stround(a, d=3):
+    a = float(a)
+    return f'%.{str(d)}f' % round(a, d)
+
 
 def compare_q_points(q_point1, q_point2):
     """
@@ -83,11 +87,13 @@ def save_structure(struct, tol, path):
     try:
         analyzer = SpacegroupAnalyzer(struct, symprec=0.2)
         num = analyzer.get_space_group_number()
+        sym = analyzer.get_space_group_symbol()
         symm = analyzer.get_symmetrized_structure()
         CifWriter(symm, symprec=tol).write_file(os.path.join(path, 'results', f'{formula}_{str(num)}.cif'))
     except TypeError:
         print('Unable to symmetrize the structure')
         pass
+    print(f'\nThe structure under consideration is {sym}-{formula}.')
     Poscar(struct).write_file(os.path.join(path, 'results', f'{formula}.vasp'))
 
 
@@ -105,3 +111,31 @@ def stairs(arr, dtype=np.float16):
         stairs[i] = np.sum(arr[:i])
     return stairs
 
+
+def print_direct(system):
+    _lambda = stround(system.direct["lambda (gamma)"][-1])
+    wlog = round(system.direct["wlog (gamma), K"][-1])
+    w2 = round(system.direct["w2 (gamma), K"][-1])
+    print(f'With the smoothing of {system.smoothing} THz, direct lambda = {_lambda}, '
+          f'direct wlog = {wlog} K, direct w2 = {w2} K.')
+
+
+def print_a2f(system):
+    resolution = system.resolution
+    sigma = system.sigma
+    _lambda = stround(system.a2f["lambda (gamma)"][-1])
+    wlog = round(system.a2f["wlog (gamma), K"][-1])
+    w2 = round(system.a2f["w2 (gamma), K"][-1])
+    print(f'After calculating alpha2f on resolution r = {resolution} '
+          f'and applying gaussian filter with sigma = {sigma}, '
+          f'interp lambda = {_lambda}, interp wlog = {wlog} K, interp w2 = {w2} K.')
+
+
+def print_tc(system):
+    mu = system.mu
+    tc_mcm_direct = stround(system.direct['Tc_McM (gamma), K'][-1])
+    tc_ad_direct = stround(system.direct['Tc_AD (gamma), K'][-1])
+    tc_mcm_a2f = stround(system.a2f['Tc_McM (gamma), K'][-1])
+    tc_ad_a2f = stround(system.direct['Tc_AD (gamma), K'][-1])
+    print(f'Mu = {mu}. Calculated McMillan Tc = {tc_mcm_direct} ({tc_mcm_a2f}) K, '
+          f'calculated Allen-Dynes Tc = {tc_ad_direct} ({tc_ad_a2f}) K')

@@ -49,10 +49,10 @@ def lambdas_direct(qpoints, smoothing, dtype=np.float16):
         gammas = dyn_elph.gammas
         nef = dyn_elph.DOS
         weight = q_point['weight']
-        q_freqs = np.sqrt(np.abs(dyn_elph.sqr_freqs)) * np.sign(dyn_elph.sqr_freqs)
-        smooth = np.exp(-np.square(smoothing / (q_freqs * k_Ry_THz)))
+        q_freqs = np.sqrt(np.abs(dyn_elph.sqr_freqs)) * np.sign(dyn_elph.sqr_freqs) * k_Ry_THz
+        smooth = np.exp(-np.square(smoothing / q_freqs))
         q_lambdas_lambda = smooth * lambdas * weight
-        q_lambdas_gamma = smooth * gammas * weight / np.square(q_freqs) / nef / k_Ry_GHz / np.pi
+        q_lambdas_gamma = smooth * gammas * weight / np.square(q_freqs) / nef * k_Ry_THz / 1000 / np.pi
         lambdas_lambda.append(q_lambdas_lambda)
         lambdas_gamma.append(q_lambdas_gamma)
         freqs.append(q_freqs)

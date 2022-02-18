@@ -2,14 +2,14 @@ import numpy as np
 
 
 def tc_mcm_formula(wlog, _lambda, mu):
-    assert isinstance(_lambda, np.float16)
+    # assert isinstance(_lambda, np.float32)
     out = wlog / 1.2 * np.exp(-1.04 * (1 + _lambda) / (_lambda * (1 - 0.62 * mu) - mu))
     return out
 
 
 def tc_ad_formula(wlog, w2, _lambda, mu):
     f1 = np.cbrt(1 + np.power(_lambda / (2.46 * (1 + 3.8 * mu)), 1.5))
-    f2 = 1 - (np.power(_lambda, 2) * (1 - w2 / wlog)) / (np.power(_lambda, 2) + 3.312 * np.power(1 + 6.3 * mu, 2))
+    f2 = 1 - (np.power(_lambda, 2) * (1 - w2[-1] / wlog[-1])) / (np.power(_lambda, 2) + 3.312 * np.power(1 + 6.3 * mu, 2))
     out = f1 * f2 * tc_mcm_formula(wlog, _lambda, mu)
     return out
 

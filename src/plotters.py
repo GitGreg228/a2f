@@ -2,6 +2,8 @@ import os
 
 import matplotlib.pyplot as plt
 
+from utils import stround
+
 
 def plot_entity(system, xname, yname, ax, label='', fp=True, linestyle='-'):
     x = system[xname]
@@ -9,7 +11,7 @@ def plot_entity(system, xname, yname, ax, label='', fp=True, linestyle='-'):
     _label = label
     if fp:
         if y[-1] <= 10:
-            _label = _label + f' ({"%.3f" % round(y[-1], 3)})'
+            _label = _label + f' ({stround(y[-1])})'
         else:
             _label = _label + f' ({str(round(y[-1]))})'
     ax.plot(x[x > 0], y[x > 0], linestyle=linestyle, label=_label)
@@ -18,7 +20,7 @@ def plot_entity(system, xname, yname, ax, label='', fp=True, linestyle='-'):
 def fill_entity(system, xname, yname, ax, label='', linestyle='-', fc='lightgray', ec='gray'):
     x = system[xname]
     y = system[yname]
-    ax.fill_between(x[x > 0], y[x > 0], linestyle=linestyle, label=label, facecolor=fc, edgecolor=ec, alpha=0.9)
+    ax.fill_between(x, y, linestyle=linestyle, label=label, facecolor=fc, edgecolor=ec, alpha=0.9)
     ax.legend()
 
 
@@ -47,7 +49,7 @@ def plot_system(system, formula, path):
     for ax in axs.flatten():
         ax.set_xlabel('$\omega$, THz')
 
-    axs[0, 0].set_ylim(0, 1.05*max(system.a2f['a2f (gamma), THz']))
+    axs[0, 0].set_ylim(0, 1.05 * max(system.a2f['a2f (gamma), THz']))
     axs[0, 0].set_title(r'Eliashberg function $\alpha^2f(\omega)$')
     axs[0, 0].set_ylabel(r'$\alpha^2f$')
     axs[0, 1].set_title(r'EPC coefficient $\lambda$')
@@ -61,12 +63,12 @@ def plot_system(system, formula, path):
     axs[2, 1].set_title(r'Allen-Dynes $T_{\mathrm{C}}$')
     axs[2, 1].set_ylabel(r'$T_{\mathrm{C}}$, K')
 
-    fill_entity(system.a2f, 'freqs, THz', 'a2f (lambda), THz', axs[0, 0], label=r' interp ($\lambda$)', fc='aliceblue', ec='deepskyblue')
-    fill_entity(system.a2f, 'freqs, THz', 'a2f (gamma), THz', axs[0, 0], label=r' interp ($\gamma$)', fc='papayawhip', ec='lightsalmon')
+    fill_entity(system.a2f, 'freqs, THz', 'a2f (lambda), THz', axs[0, 0], label=r' interp ($\lambda$)', fc='aliceblue',
+                ec='deepskyblue')
+    fill_entity(system.a2f, 'freqs, THz', 'a2f (gamma), THz', axs[0, 0], label=r' interp ($\gamma$)', fc='papayawhip',
+                ec='lightsalmon')
     plot_spectra(system.direct, 'freqs, THz', 'a2f (lambda), THz', axs[0, 0], label='direct ($\lambda$)', marker='x')
     plot_spectra(system.direct, 'freqs, THz', 'a2f (gamma), THz', axs[0, 0], label='direct ($\gamma$)', marker='o')
-    #plot_entities(system, 'freqs, THz', 'a2f (lambda), THz', axs[0, 0], label=r' $\alpha^2f$ ($\lambda$)', direct=False, fp=False)
-    #plot_entities(system, 'freqs, THz', 'a2f (gamma), THz', axs[0, 0], label=r' $\alpha^2f$ ($\gamma$)', direct=False, fp=False)
     plot_entities(system, 'freqs, THz', 'lambda (lambda)', axs[0, 1], label=r'($\lambda$)')
     plot_entities(system, 'freqs, THz', 'lambda (gamma)', axs[0, 1], label=r'($\gamma$)')
     plot_entities(system, 'freqs, THz', 'wlog (lambda), K', axs[1, 0], label=r'($\lambda$)')
