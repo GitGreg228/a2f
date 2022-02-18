@@ -1,5 +1,5 @@
 # a2f - Superconductor properties calculation
-The solution of the Eliashberg equations is crucial for the critical temperature calculation.
+Solving the Eliashberg equations is effective and accurate way to calculate superconducting critical temperature. 
 ---
 ## Usage
 Run command:
