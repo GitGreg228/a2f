@@ -14,4 +14,4 @@ Run command:
 ```
 python main.py -p path/to/your/folder/with/dyns
 ```
-the script will read all files named `*dyn*.elph*` and `output.ph`
+the script will read all files named `*dyn*.elph*` and `output.ph.*` in the directory. From `*dyn*.elph*` files in will take lambas, then in will use `output.ph.*` to investigate the weights of q-points and crystal structure.
