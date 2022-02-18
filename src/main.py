@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 from qe_ouputs import Folder, PhOuts, DynElph
 from system import System
-from utils import save_dict, mkdirs, save_structure
+from utils import save_dict, mkdirs, save_structure, parse_formula
 from plotters import plot_system
 
 
@@ -13,7 +13,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', type=str, default='.', help='Path to the file')
     parser.add_argument('-s', type=float, default=3.0, help='Smoothing in THz')
-    parser.add_argument('-r', type=int, default=500, help='Interpolation resolution')
+    parser.add_argument('-r', type=int, default=0, help='Interpolation resolution. 0 => r = len(freqs[freqs > 0])')
+    parser.add_argument('-g', type=float, default=1, help='gaussian filter sigma')
     parser.add_argument('-i', type=str, default='lambda', help='Interpolation type')
     parser.add_argument('--mu', type=float, default=0.1, help='mu')
     parser.add_argument('--tol', type=float, default=0.2, help='Structure tolerance')
@@ -32,12 +33,18 @@ def main():
 
     save_structure(structure, args.tol, args.p)
 
+    if args.s == int(args.s):
+        args.s = int(args.s)
+    if args.g == int(args.g):
+        args.g = int(args.g)
+
     _ = system.get_direct(args.s)
-    _ = system.get_a2f(args.s, args.r, args.i)
+    _ = system.get_a2f(args.s, args.r, args.g)
     system.get_tc(args.mu)
+
     save_dict(system, args.p)
 
-    plot_system(system, args.p)
+    plot_system(system, parse_formula(structure), args.p)
 
 
 if __name__ == '__main__':

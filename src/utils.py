@@ -42,16 +42,14 @@ def mkdirs(path, dirname):
 
 def save_dict(system, path, float_format='%.12f'):
     smoothing = system.smoothing
-    if smoothing == int(smoothing):
-        smoothing = int(smoothing)
     smoothing = str(smoothing).replace('.', ',')
     if system.direct:
         name = os.path.join(path, 'results', f'direct_s{smoothing}.csv')
         df = pd.DataFrame.from_dict(system.direct)
         df.to_csv(name, index=False, header=True, sep='\t', float_format=float_format)
     if system.a2f:
-        resolution, interp_name = system.resolution, system.interp_name
-        name = os.path.join(path, 'results', f'a2f_s{smoothing}_r{resolution}_{interp_name}.csv')
+        resolution, sigma = system.resolution, system.sigma
+        name = os.path.join(path, 'results', f'a2f_s{smoothing}_r{resolution}_g{sigma}.csv')
         df = pd.DataFrame.from_dict(system.a2f)
         df.to_csv(name, index=False, header=True, sep='\t', float_format=float_format)
 
@@ -102,8 +100,8 @@ def stairs(arr, dtype=np.float16):
     :param dtype:
     :return:
     """
-    stairs = np.empty(arr.shape, dtype=dtype)
+    stairs = np.zeros(arr.shape, dtype=dtype)
     for i in range(len(arr)):
-        stairs[i] = np.sum(arr[:i + 1])
+        stairs[i] = np.sum(arr[:i])
     return stairs
 

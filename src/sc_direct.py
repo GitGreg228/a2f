@@ -8,9 +8,7 @@ def a2f_direct(qpoints, smoothing, dtype=np.float16):
     """
     Computes Eliashberg functions a2F directly from lambdas and gammas without any integration.
     """
-    freqs = np.empty((1), dtype=dtype)
-    a2f_lambda = np.empty((1), dtype=dtype)
-    a2f_gamma = np.empty((1), dtype=dtype)
+    freqs, a2f_lambda, a2f_gamma = list(), list(), list()
     for q_point in qpoints:
         dyn_elph = q_point['DynElph']
         lambdas = dyn_elph.lambdas
@@ -21,9 +19,10 @@ def a2f_direct(qpoints, smoothing, dtype=np.float16):
         smooth = np.exp(-np.square(smoothing / q_freqs))
         q_a2f_lambda = smooth * lambdas * q_freqs / 2 * weight
         q_a2f_gamma = smooth * gammas / q_freqs / nef / k_Ry_GHz / np.pi / 2 * weight * k_Ry_THz ** 2
-        a2f_lambda = np.append(a2f_lambda, q_a2f_lambda)
-        a2f_gamma = np.append(a2f_gamma, q_a2f_gamma)
-        freqs = np.append(freqs, q_freqs)
+        a2f_lambda.append(q_a2f_lambda)
+        a2f_gamma.append(q_a2f_gamma)
+        freqs.append(q_freqs)
+    freqs, a2f_lambda, a2f_gamma = map(lambda x: np.array(x).flatten(), (freqs, a2f_lambda, a2f_gamma))
     idxs = freqs.argsort()
     freqs = freqs[idxs]
     a2f_lambda = a2f_lambda[idxs]
@@ -43,9 +42,7 @@ def lambdas_direct(qpoints, smoothing, dtype=np.float16):
     Computes lambdas directly from lambdas and gammas without any integration.
     WARNING: Avoid using dtype=np.float32 or better, sometimes it leads to computational errors.
     """
-    freqs = np.empty((1), dtype=dtype)
-    lambdas_lambda = np.empty((1), dtype=dtype)
-    lambdas_gamma = np.empty((1), dtype=dtype)
+    freqs, lambdas_lambda, lambdas_gamma = list(), list(), list()
     for q_point in qpoints:
         dyn_elph = q_point['DynElph']
         lambdas = dyn_elph.lambdas
@@ -56,9 +53,10 @@ def lambdas_direct(qpoints, smoothing, dtype=np.float16):
         smooth = np.exp(-np.square(smoothing / (q_freqs * k_Ry_THz)))
         q_lambdas_lambda = smooth * lambdas * weight
         q_lambdas_gamma = smooth * gammas * weight / np.square(q_freqs) / nef / k_Ry_GHz / np.pi
-        lambdas_lambda = np.append(lambdas_lambda, q_lambdas_lambda)
-        lambdas_gamma = np.append(lambdas_gamma, q_lambdas_gamma)
-        freqs = np.append(freqs, q_freqs)
+        lambdas_lambda.append(q_lambdas_lambda)
+        lambdas_gamma.append(q_lambdas_gamma)
+        freqs.append(q_freqs)
+    freqs, lambdas_lambda, lambdas_gamma = map(lambda x: np.array(x).flatten(), (freqs, lambdas_lambda, lambdas_gamma))
     idxs = freqs.argsort()
     # freqs = freqs[idxs]
     lambdas_lambda = lambdas_lambda[idxs]

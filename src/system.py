@@ -2,8 +2,10 @@ from qe_ouputs import DynElph
 from utils import compare_q_points
 from sc_direct import a2f_direct, lambdas_direct, wlogs_direct, w2s_direct
 from sc_a2f import lambdas_a2f, wlogs_a2f, w2s_a2f
-from interpolators import interp_manager
+from interpolators import interp_lambda
 from tc import tc_mcm, tc_ad
+
+import numpy as np
 
 
 class System(object):
@@ -15,7 +17,7 @@ class System(object):
     q_points = list()
     smoothing = float()
     resolution = int()
-    interp_name = str()
+    sigma = float()
     direct = dict()
     a2f = dict()
     mu = float()
@@ -34,17 +36,20 @@ class System(object):
     def get_direct(self, smoothing):
         self.smoothing = smoothing
         self.direct.update(a2f_direct(self.q_points, smoothing))
-        freqs = self.direct['freqs, THz']
         self.direct.update(lambdas_direct(self.q_points, smoothing))
         self.direct.update(wlogs_direct(self.direct))
         self.direct.update(w2s_direct(self.direct))
         return self.direct
 
-    def get_a2f(self, smoothing, resolution, interp_name):
-        self.smoothing, self.resolution, self.interp_name = smoothing, resolution, interp_name
-        interpolator = interp_manager(interp_name)
-        freqs, a2f_lambda = interpolator(self.direct['freqs, THz'], self.direct['a2f (lambda), THz'], resolution)
-        _, a2f_gamma = interpolator(self.direct['freqs, THz'], self.direct['a2f (gamma), THz'], resolution)
+    def get_a2f(self, smoothing, resolution, sigma):
+        self.smoothing, self.resolution, self.sigma = smoothing, resolution, sigma
+        if not self.resolution:
+            self.resolution = len(self.direct['freqs, THz'][self.direct['freqs, THz'] > 0])
+        interpolator = interp_lambda
+        freqs, a2f_lambda = interpolator(self.direct['freqs, THz'], self.direct['a2f (lambda), THz'],
+                                         self.resolution, sigma)
+        _, a2f_gamma = interpolator(self.direct['freqs, THz'], self.direct['a2f (gamma), THz'],
+                                    self.resolution, sigma)
         self.a2f['freqs, THz'], self.a2f['a2f (lambda), THz'], self.a2f['a2f (gamma), THz'] = \
             freqs, a2f_lambda, a2f_gamma
         self.a2f.update(lambdas_a2f(self.a2f))
@@ -58,3 +63,12 @@ class System(object):
         self.direct.update(tc_ad(self.direct, mu))
         self.a2f.update(tc_mcm(self.a2f, mu))
         self.a2f.update(tc_ad(self.a2f, mu))
+
+
+class Superconducting(System):
+
+    def get_k(self):
+        freqs = self.a2f['freqs, THz']
+        self.K = np.zeros((len(freqs), len(freqs)), dtype=np.float16)
+        for l in range(len(freqs)):
+            print(1)

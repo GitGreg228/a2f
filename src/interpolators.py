@@ -24,7 +24,7 @@ def interp_manager(name):
         return 1
 
 
-def interp_lambda(x, y, r):
+def interp_lambda(x, y, r, sigma):
     x, y = pre_interpolation(x, y)
     x_new = np.linspace(np.min(x), np.max(x), r)
     dx = x_new[1] - x_new[0]
@@ -33,7 +33,7 @@ def interp_lambda(x, y, r):
     lambdas = f(x_new)
     a2w = np.diff(lambdas)/np.diff(x_new)
     a2w = np.insert(a2w, 0, 0)
-    a2w = gaussian_filter(a2w, sigma=4)
+    a2w = gaussian_filter(a2w, sigma=sigma)
     y_new = a2w * x_new * dx
     return x_new, y_new
 

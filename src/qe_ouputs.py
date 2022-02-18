@@ -225,5 +225,5 @@ class PhOuts(object):
         self.__coords = np.array(self.__coords) * k_bohr_A
         self.__matrix = np.array(self.__matrix) * k_bohr_A
         self.structure = IStructure(lattice=self.__matrix, species=self.__species, coords=self.__coords, coords_are_cartesian=True)
-        print(self.structure.volume)
+        # print(self.structure.volume)
         return self.structure
