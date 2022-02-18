@@ -14,12 +14,20 @@ Run command:
 ```
 python main.py
 ```
-The script will read all files named `*dyn*.elph*` and `output.ph.*` in the directory. From `*dyn*.elph*` files in will take lambas. After that, it will use `output.ph.*` to compute the weights of q-points and invetigate the crystal structure. 
+The script will read all files named `*.dyn*.elph*` and `output.ph.*` in the directory. From `*.dyn*.elph*` files in will take lambas. After that, it will use `output.ph.*` to compute the weights of q-points and invetigate the crystal structure. 
 
-Script parameters are:
-1. `-p` - path to the directory with `*dyn*.elph*` and `output.ph.*` files (default: '.')
+Script input parameters are:
+1. `-p` - path to the directory with `*.dyn*.elph*` and `output.ph.*` files (default: '.')
 2. `-s` - exponential smoothing parameter in THz, used to remove acoustic frequancies (default: 3)
 3. `-r` - desired resolution of the a2f function (default: cumulative number of positive frequencies in all `*dyn*.elph*` files)
 4. `-g` - sigma in gaussian filter used for smoothing (default: 1)
 5. `--mu` - Coulomb pseudopotential (default: 0.1)
 6. `--tol` - structure tolerance in angstrom (default: 0.2)
+
+In the directory specified by `-p` the `results/` folder will appear.
+
+Output files are:
+1. `direct_s*.csv` file with the a2f lambda, wlog, w2 and Tc calculated directly from lambdas and gammas 
+2. `a2f_s*_r*_g*.csv` file with the a2f, lambda, wlog, w2 and Tc calculated by integrating the computed a2f
+3. `*.vasp` and `*.cif` file with the crystal structure
+4. `plot_s*_r*_g*.pdf` with visualized parameters
