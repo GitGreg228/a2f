@@ -14,3 +14,4 @@ Run command:
 ```
 python main.py -p path/to/your/folder/with/dyns
 ```
+the script will read all files named `*dyn*.elph*` and `output.ph`
