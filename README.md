@@ -22,4 +22,4 @@ Script parameters are:
 3. `-r` - desired resolution of the a2f function (default: cumulative number of positive frequencies in all `*dyn*.elph*` files)
 4. `-g` - sigma in gaussian filter used for smoothing (default: 1)
 5. `--mu` - Coulomb pseudopotential (default: 0.1)
-6. `--tol` - structure tolerance
+6. `--tol` - structure tolerance in angstrom (default: 0.2)
