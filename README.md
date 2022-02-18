@@ -12,5 +12,5 @@ It also calulates:
 ## Usage
 Run command:
 ```
-python main.py -p 
+python main.py -p path/to/your/folder/with/dyns
 ```
