@@ -12,7 +12,7 @@ It also calulates:
 ## Usage
 Run command:
 ```
-python main.py -p path/to/your/folder/with/dyns
+python main.py
 ```
 The script will read all files named `*dyn*.elph*` and `output.ph.*` in the directory. From `*dyn*.elph*` files in will take lambas. After that, it will use `output.ph.*` to compute the weights of q-points and invetigate the crystal structure. 
 
