@@ -14,4 +14,10 @@ Run command:
 ```
 python main.py -p path/to/your/folder/with/dyns
 ```
-the script will read all files named `*dyn*.elph*` and `output.ph.*` in the directory. From `*dyn*.elph*` files in will take lambas, then in will use `output.ph.*` to investigate the weights of q-points and crystal structure.
+The script will read all files named `*dyn*.elph*` and `output.ph.*` in the directory. From `*dyn*.elph*` files in will take lambas. After that, it will use `output.ph.*` to compute the weights of q-points and invetigate the crystal structure. 
+
+Script parameters are:
+1. `-p` - path to the directory with `*dyn*.elph*` and `output.ph.*` files (default: '.')
+2. `-s` - exponential smoothing parameter in THz, used to remove acoustic frequancies (default: 3)
+3. `-r` - desired resolution of the a2f function (default: cumulative number of positive frequencies in all `*dyn*.elph*` files)
+4. `-g` - sigma in gaussian filter used for smoothing of a2f
