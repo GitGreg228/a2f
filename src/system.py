@@ -14,6 +14,7 @@ class System(object):
     q_points = list()
     smoothing = float()
     resolution = int()
+    integration = str()
     sigma = float()
     direct = dict()
     a2f = dict()
@@ -38,8 +39,8 @@ class System(object):
         self.direct.update(w2s_direct(self.direct))
         return self.direct
 
-    def get_a2f(self, resolution, sigma):
-        self.resolution, self.sigma = resolution, sigma
+    def get_a2f(self, resolution, sigma, integration):
+        self.resolution, self.sigma, self.integration = resolution, sigma, integration
         if not self.resolution:
             self.resolution = len(self.direct['freqs, THz'][self.direct['freqs, THz'] > 0])
         interpolator = interp_lambda
@@ -49,9 +50,9 @@ class System(object):
                                     self.resolution, sigma)
         self.a2f['freqs, THz'], self.a2f['a2f (lambda), THz'], self.a2f['a2f (gamma), THz'] = \
             freqs, a2f_lambda, a2f_gamma
-        self.a2f.update(lambdas_a2f(self.a2f))
-        self.a2f.update(wlogs_a2f(self.a2f))
-        self.a2f.update(w2s_a2f(self.a2f))
+        self.a2f.update(lambdas_a2f(self))
+        self.a2f.update(wlogs_a2f(self))
+        self.a2f.update(w2s_a2f(self))
         return self.a2f
 
     def get_tc(self, mu):

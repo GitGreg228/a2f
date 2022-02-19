@@ -18,6 +18,7 @@ def main():
     parser.add_argument('-g', type=float, default=1, help='gaussian filter sigma')
     parser.add_argument('--mu', type=float, default=0.1, help='mu')
     parser.add_argument('--tol', type=float, default=0.2, help='Structure tolerance')
+    parser.add_argument('--int', type=str, choices=['simps', 'sum'], default='sum', help='Integration method')
     args = parser.parse_args()
 
     mkdirs(args.p, 'results')
@@ -38,7 +39,7 @@ def main():
 
     _ = system.get_direct(args.s)
     print_direct(system)
-    _ = system.get_a2f(args.r, args.g)
+    _ = system.get_a2f(args.r, args.g, args.int)
     print_a2f(system)
     system.get_tc(args.mu)
     print_tc(system)
@@ -47,9 +48,9 @@ def main():
     sc.get_tc_e(args.mu)
     save_dict(system, args.p)
     plot_system(system, parse_formula(structure), args.p)
-    #k = sc.k[-1]
-    #X = np.arange(0, k.shape[0])
-    #Y = np.arange(0, k.shape[1])
+    # k = sc.k[-1]
+    # X = np.arange(0, k.shape[0])
+    # Y = np.arange(0, k.shape[1])
     # X, Y = np.meshgrid(X, Y)
     # fig = plt.figure()
     # ax = fig.add_subplot(111, projection='3d')
