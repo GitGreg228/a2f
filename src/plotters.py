@@ -58,7 +58,7 @@ def plot_system(system, formula, path):
     axs[1, 0].set_ylabel(r'$\omega_{\mathrm{log}}$, K')
     axs[1, 1].set_title(r'Mean square frequency $\omega^2$')
     axs[1, 1].set_ylabel(r'$\omega^2$, K')
-    axs[2, 0].set_title(r'McMillam $T_{\mathrm{C}}$')
+    axs[2, 0].set_title(r'McMillan $T_{\mathrm{C}}$')
     axs[2, 0].set_ylabel(r'$T_{\mathrm{C}}$, K')
     axs[2, 1].set_title(r'Allen-Dynes $T_{\mathrm{C}}$')
     axs[2, 1].set_ylabel(r'$T_{\mathrm{C}}$, K')

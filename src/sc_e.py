@@ -20,7 +20,8 @@ def l(a2f, r, t):
 
 class Superconducting(object):
     """
-    Superconducting class describes
+    Superconducting class is used for calculation of Eliashberg Tc.
+    It stores a2f (taken as input) + Kmn matrix, Kmn matrix maximum eigenvalue on each T.
     """
     a2f = dict()
     dim = int()
@@ -31,7 +32,13 @@ class Superconducting(object):
     def __init__(self, a2f):
         self.a2f = a2f
 
-    def get_tc_e(self, mu, t_min=0.1, dt=0.001, dim=24):
+    def get_tc_e(self, mu, t_min=1, dim=24):
+        """
+        :param mu:  Coulomb pseudopotential
+        :param t_min: staring temperature in K
+        :param dim: Dimension of the matrix
+        :return:
+        """
         self.dim = dim
         t = t_min
         b = 100
@@ -62,9 +69,11 @@ class Superconducting(object):
             self.k.append(k)
             dt = a * b
             if dt > 10:
+                # a = 0.1 * a
                 dt = 10
             if dt < 0.001:
                 dt = 0.001
+                # a = 10 * a
             t = t + dt
         print(f'Eliashberg Tc = {stround(t - dt)}+-{stround(dt)} K')
         return t

@@ -11,12 +11,16 @@ from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct
 
 
 def main():
+    """
+    The manager of all processes that parses input and create output using classes and functions from other files.
+    :return:
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', type=str, default='.', help='Path to the directory')
     parser.add_argument('-s', type=float, default=3, help='Smoothing in THz')
     parser.add_argument('-r', type=int, default=0, help='Interpolation resolution. 0 => r = len(freqs[freqs > 0])')
     parser.add_argument('-g', type=float, default=1, help='gaussian filter sigma')
-    parser.add_argument('--mu', type=float, default=0.1, help='mu')
+    parser.add_argument('--mu', type=float, default=0.1, help='Coulomb pseudopotential')
     parser.add_argument('--tol', type=float, default=0.2, help='Structure tolerance')
     parser.add_argument('--int', type=str, choices=['simps', 'sum'], default='sum', help='Integration method')
     args = parser.parse_args()

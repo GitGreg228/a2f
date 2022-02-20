@@ -7,9 +7,8 @@ from utils import compare_q_points
 
 class System(object):
     """
-    Calculates a2F, Tc and other parameters
-    of superconducting state basing on files
-    in given weights and dyn.elphs.
+    This class stores all numbers from *.dyn*.elph* files and weights. It also calculates a2f and other parameters:
+    lambda, wlog, w2 and Tc (McMillan + Allen-Dynes)
     """
     q_points = list()
     smoothing = float()
@@ -21,6 +20,10 @@ class System(object):
     mu = float()
 
     def __init__(self, dyn_elphs, weights):
+        """
+        :param dyn_elphs: list of DynElph objects (the class is defined in qe_outputs)
+        :param weights: the list of weights taken from ph.out
+        """
         for dyn_elph in dyn_elphs:
             q_point = dyn_elph.q_point
             for weight in weights:

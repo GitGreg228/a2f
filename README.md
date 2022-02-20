@@ -3,7 +3,7 @@ Solving Eliashberg equations is effective and accurate way to calculate supercon
 
 The script presented here reads the outputs of the Quantum Espresso with these parameters and computes a2f(w). 
 
-It also calulates:
+It also calculates:
 1. Logarithmic average frequency wlog
 2. Mean square frequency w2
 3. McMillan and Allen-Dynes superconducting critical temperature Tc
@@ -14,11 +14,11 @@ Run command:
 ```
 python main.py
 ```
-The script will read all files named `*.dyn*.elph*` and `output.ph.*` in the directory. From `*.dyn*.elph*` files in will take lambas. After that, it will use `output.ph.*` to compute the weights of q-points and invetigate the crystal structure. 
+The script will read all files named `*.dyn*.elph*` and `output.ph.*` in the directory. From `*.dyn*.elph*` files in will take lambas. After that, it will use `output.ph.*` to compute the weights of q-points and investigate the crystal structure. 
 
 Script input parameters are:
 1. `-p` - path to the directory with `*.dyn*.elph*` and `output.ph.*` files (default: '.')
-2. `-s` - exponential smoothing parameter in THz, used to remove acoustic frequancies (default: 3)
+2. `-s` - exponential smoothing parameter in THz, used to remove acoustic frequencies (default: 3)
 3. `-r` - desired resolution of the a2f function (default: cumulative number of positive frequencies in all `*dyn*.elph*` files)
 4. `-g` - sigma in gaussian filter used for smoothing (default: 1)
 5. `--mu` - Coulomb pseudopotential (default: 0.1)

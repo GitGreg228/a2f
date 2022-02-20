@@ -7,9 +7,7 @@ from utils import stairs
 
 def pre_interpolation(x, y):
     """
-    This function removes duplicates in x array
-    and sums values from y array that correspond
-    to removed duplicates.
+    Returns y and x corresponding to positive x
     """
     # x, idxs = np.unique(x, return_index=True)
     # print(x, idxs)
@@ -21,6 +19,11 @@ def pre_interpolation(x, y):
 
 
 def interp_manager(name):
+    """
+    Desides which function: (lambda, wlog, w2) interpolation will be used
+    :param name: function name ('lambda', 'wlog' or 'w2')
+    :return:
+    """
     if name == 'lambda':
         return interp_lambda
     else:
@@ -28,6 +31,15 @@ def interp_manager(name):
 
 
 def interp_lambda(x, y, r, sigma):
+    """
+    Interpolation using for a2f calculation by the formula:
+    a2f(w) = w * d(lambda(w))/dw
+    :param x: frequencies
+    :param y: a2f
+    :param r: resolution of desired output a2f
+    :param sigma: gaussian filter parameter
+    :return: new frequencies, new a2f
+    """
     x, y = pre_interpolation(x, y)
     x_new = np.linspace(np.min(x), np.max(x), r)
     dx = x_new[1] - x_new[0]

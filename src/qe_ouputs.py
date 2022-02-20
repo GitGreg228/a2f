@@ -165,7 +165,7 @@ class PhOuts(object):
 
     def weights(self):
         """
-        output format: (q-points, weights)
+        Output format: (q-points, weights)
         :return:
         """
         weights = list()
@@ -190,6 +190,10 @@ class PhOuts(object):
         return self.weights
 
     def struc(self):
+        """
+        Reads first structure that appears in the ph.out files.
+        :return: pymatgen IStructure
+        """
         idxs = dict()
         keys = ['lattice parameter (alat)', 'a(1)', 'a(2)', 'a(3)', 'site n.', 'number of atoms/cell']
         flag = 0
