@@ -1,5 +1,8 @@
 import numpy as np
 
+from pymatgen.core.composition import Composition
+from tc import hc, dctc, delta
+
 from constants import *
 from utils import stround
 
@@ -25,9 +28,12 @@ class Superconducting(object):
     """
     a2f = dict()
     dim = int()
+    tc_e = float()
     t = list()
     k = list()
     b = list()
+    gamma = float()
+    hc = float()
 
     def __init__(self, a2f):
         self.a2f = a2f
@@ -75,5 +81,23 @@ class Superconducting(object):
                 dt = 0.001
                 # a = 10 * a
             t = t + dt
+        self.tc_e = t - dt
         print(f'Eliashberg Tc = {stround(t - dt)}+-{stround(dt)} K')
         return t
+
+    def get_all(self, direct, nef):
+        tc = self.tc_e
+        _lambda = direct['lambda (gamma)'][-1]
+        print(f'Lambda {"%.3f" % round(_lambda, 3)}')
+        wlog = direct['wlog (gamma), K'][-1]
+        print(f'wlog {"%.3f" % round(wlog, 3)} K')
+        weight = 1 / N_A
+        nef = nef / (k_Ry_J * weight)
+        self.gamma = 2 / 3 * (np.pi * k_B)**2 * nef * (1 + _lambda) * 1000
+        print(f'Sommerfeld gamma\t {"%.3f" % round(self.gamma, 3)} mJ/(mol K2)')
+        self.hc = hc(tc, wlog, self.gamma)
+        #print(self.hc)
+        self.delta = delta(tc, wlog)
+        print(f'Delta\t {"%.3f" % round(self.delta, 3)} meV')
+        self.dctc = dctc(tc, wlog, self.gamma)
+        print(f'DeltaC/Tc\t {"%.3f" % round(self.dctc, 3)} mJ/(mol K2)')

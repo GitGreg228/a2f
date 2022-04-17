@@ -1,5 +1,7 @@
 import numpy as np
 
+from constants import *
+
 
 def tc_mcm_formula(wlog, _lambda, mu):
     """
@@ -23,7 +25,7 @@ def tc_ad_formula(wlog, w2, _lambda, mu):
     """
     f1 = np.cbrt(1 + np.power(_lambda / (2.46 * (1 + 3.8 * mu)), 1.5))
     f2 = 1 - (np.power(_lambda, 2) * (1 - w2[-1] / wlog[-1])) / (
-                np.power(_lambda, 2) + 3.312 * np.power(1 + 6.3 * mu, 2))
+            np.power(_lambda, 2) + 3.312 * np.power(1 + 6.3 * mu, 2))
     return f1 * f2 * tc_mcm_formula(wlog, _lambda, mu)
 
 
@@ -60,3 +62,15 @@ def tc_ad(d, mu):
         'Tc_AD (lambda), K': tc_lambda,
         'Tc_AD (gamma), K': tc_gamma,
     }
+
+
+def hc(tc, wlog, gamma):
+    return tc * np.sqrt(gamma / (0.168 * (1 - 12.2 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc)))))
+
+
+def dctc(tc, wlog, gamma):
+    return gamma * 1.43 * (1 + 53 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc)))
+
+
+def delta(tc, wlog):
+    return 0.5 * k_B * k_J_meV * tc * 3.53 * (1 + 12.5 * (tc / wlog) ** 2 * np.log(wlog / (2 * tc)))

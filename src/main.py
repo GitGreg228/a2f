@@ -3,7 +3,7 @@ import argparse
 import matplotlib.pyplot as plt
 import numpy as np
 
-from plotters import plot_system
+from plotters import plot_system, plot_article_view
 from qe_ouputs import Folder, PhOuts, DynElph
 from sc_e import Superconducting
 from system import System
@@ -41,17 +41,22 @@ def main():
     if args.g == int(args.g):
         args.g = int(args.g)
 
-    _ = system.get_direct(args.s)
+    direct = system.get_direct(args.s)
     print_direct(system)
-    _ = system.get_a2f(args.r, args.g, args.int)
+    a2f = system.get_a2f(args.r, args.g, args.int)
     print_a2f(system)
     system.get_tc(args.mu)
     print_tc(system)
 
-    sc = Superconducting(system.a2f)
-    sc.get_tc_e(args.mu)
     save_dict(system, args.p)
     plot_system(system, parse_formula(structure), args.p)
+    plot_article_view(system, parse_formula(structure), args.p)
+
+    sc = Superconducting(a2f)
+    sc.get_tc_e(args.mu)
+    nef = dyn_elphs[0].dos()
+    sc.get_all(direct, nef)
+
     # k = sc.k[-1]
     # X = np.arange(0, k.shape[0])
     # Y = np.arange(0, k.shape[1])

@@ -1,6 +1,8 @@
 import os
 
 import matplotlib.pyplot as plt
+import numpy as np
+from mpl_toolkits.axisartist.parasite_axes import HostAxes, ParasiteAxes
 
 from utils import stround
 
@@ -87,4 +89,63 @@ def plot_system(system, formula, path):
 
     fig.tight_layout(rect=[0, 0, 1, 0.95], h_pad=2.5)
     plt.savefig(os.path.join(path, 'results', f'plot_s{smoothing}_r{resolution}_g{sigma}.pdf'))
+    # plt.show()
+
+
+def plot_article_view(system, formula, path):
+    plt.rcParams['lines.markersize'] = 1
+    plt.rcParams['lines.linewidth'] = 1
+    plt.rcParams['font.size'] = 20
+
+    fig = plt.figure(figsize=(12,6))
+
+    x = system.a2f['freqs, THz']
+
+    ax1 = HostAxes(fig, [0.15, 0.1, 0.65, 0.8])
+    # ax1.axis["top"].set_visible(False)
+    ax1.axis["right"].set_visible(False)
+    ax1.set_xlim(min(x), max(x))
+    ax2 = ParasiteAxes(ax1, sharex=ax1)
+    ax3 = ParasiteAxes(ax1, sharex=ax1)
+    ax4 = ParasiteAxes(ax1, sharex=ax1)
+    ax1.parasites.append(ax2)
+    ax1.parasites.append(ax3)
+    ax1.parasites.append(ax4)
+    fig.add_axes(ax1)
+
+    y = system.a2f['a2f (gamma), THz']
+    y = np.insert(y, 0, 0)
+    y = np.insert(y, len(y)-1, 0)
+    x_adjust = np.insert(x, 0, x[0])
+    x_adjust = np.insert(x_adjust, len(x_adjust)-1, x[-1])
+    ax1.fill_between(x_adjust, y, fc='aliceblue', ec='deepskyblue')
+    ax1.set_ylim(0, 1.05 * max(y))
+    ax1.set_ylabel(r'$\alpha^2f$')
+    ax1.set_xlabel('$\omega$, THz')
+
+    y = system.a2f['lambda (gamma)']
+    new_axisline = ax2.get_grid_helper().new_fixed_axis
+    ax2.axis["right2"] = new_axisline(loc="right", axes=ax2)
+    ax2.set_ylim(0, 1.05 * max(y))
+    ax2.plot(x, y, color='#2DD700')
+    ax2.set_ylabel('$\lambda$', color='#2DD700')
+
+    y = system.a2f['Tc_AD (gamma), K']
+    new_axisline = ax3.get_grid_helper().new_fixed_axis
+    ax3.axis["right2"] = new_axisline(loc="right", axes=ax3, offset=(60, 0))
+    ax3.set_ylim(0, 1.05 * max(y))
+    ax3.plot(x, y, color='#9702A7')
+    ax3.set_ylabel(r'Allen-Dynes $T_{\mathrm{C}}$, K', color='#9702A7')
+
+    # y = system.a2f['Tc_AD (gamma), K']
+    # new_axisline = ax4.get_grid_helper().new_fixed_axis
+    # ax4.axis["right2"] = new_axisline(loc="right", axes=ax4, offset=(120, 0))
+    # ax4.set_ylim(0, 1.05 * max(y))
+    # ax4.plot(x, y, color='#9702A7', linestyle=':')
+    # ax4.set_ylabel(r'$\omega_{\mathrm{log}}$, K', color='#9702A7')
+
+    plt.tight_layout()
+    smoothing, resolution, sigma = system.smoothing, system.resolution, system.sigma
+    plt.savefig(os.path.join(path, 'results', f'plot_article_{formula}.pdf'))
+
     plt.show()
