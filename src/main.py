@@ -7,7 +7,7 @@ from plotters import plot_system, plot_article_view
 from qe_ouputs import Folder, PhOuts, DynElph
 from sc_e import Superconducting
 from system import System
-from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc
+from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc, save_result
 
 
 def main():
@@ -24,7 +24,6 @@ def main():
     parser.add_argument('--tol', type=float, default=0.2, help='Structure tolerance')
     parser.add_argument('--int', type=str, choices=['simps', 'sum'], default='sum', help='Integration method')
     args = parser.parse_args()
-
     mkdirs(args.p, 'results')
 
     folder = Folder(args.p)
@@ -49,13 +48,14 @@ def main():
     print_tc(system)
 
     save_dict(system, args.p)
-    plot_system(system, parse_formula(structure), args.p)
-    plot_article_view(system, parse_formula(structure), args.p)
+    # plot_system(system, parse_formula(structure), args.p)
+    # plot_article_view(system, parse_formula(structure), args.p)
 
     sc = Superconducting(a2f)
     sc.get_tc_e(args.mu)
     nef = dyn_elphs[0].dos()
-    sc.get_all(direct, nef)
+    result = sc.get_all(system, nef, structure)
+    save_result(result, args.p)
 
     # k = sc.k[-1]
     # X = np.arange(0, k.shape[0])

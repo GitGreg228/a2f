@@ -4,7 +4,7 @@ from pymatgen.core.composition import Composition
 from tc import hc, dctc, delta
 
 from constants import *
-from utils import stround
+from utils import stround, parse_formula, floatround, format_e
 
 
 def l(a2f, r, t):
@@ -32,8 +32,11 @@ class Superconducting(object):
     t = list()
     k = list()
     b = list()
+    delta = float()
     gamma = float()
+    dctc = float()
     hc = float()
+    result = dict()
 
     def __init__(self, a2f):
         self.a2f = a2f
@@ -85,19 +88,117 @@ class Superconducting(object):
         print(f'Eliashberg Tc = {stround(t - dt)}+-{stround(dt)} K')
         return t
 
-    def get_all(self, direct, nef):
+    def get_all(self, system, nef, structure):
+        direct = system.direct
+        a2f = system.a2f
+        self.result['formula'] = parse_formula(structure)
+        self.result['Smoothing, THz'] = system.smoothing
+        self.result['Resolution, pts'] = system.resolution
+        self.result['mu'] = system.mu
+        self.result['volume, A^3'] = floatround(structure.volume)
+        self.result['density, g/cm^3'] = floatround(structure.density)
         tc = self.tc_e
+        self.result['lambda'] = {
+            'direct': {
+                'lambda': floatround(direct['lambda (lambda)'][-1]),
+                'gamma': floatround(direct['lambda (gamma)'][-1])
+            },
+            'a2f': {
+                'lambda': floatround(a2f['lambda (lambda)'][-1]),
+                'gamma': floatround(a2f['lambda (gamma)'][-1])
+            },
+        }
+        self.result['wlog, K'] = {
+            'direct': {
+                'lambda': int(direct['wlog (lambda), K'][-1]),
+                'gamma': int(direct['wlog (gamma), K'][-1])
+            },
+            'a2f': {
+                'lambda': int(a2f['wlog (lambda), K'][-1]),
+                'gamma': int(a2f['wlog (gamma), K'][-1])
+            },
+        }
+        self.result['w2, K'] = {
+            'direct': {
+                'lambda': int(direct['w2 (lambda), K'][-1]),
+                'gamma': int(direct['w2 (gamma), K'][-1])
+            },
+            'a2f': {
+                'lambda': int(a2f['w2 (lambda), K'][-1]),
+                'gamma': int(a2f['w2 (gamma), K'][-1])
+            },
+        }
+        self.result['Tc, K'] = {
+            'McMillan': {
+                'direct': {
+                    'lambda': floatround(direct['Tc_McM (lambda), K'][-1]),
+                    'gamma': floatround(direct['Tc_McM (gamma), K'][-1])
+                },
+                'a2f': {
+                    'lambda': floatround(a2f['Tc_McM (lambda), K'][-1]),
+                    'gamma': floatround(a2f['Tc_McM (gamma), K'][-1])
+                },
+            },
+            'Allen-Dynes': {
+                'direct': {
+                    'lambda': floatround(direct['Tc_AD (lambda), K'][-1]),
+                    'gamma': floatround(direct['Tc_AD (gamma), K'][-1])
+                },
+                'a2f': {
+                    'lambda': floatround(a2f['Tc_AD (lambda), K'][-1]),
+                    'gamma': floatround(a2f['Tc_AD (gamma), K'][-1])
+                },
+            },
+            'Eliashberg': floatround(self.tc_e)
+        }
         _lambda = direct['lambda (gamma)'][-1]
-        print(f'Lambda {"%.3f" % round(_lambda, 3)}')
         wlog = direct['wlog (gamma), K'][-1]
-        print(f'wlog {"%.3f" % round(wlog, 3)} K')
-        weight = 1 / N_A
-        nef = nef / (k_Ry_J * weight)
-        self.gamma = 2 / 3 * (np.pi * k_B)**2 * nef * (1 + _lambda) * 1000
-        print(f'Sommerfeld gamma\t {"%.3f" % round(self.gamma, 3)} mJ/(mol K2)')
-        self.hc = hc(tc, wlog, self.gamma)
-        #print(self.hc)
+        self.result['nef'] = {
+            'per Unit cell': {
+                'states/spin/Ry': format_e(nef),
+                'states/spin/eV': format_e(nef / k_Ry_eV),
+                'states/spin/J': format_e(nef / k_Ry_J),
+                'states/spin/K': format_e(nef / k_Ry_K)
+            },
+            'per A^3': {
+                'states/spin/Ry': format_e(nef / structure.volume),
+                'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume),
+                'states/spin/J': format_e(nef / k_Ry_J / structure.volume),
+                'states/spin/K': format_e(nef / k_Ry_K / structure.volume)
+            },
+            'per g': {
+                'states/spin/Ry': format_e(nef / structure.volume / structure.density / k_A_cm ** 3),
+                'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume / structure.density / k_A_cm ** 3),
+                'states/spin/J': format_e(nef / k_Ry_J / structure.volume / structure.density / k_A_cm ** 3),
+                'states/spin/K': format_e(nef / k_Ry_K / structure.volume / structure.density / k_A_cm ** 3)
+            }
+        }
+        gamma = 2 / 3 * (np.pi * k_B) ** 2 * nef * (1 + _lambda) / k_Ry_J  # J/Unit cell/K^2
+        self.gamma = gamma
+        self.result['Sommerfeld gamma'] = {
+            'J/Unit cell/K^2': format_e(gamma),
+            'J/A^3/K^2': format_e(gamma / structure.volume),
+            'J/cm^3/K^2': format_e(gamma / structure.volume / k_A_cm ** 3),
+            'Erg/cm^3/K^2': format_e(gamma * k_J_Erg / structure.volume / k_A_cm ** 3),
+            'J/mol/K^2': format_e(gamma * N_A),
+            'J/g/K^2': format_e(gamma / structure.volume / structure.density / k_A_cm ** 3),
+        }
+        self.dctc = dctc(tc, wlog, gamma)
+        self.result['DeltaC/Tc'] = {
+            'J/Unit cell/K^2': format_e(self.dctc),
+            'J/A^3/K^2': format_e(self.dctc / structure.volume),
+            'J/cm^3/K^2': format_e(self.dctc / structure.volume / k_A_cm ** 3),
+            'J/mol/K^2': format_e(self.dctc * N_A),
+            'J/g/K^2': format_e(self.dctc / structure.volume / structure.density / k_A_cm ** 3),
+        }
         self.delta = delta(tc, wlog)
-        print(f'Delta\t {"%.3f" % round(self.delta, 3)} meV')
-        self.dctc = dctc(tc, wlog, self.gamma)
-        print(f'DeltaC/Tc\t {"%.3f" % round(self.dctc, 3)} mJ/(mol K2)')
+        self.result['Delta'] = {
+            'J': format_e(self.delta),
+            'meV': format_e(self.delta * k_J_meV)
+        }
+        self.hc = hc(tc, wlog, gamma * k_J_Erg / structure.volume / k_A_cm ** 3)
+        self.result['Hc'] = {
+            'G': format_e(self.hc),
+            'T': format_e(self.hc * k_G_T)
+        }
+        return self.result

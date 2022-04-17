@@ -148,4 +148,4 @@ def plot_article_view(system, formula, path):
     smoothing, resolution, sigma = system.smoothing, system.resolution, system.sigma
     plt.savefig(os.path.join(path, 'results', f'plot_article_{formula}.pdf'))
 
-    plt.show()
+    # plt.show()

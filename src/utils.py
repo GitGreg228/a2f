@@ -1,5 +1,6 @@
 import os
 import re
+import json
 from functools import reduce
 from math import gcd
 
@@ -13,6 +14,16 @@ from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 def stround(a, d=3):
     a = float(a)
     return f'%.{str(d)}f' % round(a, d)
+
+
+def floatround(a, d=3):
+    a = float(a)
+    return round(a, d)
+
+
+def format_e(n):
+    a = '%E' % n
+    return a.split('E')[0].rstrip('0').rstrip('.') + 'E' + a.split('E')[1]
 
 
 def compare_q_points(q_point1, q_point2):
@@ -136,3 +147,8 @@ def print_tc(system):
     tc_ad_a2f = stround(system.direct['Tc_AD (gamma), K'][-1])
     print(f'Mu = {mu}. Calculated McMillan Tc = {tc_mcm_direct} ({tc_mcm_a2f}) K, '
           f'calculated Allen-Dynes Tc = {tc_ad_direct} ({tc_ad_a2f}) K')
+
+
+def save_result(result, path):
+    with open(os.path.join(path, 'results', 'result.json'), 'w', encoding='utf-8') as f:
+        json.dump(result, f, ensure_ascii=False, sort_keys=False, indent=4)

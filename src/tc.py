@@ -65,12 +65,19 @@ def tc_ad(d, mu):
 
 
 def hc(tc, wlog, gamma):
+    print(tc/wlog, 0.168 * (1 - 12.2 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc))))
     return tc * np.sqrt(gamma / (0.168 * (1 - 12.2 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc)))))
 
 
 def dctc(tc, wlog, gamma):
-    return gamma * 1.43 * (1 + 53 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc)))
+    return gamma * 1.43 * (1 + np.log(wlog / (3 * tc)) * 53 * (tc / wlog) ** 2)
 
 
 def delta(tc, wlog):
-    return 0.5 * k_B * k_J_meV * tc * 3.53 * (1 + 12.5 * (tc / wlog) ** 2 * np.log(wlog / (2 * tc)))
+    """
+    Superconducting gap
+    :param tc: Tc in K
+    :param wlog: wlog in K
+    :return: delta in J
+    """
+    return 0.5 * k_B * tc * 3.53 * (1 + 12.5 * (tc / wlog) ** 2 * np.log(wlog / (2 * tc)))
