@@ -158,19 +158,22 @@ class Superconducting(object):
                 'states/spin/Ry': format_e(nef),
                 'states/spin/eV': format_e(nef / k_Ry_eV),
                 'states/spin/J': format_e(nef / k_Ry_J),
-                'states/spin/K': format_e(nef / k_Ry_K)
+                'states/spin/K': format_e(nef / k_Ry_K),
+                'states/spin mJ/K^2' : format_e(nef * 1000 * k_B / k_Ry_K),
             },
             'per A^3': {
                 'states/spin/Ry': format_e(nef / structure.volume),
                 'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume),
                 'states/spin/J': format_e(nef / k_Ry_J / structure.volume),
-                'states/spin/K': format_e(nef / k_Ry_K / structure.volume)
+                'states/spin/K': format_e(nef / k_Ry_K / structure.volume),
+                'states/spin mJ/K^2': format_e(nef * 1000 * k_B / k_Ry_K / structure.volume),
             },
             'per g': {
                 'states/spin/Ry': format_e(nef / structure.volume / structure.density / k_A_cm ** 3),
                 'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume / structure.density / k_A_cm ** 3),
                 'states/spin/J': format_e(nef / k_Ry_J / structure.volume / structure.density / k_A_cm ** 3),
-                'states/spin/K': format_e(nef / k_Ry_K / structure.volume / structure.density / k_A_cm ** 3)
+                'states/spin/K': format_e(nef / k_Ry_K / structure.volume / structure.density / k_A_cm ** 3),
+                'states/spin mJ/K^2': format_e(nef * 1000 * k_B / k_Ry_K / structure.volume / structure.density / k_A_cm ** 3),
             }
         }
         gamma = 2 / 3 * (np.pi * k_B) ** 2 * nef * (1 + _lambda) / k_Ry_J  # J/Unit cell/K^2

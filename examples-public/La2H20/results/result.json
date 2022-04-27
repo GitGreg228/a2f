@@ -63,19 +63,22 @@
             "states/spin/Ry": "1.285953E+01",
             "states/spin/eV": "9.451576E-01",
             "states/spin/J": "5.899212E+18",
-            "states/spin/K": "8.144736E-05"
+            "states/spin/K": "8.144736E-05",
+            "states/spin mJ/K^2": "1.124502E-24"
         },
         "per A^3": {
             "states/spin/Ry": "2.074355E-01",
             "states/spin/eV": "1.524622E-02",
             "states/spin/J": "9.515946E+16",
-            "states/spin/K": "1.313817E-06"
+            "states/spin/K": "1.313817E-06",
+            "states/spin mJ/K^2": "1.813921E-26"
         },
         "per g": {
             "states/spin/Ry": "2.598985E+22",
             "states/spin/eV": "1.910218E+21",
             "states/spin/J": "1.192265E+40",
-            "states/spin/K": "1.646098E+17"
+            "states/spin/K": "1.646098E+17",
+            "states/spin mJ/K^2": "2.272684E-03"
         }
     },
     "Sommerfeld gamma": {
