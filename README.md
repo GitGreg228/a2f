@@ -18,7 +18,7 @@ python main.py -p ../desired/path
 ```
 The script will read all files named `*.dyn*.elph*` and `output.ph.*` in the `../desired/path` directory. First, lambdas and gammas are taken from `*.dyn*.elph*`. After that, `output.ph.*` will be used to compute the weights of q-points and investigate the crystal structure. 
 
-For more detailed explanation, see [notebooks/a2f_tutorial.ipynb](Tutorial)
+For more detailed instructions and explanation, see the [Tutorial](notebooks/a2f_tutorial.ipynb).
 
 Script input parameters are:
 1. `-p` - path to the directory with `*.dyn*.elph*` and `output.ph.*` files (default: `.`)
