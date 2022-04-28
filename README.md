@@ -38,7 +38,7 @@ Output files are:
 ---
 
 ## Contributor
-Grigoriy Shutov, MSc student at Skolkovo Institute of Science and Technology [email](email:grigoriy.shutov@skoltech.ru)
+Grigoriy Shutov, MSc student at Skolkovo Institute of Science and Technology [email](malito:grigoriy.shutov@skoltech.ru)
 
 ## Acknowledgments
 
