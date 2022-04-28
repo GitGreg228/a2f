@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from plotters import plot_system, plot_article_view
-from qe_ouputs import Folder, PhOuts, DynElph
+from qe_outputs import Folder, PhOuts, DynElph
 from sc_e import Superconducting
 from system import System
 from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc, save_result
