@@ -4,11 +4,10 @@ Solving Eliashberg equations is effective and accurate way to calculate supercon
 The script presented here reads the outputs of the Quantum Espresso with these parameters and computes a2f(w). 
 
 It also calculates:
-1. Logarithmic average frequency wlog
-2. Mean square frequency w2
-3. McMillan and Allen-Dynes superconducting critical temperature Tc
-4. Eliashberg superconducting critical temperature Tc (using a2f kernels)
-5. Parameters of superconducting state: Sommerfeld constant, upper critical field, specific heat jump, superconducting gap etc.
+1. Logarithmic average frequency wlog and mean square frequency w2
+2. McMillan and Allen-Dynes superconducting critical temperature Tc
+3. Eliashberg superconducting critical temperature Tc (using a2f kernels)
+4. Parameters of superconducting state: Sommerfeld constant, upper critical field, specific heat jump, superconducting gap etc.
 ---
 ## Usage
 In `src/` dir, run command:
