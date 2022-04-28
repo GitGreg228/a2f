@@ -38,3 +38,6 @@ Output files are:
 5. `plot_article.pdf` article-view plot
 6. `result.json` contains all computed parameters of superconducting state
 
+## Acknowledgements
+
+This program wouldn't exist without the help of my great supervisor [Dmitrii Semenok](https://scholar.google.ru/citations?user=DSiCB0UAAAAJ).
