@@ -1,0 +1,104 @@
+{
+    "formula": "ThH10",
+    "# of chemical formula units (f.u.)": 1,
+    "Smoothing, THz": 6,
+    "Resolution, pts": 1000,
+    "mu": 0.1,
+    "volume, A^3": 31.909,
+    "volume of chemical formula unit, A^3": 31.909,
+    "density, g/cm^3": 12.6,
+    "lambda": {
+        "direct": {
+            "lambda": 1.766,
+            "gamma": 1.766
+        },
+        "a2f": {
+            "lambda": 1.766,
+            "gamma": 1.766
+        }
+    },
+    "wlog, K": {
+        "direct": {
+            "lambda": 1272,
+            "gamma": 1272
+        },
+        "a2f": {
+            "lambda": 1285,
+            "gamma": 1285
+        }
+    },
+    "w2, K": {
+        "direct": {
+            "lambda": 1458,
+            "gamma": 1458
+        },
+        "a2f": {
+            "lambda": 1464,
+            "gamma": 1464
+        }
+    },
+    "Tc, K": {
+        "McMillan": {
+            "direct": {
+                "lambda": 166.954,
+                "gamma": 166.954
+            },
+            "a2f": {
+                "lambda": 168.625,
+                "gamma": 168.625
+            }
+        },
+        "Allen-Dynes": {
+            "direct": {
+                "lambda": 192.763,
+                "gamma": 192.763
+            },
+            "a2f": {
+                "lambda": 194.375,
+                "gamma": 194.375
+            }
+        },
+        "Eliashberg": 205.476
+    },
+    "Sommerfeld gamma": {
+        "mJ/mol/K^2": 3.635,
+        "mJ/g/K^2": 0.01501,
+        "mJ/A^3/K^2": "1.891777E-25"
+    },
+    "DeltaC/Tc": {
+        "mJ/mol/K^2": 10.406,
+        "mJ/g/K^2": 0.043,
+        "mJ/A^3/K^2": "5.415503E-25"
+    },
+    "Delta": {
+        "meV": 42.77,
+        "2Delta/kBTc": 4.831,
+        "J": "6.852476E-21"
+    },
+    "Hc, T": [
+        34.459
+    ],
+    "beta (McMillan isotope coefficient)": 0.48756,
+    "DOS": {
+        "per Unit cell": {
+            "states/spin/Ry": 3.7935,
+            "states/spin/eV": 0.2788
+        },
+        "per chemical formula unit (ThH10)": {
+            "states/spin/Ry": 3.7935,
+            "states/spin/eV": 0.2788
+        },
+        "per A^3": {
+            "states/spin/Ry": 0.1189,
+            "states/spin/eV": 0.0087
+        },
+        "per mole of ThH10": {
+            "states/spin/Ry": "2.284527E+24",
+            "states/spin/eV": "1.679096E+23"
+        },
+        "per g": {
+            "states/spin/Ry": "9.435616E+21",
+            "states/spin/eV": "6.935047E+20"
+        }
+    }
+}

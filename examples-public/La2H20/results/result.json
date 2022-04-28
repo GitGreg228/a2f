@@ -1,9 +1,11 @@
 {
     "formula": "LaH10",
+    "# of chemical formula units (f.u.)": 2,
     "Smoothing, THz": 6,
     "Resolution, pts": 1000,
     "mu": 0.1,
     "volume, A^3": 61.993,
+    "volume of chemical formula unit, A^3": 30.996,
     "density, g/cm^3": 7.981,
     "lambda": {
         "direct": {
@@ -58,50 +60,45 @@
         },
         "Eliashberg": 265.305
     },
-    "nef": {
+    "Sommerfeld gamma": {
+        "mJ/mol/K^2": 9.321,
+        "mJ/g/K^2": 0.06256,
+        "mJ/A^3/K^2": "4.993172E-25"
+    },
+    "DeltaC/Tc": {
+        "mJ/mol/K^2": 20.975,
+        "mJ/g/K^2": 0.141,
+        "mJ/A^3/K^2": "1.123665E-24"
+    },
+    "Delta": {
+        "meV": 63.505,
+        "2Delta/kBTc": 5.555,
+        "J": "1.017458E-20"
+    },
+    "Hc, T": [
+        67.076
+    ],
+    "beta (McMillan isotope coefficient)": 0.49223,
+    "DOS": {
         "per Unit cell": {
-            "states/spin/Ry": "1.285953E+01",
-            "states/spin/eV": "9.451576E-01",
-            "states/spin/J": "5.899212E+18",
-            "states/spin/K": "8.144736E-05",
-            "states/spin mJ/K^2": "1.124502E-24"
+            "states/spin/Ry": 12.8595,
+            "states/spin/eV": 0.9452
+        },
+        "per chemical formula unit (LaH10)": {
+            "states/spin/Ry": 6.4298,
+            "states/spin/eV": 0.4726
         },
         "per A^3": {
-            "states/spin/Ry": "2.074355E-01",
-            "states/spin/eV": "1.524622E-02",
-            "states/spin/J": "9.515946E+16",
-            "states/spin/K": "1.313817E-06",
-            "states/spin mJ/K^2": "1.813921E-26"
+            "states/spin/Ry": 0.2074,
+            "states/spin/eV": 0.0152
+        },
+        "per mole of LaH10": {
+            "states/spin/Ry": "3.872095E+24",
+            "states/spin/eV": "2.845936E+23"
         },
         "per g": {
             "states/spin/Ry": "2.598985E+22",
-            "states/spin/eV": "1.910218E+21",
-            "states/spin/J": "1.192265E+40",
-            "states/spin/K": "1.646098E+17",
-            "states/spin mJ/K^2": "2.272684E-03"
+            "states/spin/eV": "1.910218E+21"
         }
-    },
-    "Sommerfeld gamma": {
-        "J/Unit cell/K^2": "3.095413E-26",
-        "J/A^3/K^2": "4.993172E-28",
-        "J/cm^3/K^2": "4.993172E-04",
-        "Erg/cm^3/K^2": "4.993172E+03",
-        "J/mol/K^2": "1.864101E-02",
-        "J/g/K^2": "6.256008E-05"
-    },
-    "DeltaC/Tc": {
-        "J/Unit cell/K^2": "6.965925E-26",
-        "J/A^3/K^2": "1.123665E-27",
-        "J/cm^3/K^2": "1.123665E-03",
-        "J/mol/K^2": "4.194978E-02",
-        "J/g/K^2": "1.407854E-04"
-    },
-    "Delta": {
-        "J": "1.017458E-20",
-        "meV": "6.350472E+01"
-    },
-    "Hc": {
-        "G": "4.909462E+04",
-        "T": "4.909462E+00"
     }
 }

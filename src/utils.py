@@ -66,7 +66,7 @@ def save_dict(system, path, float_format='%.12f'):
         df.to_csv(name, index=False, header=True, sep='\t', float_format=float_format)
 
 
-def parse_formula(structure):
+def parse_formula(structure, get_gcd=False):
     formula = structure.formula
     split = formula.split()
     if len(split) == 1:
@@ -87,11 +87,14 @@ def parse_formula(structure):
             if not i == len(numeric):
                 if not numeric[i] // GCD == 1:
                     result = result + str(numeric[i] // GCD)
-        return result.replace(' ', '')
+        if get_gcd:
+            return result.replace(' ', ''), GCD
+        else:
+            return result.replace(' ', '')
 
 
 def save_structure(struct, tol, path):
-    formula = parse_formula(struct)
+    formula, fu = parse_formula(struct, get_gcd=True)
     try:
         analyzer = SpacegroupAnalyzer(struct, symprec=0.2)
         num = analyzer.get_space_group_number()
@@ -101,8 +104,12 @@ def save_structure(struct, tol, path):
     except TypeError:
         print('Unable to symmetrize the structure')
         pass
-    print(f'\nThe structure under consideration is {sym}-{formula}.')
-    Poscar(struct).write_file(os.path.join(path, 'results', f'{formula}.vasp'))
+    if int(fu) == 1:
+        print(f'\nThe structure under consideration is {sym}-{formula}.')
+        Poscar(struct).write_file(os.path.join(path, 'results', f'{formula}.vasp'))
+    else:
+        print(f'\nThe structure under consideration is {fu}x of {sym}-{formula}.')
+        Poscar(struct).write_file(os.path.join(path, 'results', f'{fu}x{formula}.vasp'))
 
 
 def stairs(arr, dtype=np.float16):

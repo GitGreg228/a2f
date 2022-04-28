@@ -1,0 +1,42 @@
+     0.37671229    -0.07056698     0.25398134      33
+ -0.582428E-04  0.106772E-05  0.177066E-05  0.614998E-05  0.303053E-04  0.429674E-04
+  0.489202E-04  0.640756E-04  0.680183E-04  0.805764E-04  0.840678E-04  0.880276E-04
+  0.117498E-03  0.120572E-03  0.121221E-03  0.133839E-03  0.140430E-03  0.147604E-03
+  0.149943E-03  0.153796E-03  0.159475E-03  0.162811E-03  0.170414E-03  0.174068E-03
+  0.177610E-03  0.179736E-03  0.195713E-03  0.204625E-03  0.216040E-03  0.218704E-03
+  0.244527E-03  0.278142E-03  0.318547E-03
+     Tetrahedron method
+     DOS =  3.779720 states/spin/Ry/Unit Cell at Ef= 21.385357 eV
+     lambda(    1)=  0.0000   gamma=   -0.00 GHz
+     lambda(    2)=  0.0455   gamma=    1.90 GHz
+     lambda(    3)=  0.0311   gamma=    2.15 GHz
+     lambda(    4)=  0.0165   gamma=    3.96 GHz
+     lambda(    5)=  0.4093   gamma=  484.57 GHz
+     lambda(    6)=  0.1370   gamma=  229.91 GHz
+     lambda(    7)=  0.0783   gamma=  149.54 GHz
+     lambda(    8)=  0.0537   gamma=  134.43 GHz
+     lambda(    9)=  0.0895   gamma=  237.69 GHz
+     lambda(   10)=  0.1565   gamma=  492.65 GHz
+     lambda(   11)=  0.1624   gamma=  533.18 GHz
+     lambda(   12)=  0.1490   gamma=  512.37 GHz
+     lambda(   13)=  0.0364   gamma=  166.85 GHz
+     lambda(   14)=  0.0295   gamma=  139.00 GHz
+     lambda(   15)=  0.0270   gamma=  127.71 GHz
+     lambda(   16)=  0.0586   gamma=  306.38 GHz
+     lambda(   17)=  0.0174   gamma=   95.57 GHz
+     lambda(   18)=  0.0189   gamma=  108.98 GHz
+     lambda(   19)=  0.0187   gamma=  109.41 GHz
+     lambda(   20)=  0.0217   gamma=  130.26 GHz
+     lambda(   21)=  0.0215   gamma=  134.00 GHz
+     lambda(   22)=  0.0196   gamma=  124.38 GHz
+     lambda(   23)=  0.0281   gamma=  186.92 GHz
+     lambda(   24)=  0.0196   gamma=  133.25 GHz
+     lambda(   25)=  0.0148   gamma=  102.72 GHz
+     lambda(   26)=  0.0053   gamma=   37.52 GHz
+     lambda(   27)=  0.0239   gamma=  182.95 GHz
+     lambda(   28)=  0.0156   gamma=  124.86 GHz
+     lambda(   29)=  0.0234   gamma=  197.18 GHz
+     lambda(   30)=  0.0240   gamma=  204.85 GHz
+     lambda(   31)=  0.0215   gamma=  205.19 GHz
+     lambda(   32)=  0.0123   gamma=  133.46 GHz
+     lambda(   33)=  0.0228   gamma=  284.08 GHz

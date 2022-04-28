@@ -1,7 +1,7 @@
 import numpy as np
 
 from pymatgen.core.composition import Composition
-from tc import hc, dctc, delta
+from tc import hc, dctc, delta, beta
 
 from constants import *
 from utils import stround, parse_formula, floatround, format_e
@@ -34,6 +34,7 @@ class Superconducting(object):
     b = list()
     delta = float()
     gamma = float()
+    beta = float()
     dctc = float()
     hc = float()
     result = dict()
@@ -91,11 +92,14 @@ class Superconducting(object):
     def get_all(self, system, nef, structure):
         direct = system.direct
         a2f = system.a2f
-        self.result['formula'] = parse_formula(structure)
+        formula, fu = parse_formula(structure, get_gcd=True)
+        self.result['formula'] = formula
+        self.result["# of chemical formula units (f.u.)"] = fu
         self.result['Smoothing, THz'] = system.smoothing
         self.result['Resolution, pts'] = system.resolution
         self.result['mu'] = system.mu
         self.result['volume, A^3'] = floatround(structure.volume)
+        self.result['volume of chemical formula unit, A^3'] = floatround(structure.volume / fu)
         self.result['density, g/cm^3'] = floatround(structure.density)
         tc = self.tc_e
         self.result['lambda'] = {
@@ -153,55 +157,49 @@ class Superconducting(object):
         }
         _lambda = direct['lambda (gamma)'][-1]
         wlog = direct['wlog (gamma), K'][-1]
-        self.result['nef'] = {
+        gamma = 2 / 3 * (np.pi * k_B) ** 2 * nef * (1 + _lambda) / k_Ry_J  # J/Unit cell/K^2
+        self.gamma = gamma
+        self.result['Sommerfeld gamma'] = {
+            'mJ/mol/K^2': round(1000 * gamma * N_A / fu, 3),
+            'mJ/g/K^2': round(1000 * gamma / structure.volume / structure.density / k_A_cm ** 3, 5),
+            'mJ/A^3/K^2': format_e(1000 * gamma / structure.volume),
+        }
+        self.dctc = dctc(tc, wlog, gamma)
+        self.result['DeltaC/Tc'] = {
+            'mJ/mol/K^2': round(1000 * self.dctc * N_A / fu, 3),
+            'mJ/g/K^2': round(1000 * self.dctc / structure.volume / structure.density / k_A_cm ** 3, 3),
+            'mJ/A^3/K^2': format_e(1000 * self.dctc / structure.volume)
+        }
+        self.delta = delta(tc, wlog)
+        self.result['Delta'] = {
+            'meV': round(self.delta * k_J_meV, 3),
+            '2Delta/kBTc': round(2 * self.delta / (k_B * tc), 3),
+            'J': format_e(self.delta)
+        }
+        self.hc = hc(tc, wlog, gamma * N_A / fu)
+        self.result['Hc, T'] = round(self.hc, 3),
+        self.beta = beta(_lambda, system.mu)
+        self.result['beta (McMillan isotope coefficient)'] = round(self.beta, 5)
+        self.result['DOS'] = {
             'per Unit cell': {
-                'states/spin/Ry': format_e(nef),
-                'states/spin/eV': format_e(nef / k_Ry_eV),
-                'states/spin/J': format_e(nef / k_Ry_J),
-                'states/spin/K': format_e(nef / k_Ry_K),
-                'states/spin mJ/K^2' : format_e(nef * 1000 * k_B / k_Ry_K),
+                'states/spin/Ry': round(nef, 4),
+                'states/spin/eV': round(nef / k_Ry_eV, 4),
+            },
+            f'per chemical formula unit ({formula})': {
+                'states/spin/Ry': round(nef / fu, 4),
+                'states/spin/eV': round(nef / k_Ry_eV / fu, 4),
             },
             'per A^3': {
-                'states/spin/Ry': format_e(nef / structure.volume),
-                'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume),
-                'states/spin/J': format_e(nef / k_Ry_J / structure.volume),
-                'states/spin/K': format_e(nef / k_Ry_K / structure.volume),
-                'states/spin mJ/K^2': format_e(nef * 1000 * k_B / k_Ry_K / structure.volume),
+                'states/spin/Ry': round(nef / structure.volume, 4),
+                'states/spin/eV': round(nef / k_Ry_eV / structure.volume, 4),
+            },
+            f'per mole of {formula}': {
+                'states/spin/Ry': format_e(nef / fu * N_A),
+                'states/spin/eV': format_e(nef / k_Ry_eV / fu * N_A),
             },
             'per g': {
                 'states/spin/Ry': format_e(nef / structure.volume / structure.density / k_A_cm ** 3),
                 'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume / structure.density / k_A_cm ** 3),
-                'states/spin/J': format_e(nef / k_Ry_J / structure.volume / structure.density / k_A_cm ** 3),
-                'states/spin/K': format_e(nef / k_Ry_K / structure.volume / structure.density / k_A_cm ** 3),
-                'states/spin mJ/K^2': format_e(nef * 1000 * k_B / k_Ry_K / structure.volume / structure.density / k_A_cm ** 3),
             }
-        }
-        gamma = 2 / 3 * (np.pi * k_B) ** 2 * nef * (1 + _lambda) / k_Ry_J  # J/Unit cell/K^2
-        self.gamma = gamma
-        self.result['Sommerfeld gamma'] = {
-            'J/Unit cell/K^2': format_e(gamma),
-            'J/A^3/K^2': format_e(gamma / structure.volume),
-            'J/cm^3/K^2': format_e(gamma / structure.volume / k_A_cm ** 3),
-            'Erg/cm^3/K^2': format_e(gamma * k_J_Erg / structure.volume / k_A_cm ** 3),
-            'J/mol/K^2': format_e(gamma * N_A),
-            'J/g/K^2': format_e(gamma / structure.volume / structure.density / k_A_cm ** 3),
-        }
-        self.dctc = dctc(tc, wlog, gamma)
-        self.result['DeltaC/Tc'] = {
-            'J/Unit cell/K^2': format_e(self.dctc),
-            'J/A^3/K^2': format_e(self.dctc / structure.volume),
-            'J/cm^3/K^2': format_e(self.dctc / structure.volume / k_A_cm ** 3),
-            'J/mol/K^2': format_e(self.dctc * N_A),
-            'J/g/K^2': format_e(self.dctc / structure.volume / structure.density / k_A_cm ** 3),
-        }
-        self.delta = delta(tc, wlog)
-        self.result['Delta'] = {
-            'J': format_e(self.delta),
-            'meV': format_e(self.delta * k_J_meV)
-        }
-        self.hc = hc(tc, wlog, gamma * k_J_Erg / structure.volume / k_A_cm ** 3)
-        self.result['Hc'] = {
-            'G': format_e(self.hc),
-            'T': format_e(self.hc * k_G_T)
         }
         return self.result

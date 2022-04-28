@@ -48,8 +48,8 @@ def main():
     print_tc(system)
 
     save_dict(system, args.p)
-    # plot_system(system, parse_formula(structure), args.p)
-    # plot_article_view(system, parse_formula(structure), args.p)
+    plot_system(system, parse_formula(structure), args.p)
+    plot_article_view(system, parse_formula(structure), args.p)
 
     sc = Superconducting(a2f)
     sc.get_tc_e(args.mu)

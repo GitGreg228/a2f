@@ -65,7 +65,13 @@ def tc_ad(d, mu):
 
 
 def hc(tc, wlog, gamma):
-    print(tc/wlog, 0.168 * (1 - 12.2 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc))))
+    """
+    Upper critical field
+    :param tc: Tc in K
+    :param wlog: wlog in K
+    :param gamma: Sommerfeld gamma in J/mol/K^2
+    :return: Hc in Tesla
+    """
     return tc * np.sqrt(gamma / (0.168 * (1 - 12.2 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc)))))
 
 
@@ -81,3 +87,10 @@ def delta(tc, wlog):
     :return: delta in J
     """
     return 0.5 * k_B * tc * 3.53 * (1 + 12.5 * (tc / wlog) ** 2 * np.log(wlog / (2 * tc)))
+
+
+def beta(_lambda, mu):
+    return 0.5 * (1 - mu ** 2 * (1.04 * (1 + _lambda)) * (1 + 0.62 * _lambda) / (
+                _lambda - mu * (1 + 0.62 * _lambda)) ** 2)
+
+
