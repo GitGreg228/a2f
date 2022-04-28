@@ -176,8 +176,8 @@ class Superconducting(object):
             '2Delta/kBTc': round(2 * self.delta / (k_B * tc), 3),
             'J': format_e(self.delta)
         }
-        self.hc = hc(tc, wlog, gamma * N_A / fu)
-        self.result['Hc, T'] = round(self.hc, 3),
+        self.hc = hc(tc, wlog, 2 * gamma * N_A / fu)
+        self.result['Hc2, T'] = round(self.hc, 3),
         self.beta = beta(_lambda, system.mu)
         self.result['beta (McMillan isotope coefficient)'] = round(self.beta, 5)
         self.result['DOS'] = {
