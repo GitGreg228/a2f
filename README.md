@@ -8,8 +8,7 @@ It also calculates:
 2. Mean square frequency w2
 3. McMillan and Allen-Dynes superconducting critical temperature Tc
 4. Eliashberg superconducting critical temperature Tc (using a2f kernels)
-5. Parameters of superconducting state:
-6.1 
+5. Parameters of superconducting state: Sommerfeld constant, upper critical field, specific heat jump, superconducting gap etc.
 ---
 ## Usage
 In `src/` dir, run command:
