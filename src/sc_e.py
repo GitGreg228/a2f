@@ -162,13 +162,13 @@ class Superconducting(object):
         self.result['Sommerfeld gamma'] = {
             'mJ/mol/K^2': round(1000 * gamma * N_A / fu, 3),
             'mJ/g/K^2': round(1000 * gamma / structure.volume / structure.density / k_A_cm ** 3, 5),
-            'mJ/A^3/K^2': format_e(1000 * gamma / structure.volume),
+            'mJ/cm^3/K^2': round(1000 * gamma / structure.volume / k_A_cm ** 3, 4),
         }
         self.dctc = dctc(tc, wlog, gamma)
         self.result['DeltaC/Tc'] = {
             'mJ/mol/K^2': round(1000 * self.dctc * N_A / fu, 3),
             'mJ/g/K^2': round(1000 * self.dctc / structure.volume / structure.density / k_A_cm ** 3, 3),
-            'mJ/A^3/K^2': format_e(1000 * self.dctc / structure.volume)
+            'mJ/cm^3/K^2': round(1000 * self.dctc / structure.volume / k_A_cm ** 3, 4)
         }
         self.delta = delta(tc, wlog)
         self.result['Delta'] = {
