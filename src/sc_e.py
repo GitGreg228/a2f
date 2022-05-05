@@ -202,4 +202,14 @@ class Superconducting(object):
                 'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume / structure.density / k_A_cm ** 3),
             }
         }
+        print(f"lambda: {'%.3f' % round(a2f['lambda (gamma)'][-1], 3)}")
+        print(f"wlog: {round(a2f['wlog (gamma), K'][-1])} K")
+        print(f"w2: {round(a2f['w2 (gamma), K'][-1])} K")
+        print(f"Tc: {round(tc, 1)} K")
+        print(f"DOS: {'%.3f' % round(self.result['DOS']['per A^3']['states/spin/Ry'], 3)} states/spin/Ry/A^3")
+        print(f"Sommerfeld gamma: {'%.3f' % round(self.result['Sommerfeld gamma']['mJ/cm^3/K^2'], 3)} mJ/cm^3/K^2")
+        print(f"DeltaC/Tc: {'%.3f' % round(self.result['DeltaC/Tc']['mJ/cm^3/K^2'], 3)} mJ/cm^3/K^2")
+        print(f"Delta: {'%.1f' % round(self.result['Delta']['meV'], 1)} meV")
+        print(f"2Delta/kBTc: {'%.2f' % round(self.result['Delta']['2Delta/kBTc'], 2)}")
+        print(f"Hc2: {'%.1f' % round(self.result['Hc2, T'][0], 1)} T")
         return self.result
