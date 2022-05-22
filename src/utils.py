@@ -151,7 +151,7 @@ def print_tc(system):
     tc_mcm_direct = stround(system.direct['Tc_McM (gamma), K'][-1])
     tc_ad_direct = stround(system.direct['Tc_AD (gamma), K'][-1])
     tc_mcm_a2f = stround(system.a2f['Tc_McM (gamma), K'][-1])
-    tc_ad_a2f = stround(system.direct['Tc_AD (gamma), K'][-1])
+    tc_ad_a2f = stround(system.a2f['Tc_AD (gamma), K'][-1])
     print(f'Mu = {mu}. Calculated McMillan Tc = {tc_mcm_direct} ({tc_mcm_a2f}) K, '
           f'calculated Allen-Dynes Tc = {tc_ad_direct} ({tc_ad_a2f}) K')
 

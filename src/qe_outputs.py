@@ -1,4 +1,5 @@
 import os
+import re
 
 import numpy as np
 from pymatgen.core.structure import IStructure
@@ -81,7 +82,7 @@ class DynElph(object):
             lines = read_obj.readlines()
             read_obj.close()
         self.lines = lines
-        self.dos_line = next(line for line in lines if 'DOS' in line).split()
+        self.dos_line = next(line for line in lines if 'DOS' in line)
         self.lambda_gamma_lines = list(filter(lambda x: 'lambda' in x and 'gamma' in x, lines))
         self.q_point()
         self.sqr_freqs()
@@ -105,11 +106,11 @@ class DynElph(object):
         return self.sqr_freqs
 
     def e_fermi(self):
-        self.E_F = float(self.dos_line[7])
+        self.E_F = float(re.search('Ef(.*)eV', self.dos_line).group(1).replace('=', ''))
         return self.E_F
 
     def dos(self):
-        self.DOS = float(self.dos_line[2])
+        self.DOS = float(re.search('DOS(.*)states', self.dos_line).group(1).replace('=', ''))
         return self.DOS
 
     def lambdas(self):
