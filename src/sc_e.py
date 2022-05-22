@@ -1,5 +1,6 @@
 import numpy as np
 
+from scipy import integrate
 from pymatgen.core.composition import Composition
 from tc import hc, dctc, delta, beta
 
@@ -17,8 +18,8 @@ def l(a2f, r, t):
     """
     freqs = a2f['freqs, THz']
     a2f = a2f['a2f (gamma), THz']
-    dw = freqs[1] - freqs[0]
-    return np.sum(2 * a2f * freqs * dw / (np.square(freqs) + np.square(r * t * k_K_THz * 2 * np.pi)))
+    I = 2 * a2f * freqs / (np.square(freqs) + np.square(r * t * k_K_THz * 2 * np.pi))
+    return integrate.simps(I, x=freqs)
 
 
 class Superconducting(object):
@@ -72,6 +73,7 @@ class Superconducting(object):
                     else:
                         d = 0
                     k[n - 1, m - 1] = l(self.a2f, m - n, t) + l(self.a2f, m + n - 1, t) - 2 * mu - d
+            # print(k)
             w, _ = np.linalg.eig(k)
             b = np.max(w)
             self.t.append(t)

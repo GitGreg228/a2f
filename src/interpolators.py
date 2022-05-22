@@ -41,13 +41,16 @@ def interp_lambda(x, y, r, sigma):
     :return: new frequencies, new a2f
     """
     x, y = pre_interpolation(x, y)
-    x_new = np.linspace(np.min(x), np.max(x), r)
+    x_new = np.linspace(np.min((0.001, np.min(x))), np.max(x), r)
     dx = x_new[1] - x_new[0]
     lambdas = stairs(y / x)
+    lambdas = np.insert(lambdas, 0, 0)
+    x = np.insert(x, 0, 0)
     f = interp1d(x, lambdas, kind='linear')
     lambdas = f(x_new)
     a2w = np.diff(lambdas)
     a2w = np.insert(a2w, 0, 0)
     a2w = a2w * x_new / dx
     y_new = gaussian_filter(a2w, sigma=sigma)
+    # print(y_new, x_new)
     return x_new, y_new

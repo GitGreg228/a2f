@@ -54,11 +54,11 @@
                 "gamma": 196.828
             },
             "a2f": {
-                "lambda": 198.625,
-                "gamma": 198.625
+                "lambda": 198.75,
+                "gamma": 198.75
             }
         },
-        "Eliashberg": 213.259
+        "Eliashberg": 213.255
     },
     "Sommerfeld gamma": {
         "mJ/mol/K^2": 3.821,
@@ -71,12 +71,12 @@
         "mJ/cm^3/K^2": 0.5848
     },
     "Delta": {
-        "meV": 45.797,
+        "meV": 45.795,
         "2Delta/kBTc": 4.984,
-        "J": "7.337415E-21"
+        "J": "7.337211E-21"
     },
     "Hc2, T": [
-        52.285
+        52.284
     ],
     "beta (McMillan isotope coefficient)": 0.48843,
     "DOS": {
