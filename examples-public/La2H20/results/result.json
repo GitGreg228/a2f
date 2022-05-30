@@ -58,7 +58,7 @@
                 "gamma": 249.125
             }
         },
-        "Eliashberg": 265.296
+        "Eliashberg": 289.092
     },
     "Sommerfeld gamma": {
         "mJ/mol/K^2": 9.321,
@@ -66,17 +66,17 @@
         "mJ/cm^3/K^2": 0.4993
     },
     "DeltaC/Tc": {
-        "mJ/mol/K^2": 20.976,
-        "mJ/g/K^2": 0.141,
-        "mJ/cm^3/K^2": 1.1237
+        "mJ/mol/K^2": 16.177,
+        "mJ/g/K^2": 0.109,
+        "mJ/cm^3/K^2": 0.8666
     },
     "Delta": {
-        "meV": 63.503,
-        "2Delta/kBTc": 5.555,
-        "J": "1.017425E-20"
+        "meV": 69.078,
+        "2Delta/kBTc": 5.546,
+        "J": "1.106748E-20"
     },
     "Hc2, T": [
-        94.858
+        98.758
     ],
     "beta (McMillan isotope coefficient)": 0.49223,
     "DOS": {

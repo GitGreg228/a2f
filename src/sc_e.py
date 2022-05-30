@@ -43,7 +43,7 @@ class Superconducting(object):
     def __init__(self, a2f):
         self.a2f = a2f
 
-    def get_tc_e(self, mu, t_min=1, dim=24):
+    def get_tc_e(self, mu, t_min=0, dim=24):
         """
         :param mu:  Coulomb pseudopotential
         :param t_min: staring temperature in K
@@ -55,24 +55,28 @@ class Superconducting(object):
         b = 100
         a = 10
         while b > 0:
-            s = np.arange(1, dim + 1)
-            for y in range(1, dim + 1):
+            s = np.zeros(dim + 1, dtype=np.float32)
+            # print(s)
+            for y in range(1, dim + 2):
                 s1 = 0
                 for r in range(1, y + 1):
+                    # print(y, r)
                     s1 = s1 + l(self.a2f, r, t)
                 s[y - 1] = s1
+            # print(s)
             d = 0
-            k = np.zeros((dim, dim), dtype=np.float32)
-            for n in range(1, dim + 1):
-                for m in range(1, dim + 1):
+            k = np.zeros((dim + 1, dim + 1), dtype=np.float32)
+            for n in range(1, dim + 2):
+                for m in range(1, dim + 2):
                     if n == m:
                         if m == 1:
                             d = 2 * (m - 1) + 1 + l(self.a2f, 0, t)
                         else:
-                            d = 2 * (m - 1) + 1 + l(self.a2f, 0, t) + 2 * s[m - 1]
+                            d = 2 * (m - 1) + 1 + l(self.a2f, 0, t) + 2 * s[m - 2]
                     else:
                         d = 0
-                    k[n - 1, m - 1] = l(self.a2f, m - n, t) + l(self.a2f, m + n - 1, t) - 2 * mu - d
+                    k[n - 1, m - 1] = l(self.a2f, m - n, t) + l(self.a2f, m + n - 1, t) - mu - d
+            # print(k)
             # print(k)
             w, _ = np.linalg.eig(k)
             b = np.max(w)
@@ -165,6 +169,7 @@ class Superconducting(object):
             'mJ/mol/K^2': round(1000 * gamma * N_A / fu, 3),
             'mJ/g/K^2': round(1000 * gamma / structure.volume / structure.density / k_A_cm ** 3, 5),
             'mJ/cm^3/K^2': round(1000 * gamma / structure.volume / k_A_cm ** 3, 4),
+            # 'Erg/cm^3/K^2': round(10000000 * gamma / structure.volume / k_A_cm ** 3, 4),
         }
         self.dctc = dctc(tc, wlog, gamma)
         self.result['DeltaC/Tc'] = {
