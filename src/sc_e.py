@@ -75,7 +75,7 @@ class Superconducting(object):
                             d = 2 * (m - 1) + 1 + l(self.a2f, 0, t) + 2 * s[m - 2]
                     else:
                         d = 0
-                    k[n - 1, m - 1] = l(self.a2f, m - n, t) + l(self.a2f, m + n - 1, t) - mu - d
+                    k[n - 1, m - 1] = l(self.a2f, m - n, t) + l(self.a2f, m + n - 1, t) - 2 * mu - d
             # print(k)
             # print(k)
             w, _ = np.linalg.eig(k)
