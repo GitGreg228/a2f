@@ -52,9 +52,9 @@ class Superconducting(object):
         """
         self.dim = dim
         t = t_min
-        b = 100
         dt = 10
         while dt > 0.001:
+            b = 100
             while b > 0:
                 s = np.zeros(dim + 1, dtype=np.float32)
                 # print(s)
@@ -82,14 +82,15 @@ class Superconducting(object):
                 self.t.append(t)
                 self.b.append(b)
                 self.k.append(k)
-                t = t + dt
-            # print(t, dt)
-            t = t - dt
+                if b > 0:
+                    t = t + dt
+            if t > 0:
+                t = t - dt
             if dt > 0.001:
                 dt = dt * 0.1
             if dt < 0.001:
                 dt = 0.001
-        self.tc_e = t - dt
+            self.tc_e = t - dt
         print(f'Eliashberg Tc = {stround(t)}+-{stround(dt)} K')
         return t
 
