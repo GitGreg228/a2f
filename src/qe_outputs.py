@@ -116,14 +116,14 @@ class DynElph(object):
     def lambdas(self):
         lambdas = list()
         for line in self.lambda_gamma_lines:
-            lambdas.append(float(line.split()[2]))
+            lambdas.append(float(line.split('=')[1].split()[0]))
         self.lambdas = np.array(lambdas)
         return self.lambdas
 
     def gammas(self):
         gammas = list()
         for line in self.lambda_gamma_lines:
-            gammas.append(float(line.split()[4]))
+            gammas.append(float(line.split('=')[2].split()[0]))
         self.gammas = np.array(gammas)
         return self.gammas
 
