@@ -11,7 +11,11 @@ def tc_mcm_formula(wlog, _lambda, mu):
     :param mu: Coulomb pseudopotential
     :return: McMillan Tc
     """
-    return wlog / 1.2 * np.exp(-1.04 * (1 + _lambda) / (_lambda * (1 - 0.62 * mu) - mu))
+    den = _lambda * (1 - 0.62 * mu) - mu
+    pos = den > 0
+    tc = wlog[pos] / 1.2 * np.exp(-1.04 * (1 + _lambda[pos]) / den[pos])
+    tc = np.concatenate((np.zeros(den[den <= 0].shape), tc))
+    return tc
 
 
 def tc_ad_formula(wlog, w2, _lambda, mu):
@@ -23,9 +27,11 @@ def tc_ad_formula(wlog, w2, _lambda, mu):
     :param mu: Coulomb pseudopotential
     :return:
     """
+    pos = wlog > 0
     f1 = np.cbrt(1 + np.power(_lambda / (2.46 * (1 + 3.8 * mu)), 1.5))
-    f2 = 1 - (np.power(_lambda, 2) * (1 - w2[-1] / wlog[-1])) / (
-            np.power(_lambda, 2) + 3.312 * np.power(1 + 6.3 * mu, 2))
+    f2 = 1 - (np.power(_lambda[pos], 2) * (1 - w2[pos] / wlog[pos])) / (
+            np.power(_lambda[pos], 2) + 3.312 * np.power(1 + 6.3 * mu, 2))
+    f2 = np.concatenate((np.zeros(wlog[wlog <= 0].shape), f2))
     return f1 * f2 * tc_mcm_formula(wlog, _lambda, mu)
 
 
@@ -37,7 +43,7 @@ def tc_mcm(d, mu):
     :return: dictionary with McMillan Tc computed using lambdas and gammas
     """
     wlog_lambda, wlog_gamma = d['wlog (lambda), K'], d['wlog (gamma), K']
-    lambda_lambda, lambda_gamma = d['lambda (lambda)'][-1], d['lambda (gamma)'][-1]
+    lambda_lambda, lambda_gamma = d['lambda (lambda)'], d['lambda (gamma)']
     tc_lambda, tc_gamma = map(lambda x, y: tc_mcm_formula(x, y, mu), [wlog_lambda, wlog_gamma],
                               [lambda_lambda, lambda_gamma])
     return {
@@ -55,7 +61,7 @@ def tc_ad(d, mu):
     """
     wlog_lambda, wlog_gamma = d['wlog (lambda), K'], d['wlog (gamma), K']
     w2_lambda, w2_gamma = d['w2 (lambda), K'], d['w2 (gamma), K']
-    lambda_lambda, lambda_gamma = d['lambda (lambda)'][-1], d['lambda (gamma)'][-1]
+    lambda_lambda, lambda_gamma = d['lambda (lambda)'], d['lambda (gamma)']
     tc_lambda, tc_gamma = map(lambda x, y, z: tc_ad_formula(x, y, z, mu), [wlog_lambda, wlog_gamma],
                               [w2_lambda, w2_gamma], [lambda_lambda, lambda_gamma])
     return {
