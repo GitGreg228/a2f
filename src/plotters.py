@@ -133,7 +133,7 @@ def plot_article_view(system, formula, path):
     ax3.set_ylim(0, 1.1 * max(y))
     ax3.set_yticks(np.linspace(0, 5 * np.round(np.max(y) / 5), 6))
     ax3.plot(x, y, linestyle='-', color='darkorange')
-    ax3.set_ylabel(r'Allen-Dynes $T_{\mathrm{C}}$, K', color='darkorange')
+    ax3.set_ylabel(r'$\omega_{\mathrm{log}}$, K', color='darkorange')
 
     y = a2f['Tc_AD (gamma), K']
     new_axisline = ax4.get_grid_helper().new_fixed_axis
@@ -141,10 +141,9 @@ def plot_article_view(system, formula, path):
     ax4.set_ylim(0, 1.15 * max(y))
     ax4.set_yticks(np.linspace(0, 5 * np.round(np.max(y) / 5), 6))
     ax4.plot(x, y, linestyle='-', color='darkgreen')
-    ax4.set_ylabel(r'$\omega_{\mathrm{log}}$, K', color='darkgreen')
+    ax4.set_ylabel(r'Allen-Dynes $T_{\mathrm{C}}$, K', color='darkgreen')
 
-    plt.tight_layout()
     smoothing, resolution, sigma = system.smoothing, system.resolution, system.sigma
-    plt.savefig(os.path.join(path, 'results', f'plot_article_{formula}.pdf'))
+    fig.savefig(os.path.join(path, 'results', f'plot_article_{formula}.pdf'), bbox_inches='tight')
 
     # plt.show()
