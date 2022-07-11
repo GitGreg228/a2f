@@ -1,0 +1,104 @@
+{
+    "formula": "Nb3Sn",
+    "# of chemical formula units (f.u.)": 2,
+    "Smoothing, THz": 1.5,
+    "Resolution, pts": 1000,
+    "mu": 0.1,
+    "volume, A^3": 140.712,
+    "volume of chemical formula unit, A^3": 70.356,
+    "density, g/cm^3": 9.38,
+    "lambda": {
+        "direct": {
+            "lambda": 1.613,
+            "gamma": 1.613
+        },
+        "a2f": {
+            "lambda": 1.612,
+            "gamma": 1.612
+        }
+    },
+    "wlog, K": {
+        "direct": {
+            "lambda": 141,
+            "gamma": 141
+        },
+        "a2f": {
+            "lambda": 146,
+            "gamma": 146
+        }
+    },
+    "w2, K": {
+        "direct": {
+            "lambda": 174,
+            "gamma": 174
+        },
+        "a2f": {
+            "lambda": 176,
+            "gamma": 176
+        }
+    },
+    "Tc, K": {
+        "McMillan": {
+            "direct": {
+                "lambda": 17.259,
+                "gamma": 17.259
+            },
+            "a2f": {
+                "lambda": 17.782,
+                "gamma": 17.782
+            }
+        },
+        "Allen-Dynes": {
+            "direct": {
+                "lambda": 19.989,
+                "gamma": 19.989
+            },
+            "a2f": {
+                "lambda": 20.477,
+                "gamma": 20.477
+            }
+        },
+        "Eliashberg": 21.599
+    },
+    "Sommerfeld gamma": {
+        "mJ/mol/K^2": 54.119,
+        "mJ/g/K^2": 0.13617,
+        "mJ/cm^3/K^2": 1.2773
+    },
+    "DeltaC/Tc": {
+        "mJ/mol/K^2": 151.986,
+        "mJ/g/K^2": 0.382,
+        "mJ/cm^3/K^2": 3.5872
+    },
+    "Delta": {
+        "meV": 4.419,
+        "2Delta/kBTc": 4.749,
+        "J": "7.08033E-22"
+    },
+    "Hc2, T": [
+        19.654
+    ],
+    "beta (McMillan isotope coefficient)": 0.48639,
+    "DOS": {
+        "per Unit cell": {
+            "states/spin/Ry": 119.5359,
+            "states/spin/eV": 8.7857
+        },
+        "per chemical formula unit (Nb3Sn)": {
+            "states/spin/Ry": 59.768,
+            "states/spin/eV": 4.3929
+        },
+        "per A^3": {
+            "states/spin/Ry": 0.8495,
+            "states/spin/eV": 0.0624
+        },
+        "per mole of Nb3Sn": {
+            "states/spin/Ry": "3.599312E+25",
+            "states/spin/eV": "2.645444E+24"
+        },
+        "per g": {
+            "states/spin/Ry": "9.056486E+22",
+            "states/spin/eV": "6.656392E+21"
+        }
+    }
+}

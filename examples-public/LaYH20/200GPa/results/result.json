@@ -1,0 +1,104 @@
+{
+    "formula": "LaYH20",
+    "# of chemical formula units (f.u.)": 1,
+    "Smoothing, THz": 3,
+    "Resolution, pts": 1000,
+    "mu": 0.1,
+    "volume, A^3": 55.309,
+    "volume of chemical formula unit, A^3": 55.309,
+    "density, g/cm^3": 7.445,
+    "lambda": {
+        "direct": {
+            "lambda": 3.021,
+            "gamma": 3.021
+        },
+        "a2f": {
+            "lambda": 3.024,
+            "gamma": 3.024
+        }
+    },
+    "wlog, K": {
+        "direct": {
+            "lambda": 727,
+            "gamma": 727
+        },
+        "a2f": {
+            "lambda": 741,
+            "gamma": 741
+        }
+    },
+    "w2, K": {
+        "direct": {
+            "lambda": 1204,
+            "gamma": 1204
+        },
+        "a2f": {
+            "lambda": 1210,
+            "gamma": 1210
+        }
+    },
+    "Tc, K": {
+        "McMillan": {
+            "direct": {
+                "lambda": 131.211,
+                "gamma": 131.211
+            },
+            "a2f": {
+                "lambda": 133.918,
+                "gamma": 133.918
+            }
+        },
+        "Allen-Dynes": {
+            "direct": {
+                "lambda": 214.496,
+                "gamma": 214.488
+            },
+            "a2f": {
+                "lambda": 216.977,
+                "gamma": 216.977
+            }
+        },
+        "Eliashberg": 230.672
+    },
+    "Sommerfeld gamma": {
+        "mJ/mol/K^2": 14.742,
+        "mJ/g/K^2": 0.05945,
+        "mJ/cm^3/K^2": 0.4426
+    },
+    "DeltaC/Tc": {
+        "mJ/mol/K^2": 26.698,
+        "mJ/g/K^2": 0.108,
+        "mJ/cm^3/K^2": 0.8016
+    },
+    "Delta": {
+        "meV": 55.166,
+        "2Delta/kBTc": 5.551,
+        "J": "8.838605E-21"
+    },
+    "Hc2, T": [
+        99.741
+    ],
+    "beta (McMillan isotope coefficient)": 0.49196,
+    "DOS": {
+        "per Unit cell": {
+            "states/spin/Ry": 10.5797,
+            "states/spin/eV": 0.7776
+        },
+        "per chemical formula unit (LaYH20)": {
+            "states/spin/Ry": 10.5797,
+            "states/spin/eV": 0.7776
+        },
+        "per A^3": {
+            "states/spin/Ry": 0.1913,
+            "states/spin/eV": 0.0141
+        },
+        "per mole of LaYH20": {
+            "states/spin/Ry": "6.371214E+24",
+            "states/spin/eV": "4.682754E+23"
+        },
+        "per g": {
+            "states/spin/Ry": "2.569348E+22",
+            "states/spin/eV": "1.888435E+21"
+        }
+    }
+}

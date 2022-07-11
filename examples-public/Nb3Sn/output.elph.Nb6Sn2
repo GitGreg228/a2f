@@ -1,0 +1,1480 @@
+
+     Program PHONON v.7.0 starts on 26May2022 at 11:40: 0 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on    20 processors
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =      20
+     296956 MiB available memory on the printing compute node when the environment starts
+ 
+     Reading input from /home/mgrebenyuk/QE/examples/Nb3Sn/4x4x4/elph.in
+
+     Reading xml data from directory:
+
+     ./Nb6Sn2.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         122     122     34                 4594     4594     680
+     Max         123     123     35                 4599     4599     683
+     Sum        2449    2449    681                91911    91911   13613
+ 
+     Using Slab Decomposition
+ 
+     Reading collected, re-writing distributed wavefunctions
+
+
+     Dynamical matrices for ( 4, 4, 4)  uniform grid of q-points
+     With a half shift
+     (   4 q-points):
+       N         xq(1)         xq(2)         xq(3) 
+       1   0.125000000   0.125000000   0.125000000
+       2   0.125000000   0.125000000   0.375000000
+       3   0.125000000   0.375000000   0.375000000
+       4   0.375000000   0.375000000   0.375000000
+     Because shifted q grid is used, q2r will not work !
+
+     Saving dvscf to file. Distribute only q points, not irreducible represetations.
+
+     Calculation of q =    0.1250000   0.1250000   0.1250000
+
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         122     122     34                 4594     4594     696
+     Max         123     123     35                 4599     4599     699
+     Sum        2449    2449    697                91911    91911   13949
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for Nb6Sn2                                                
+
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     number of electrons       =        38.00
+     number of Kohn-Sham states=           23
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   9.829010  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   1.000000   0.000000   0.000000 )  
+               a(2) = (   0.000000   1.000000   0.000000 )  
+               a(3) = (   0.000000   0.000000   1.000000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.000000  0.000000  0.000000 )  
+               b(2) = (  0.000000  1.000000  0.000000 )  
+               b(3) = (  0.000000  0.000000  1.000000 )  
+
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        Nb             5.00    92.90638     Nb( 1.00)
+        Sn             4.00   118.71000     Sn( 1.00)
+
+     48 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Nb  tau(   1) = (   0.0000000   0.2500000   0.5000000  )
+         2           Nb  tau(   2) = (   0.0000000   0.7500000   0.5000000  )
+         3           Nb  tau(   3) = (   0.2500000   0.5000000   0.0000000  )
+         4           Nb  tau(   4) = (   0.7500000   0.5000000   0.0000000  )
+         5           Nb  tau(   5) = (   0.5000000   0.0000000   0.7500000  )
+         6           Nb  tau(   6) = (   0.5000000   0.0000000   0.2500000  )
+         7           Sn  tau(   7) = (   0.5000000   0.5000000   0.5000000  )
+         8           Sn  tau(   8) = (   0.0000000   0.0000000   0.0000000  )
+
+     number of k points=  1632 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    91911 G-vectors     FFT dimensions: (  60,  60,  60)
+
+     Estimated max dynamical RAM per process >       7.86 MB
+
+     Estimated total dynamical RAM >     157.11 MB
+
+     The potential is recalculated from file :
+     ./_ph0/Nb6Sn2.q_1/Nb6Sn2.save/charge-density
+
+     Starting wfcs are   72 atomic wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  2.63E-11,  avg # of iterations = 41.5
+
+     total cpu time spent up to now is      895.4 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    11.1130 ev
+
+     Writing config to output data dir ./_ph0/Nb6Sn2.q_1/Nb6Sn2.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.2390719E+03
+
+      Electron-phonon for Nb6Sn2                                                
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    9.82901  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  1.0000  0.0000  0.0000 )  
+               a(2) = (  0.0000  1.0000  0.0000 )  
+               a(3) = (  0.0000  0.0000  1.0000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.0000  0.0000  0.0000 )  
+               b(2) = (  0.0000  1.0000  0.0000 )  
+               b(3) = (  0.0000  0.0000  1.0000 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Nb  92.9064   tau(    1) = (    0.00000    0.25000    0.50000  )
+        2     Nb  92.9064   tau(    2) = (    0.00000    0.75000    0.50000  )
+        3     Nb  92.9064   tau(    3) = (    0.25000    0.50000    0.00000  )
+        4     Nb  92.9064   tau(    4) = (    0.75000    0.50000    0.00000  )
+        5     Nb  92.9064   tau(    5) = (    0.50000    0.00000    0.75000  )
+        6     Nb  92.9064   tau(    6) = (    0.50000    0.00000    0.25000  )
+        7     Sn 118.7100   tau(    7) = (    0.50000    0.50000    0.50000  )
+        8     Sn 118.7100   tau(    8) = (    0.00000    0.00000    0.00000  )
+
+     Computing dynamical matrix for 
+                    q = (   0.1250000   0.1250000   0.1250000 )
+ 
+      6 Sym.Ops. (no q -> -q+G )
+
+
+     G cutoff =  783.0866  (   4599 G-vectors)     FFT grid: ( 60, 60, 60)
+     number of k points=  1632
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_3v (3m)   point group:
+
+
+     Atomic displacements:
+     There are   16 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      2 modes -  To be done
+
+     Representation    10      2 modes -  To be done
+
+     Representation    11      2 modes -  To be done
+
+     Representation    12      2 modes -  To be done
+
+     Representation    13      2 modes -  To be done
+
+     Representation    14      2 modes -  To be done
+
+     Representation    15      2 modes -  To be done
+
+     Representation    16      2 modes -  To be done
+
+
+     PHONON       :  14m 2.42s CPU  16m 9.50s WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file Nb6Sn2.dyn1
+
+     Diagonalizing the dynamical matrix
+
+     q = (    0.125000000   0.125000000   0.125000000 ) 
+
+ **************************************************************************
+     freq (    1) =      -8.508316 [THz] =    -283.806878 [cm-1]
+     freq (    2) =      -8.508316 [THz] =    -283.806878 [cm-1]
+     freq (    3) =      -2.735236 [THz] =     -91.237659 [cm-1]
+     freq (    4) =      -2.515018 [THz] =     -83.891985 [cm-1]
+     freq (    5) =       1.374292 [THz] =      45.841462 [cm-1]
+     freq (    6) =       1.374293 [THz] =      45.841466 [cm-1]
+     freq (    7) =       2.224643 [THz] =      74.206104 [cm-1]
+     freq (    8) =       2.224643 [THz] =      74.206109 [cm-1]
+     freq (    9) =       3.666909 [THz] =     122.314903 [cm-1]
+     freq (   10) =       3.666909 [THz] =     122.314904 [cm-1]
+     freq (   11) =       4.033261 [THz] =     134.535089 [cm-1]
+     freq (   12) =       4.044199 [THz] =     134.899974 [cm-1]
+     freq (   13) =       4.044200 [THz] =     134.899976 [cm-1]
+     freq (   14) =       4.231571 [THz] =     141.150017 [cm-1]
+     freq (   15) =       4.562334 [THz] =     152.183096 [cm-1]
+     freq (   16) =       5.085261 [THz] =     169.626056 [cm-1]
+     freq (   17) =       5.085261 [THz] =     169.626057 [cm-1]
+     freq (   18) =       5.410183 [THz] =     180.464281 [cm-1]
+     freq (   19) =       5.620879 [THz] =     187.492355 [cm-1]
+     freq (   20) =       6.752446 [THz] =     225.237354 [cm-1]
+     freq (   21) =       6.752446 [THz] =     225.237357 [cm-1]
+     freq (   22) =       7.238333 [THz] =     241.444796 [cm-1]
+     freq (   23) =       7.238333 [THz] =     241.444797 [cm-1]
+     freq (   24) =       8.967289 [THz] =     299.116550 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :         15
+     [elph_tetra]  Highest band which contains FS :         20
+     [elph_tetra]    # of bands which contains FS :          6
+ 
+     Tetrahedron method
+     DOS =119.535948 states/spin/Ry/Unit Cell at Ef= 11.112997 eV
+     double delta at Ef =**********
+     lambda(    1)=  0.0000   gamma=    0.00 GHz
+     lambda(    2)=  0.0000   gamma=    0.00 GHz
+     lambda(    3)=  0.0000   gamma=    0.00 GHz
+     lambda(    4)=  0.0000   gamma=    0.00 GHz
+     lambda(    5)=  0.9947   gamma=  214.45 GHz
+     lambda(    6)=  0.9947   gamma=  214.45 GHz
+     lambda(    7)=  0.3445   gamma=  194.62 GHz
+     lambda(    8)=  0.3445   gamma=  194.62 GHz
+     lambda(    9)=  0.0781   gamma=  119.82 GHz
+     lambda(   10)=  0.0781   gamma=  119.82 GHz
+     lambda(   11)=  0.0868   gamma=  161.14 GHz
+     lambda(   12)=  0.0888   gamma=  165.80 GHz
+     lambda(   13)=  0.0888   gamma=  165.80 GHz
+     lambda(   14)=  0.0685   gamma=  139.92 GHz
+     lambda(   15)=  0.0289   gamma=   68.76 GHz
+     lambda(   16)=  0.0725   gamma=  213.94 GHz
+     lambda(   17)=  0.0725   gamma=  213.94 GHz
+     lambda(   18)=  0.0841   gamma=  281.16 GHz
+     lambda(   19)=  0.0123   gamma=   44.35 GHz
+     lambda(   20)=  0.0095   gamma=   49.29 GHz
+     lambda(   21)=  0.0095   gamma=   49.29 GHz
+     lambda(   22)=  0.0362   gamma=  216.60 GHz
+     lambda(   23)=  0.0362   gamma=  216.60 GHz
+     lambda(   24)=  0.0103   gamma=   94.63 GHz
+ 
+     Number of q in the star =    8
+     List of q in the star:
+          1   0.125000000   0.125000000   0.125000000
+          2   0.125000000  -0.125000000   0.125000000
+          3  -0.125000000   0.125000000   0.125000000
+          4  -0.125000000  -0.125000000  -0.125000000
+          5   0.125000000   0.125000000  -0.125000000
+          6  -0.125000000  -0.125000000   0.125000000
+          7  -0.125000000   0.125000000  -0.125000000
+          8   0.125000000  -0.125000000  -0.125000000
+
+     Calculation of q =    0.1250000   0.1250000   0.3750000
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         122     122     35                 4594     4594     719
+     Max         123     123     36                 4599     4599     722
+     Sum        2449    2449    717                91911    91911   14411
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for Nb6Sn2                                                
+
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     number of electrons       =        38.00
+     number of Kohn-Sham states=           23
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   9.829010  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   1.000000   0.000000   0.000000 )  
+               a(2) = (   0.000000   1.000000   0.000000 )  
+               a(3) = (   0.000000   0.000000   1.000000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.000000  0.000000  0.000000 )  
+               b(2) = (  0.000000  1.000000  0.000000 )  
+               b(3) = (  0.000000  0.000000  1.000000 )  
+
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        Nb             5.00    92.90638     Nb( 1.00)
+        Sn             4.00   118.71000     Sn( 1.00)
+
+     48 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Nb  tau(   1) = (   0.0000000   0.2500000   0.5000000  )
+         2           Nb  tau(   2) = (   0.0000000   0.7500000   0.5000000  )
+         3           Nb  tau(   3) = (   0.2500000   0.5000000   0.0000000  )
+         4           Nb  tau(   4) = (   0.7500000   0.5000000   0.0000000  )
+         5           Nb  tau(   5) = (   0.5000000   0.0000000   0.7500000  )
+         6           Nb  tau(   6) = (   0.5000000   0.0000000   0.2500000  )
+         7           Sn  tau(   7) = (   0.5000000   0.5000000   0.5000000  )
+         8           Sn  tau(   8) = (   0.0000000   0.0000000   0.0000000  )
+
+     number of k points=  4352 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    91911 G-vectors     FFT dimensions: (  60,  60,  60)
+
+     Estimated max dynamical RAM per process >       7.88 MB
+
+     Estimated total dynamical RAM >     157.53 MB
+
+     The potential is recalculated from file :
+     ./_ph0/Nb6Sn2.q_2/Nb6Sn2.save/charge-density
+
+     Starting wfcs are   72 atomic wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  2.63E-11,  avg # of iterations = 42.3
+
+     total cpu time spent up to now is     3516.3 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    11.1130 ev
+
+     Writing config to output data dir ./_ph0/Nb6Sn2.q_2/Nb6Sn2.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.2390719E+03
+
+      Electron-phonon for Nb6Sn2                                                
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    9.82901  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  1.0000  0.0000  0.0000 )  
+               a(2) = (  0.0000  1.0000  0.0000 )  
+               a(3) = (  0.0000  0.0000  1.0000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.0000  0.0000  0.0000 )  
+               b(2) = (  0.0000  1.0000  0.0000 )  
+               b(3) = (  0.0000  0.0000  1.0000 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Nb  92.9064   tau(    1) = (    0.00000    0.25000    0.50000  )
+        2     Nb  92.9064   tau(    2) = (    0.00000    0.75000    0.50000  )
+        3     Nb  92.9064   tau(    3) = (    0.25000    0.50000    0.00000  )
+        4     Nb  92.9064   tau(    4) = (    0.75000    0.50000    0.00000  )
+        5     Nb  92.9064   tau(    5) = (    0.50000    0.00000    0.75000  )
+        6     Nb  92.9064   tau(    6) = (    0.50000    0.00000    0.25000  )
+        7     Sn 118.7100   tau(    7) = (    0.50000    0.50000    0.50000  )
+        8     Sn 118.7100   tau(    8) = (    0.00000    0.00000    0.00000  )
+
+     Computing dynamical matrix for 
+                    q = (   0.1250000   0.1250000   0.3750000 )
+ 
+      2 Sym.Ops. (no q -> -q+G )
+
+
+     G cutoff =  783.0866  (   4599 G-vectors)     FFT grid: ( 60, 60, 60)
+     number of k points=  4352
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_s (m)     point group:
+
+
+     Atomic displacements:
+     There are   24 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      1 modes -  To be done
+
+     Representation    10      1 modes -  To be done
+
+     Representation    11      1 modes -  To be done
+
+     Representation    12      1 modes -  To be done
+
+     Representation    13      1 modes -  To be done
+
+     Representation    14      1 modes -  To be done
+
+     Representation    15      1 modes -  To be done
+
+     Representation    16      1 modes -  To be done
+
+     Representation    17      1 modes -  To be done
+
+     Representation    18      1 modes -  To be done
+
+     Representation    19      1 modes -  To be done
+
+     Representation    20      1 modes -  To be done
+
+     Representation    21      1 modes -  To be done
+
+     Representation    22      1 modes -  To be done
+
+     Representation    23      1 modes -  To be done
+
+     Representation    24      1 modes -  To be done
+
+
+     PHONON       :  57m33.91s CPU      1h 3m WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file Nb6Sn2.dyn2
+
+     Diagonalizing the dynamical matrix
+
+     q = (    0.125000000   0.125000000   0.375000000 ) 
+
+ **************************************************************************
+     freq (    1) =      -5.236777 [THz] =    -174.680075 [cm-1]
+     freq (    2) =      -4.661886 [THz] =    -155.503773 [cm-1]
+     freq (    3) =      -2.674848 [THz] =     -89.223311 [cm-1]
+     freq (    4) =      -2.580544 [THz] =     -86.077693 [cm-1]
+     freq (    5) =      -0.914903 [THz] =     -30.517881 [cm-1]
+     freq (    6) =      -0.563297 [THz] =     -18.789580 [cm-1]
+     freq (    7) =       1.576951 [THz] =      52.601410 [cm-1]
+     freq (    8) =       1.978183 [THz] =      65.985071 [cm-1]
+     freq (    9) =       3.019103 [THz] =     100.706430 [cm-1]
+     freq (   10) =       3.422847 [THz] =     114.173883 [cm-1]
+     freq (   11) =       3.587485 [THz] =     119.665635 [cm-1]
+     freq (   12) =       3.734694 [THz] =     124.575969 [cm-1]
+     freq (   13) =       3.870235 [THz] =     129.097147 [cm-1]
+     freq (   14) =       4.005882 [THz] =     133.621833 [cm-1]
+     freq (   15) =       4.091405 [THz] =     136.474577 [cm-1]
+     freq (   16) =       4.177012 [THz] =     139.330127 [cm-1]
+     freq (   17) =       4.453548 [THz] =     148.554366 [cm-1]
+     freq (   18) =       4.657474 [THz] =     155.356618 [cm-1]
+     freq (   19) =       5.017344 [THz] =     167.360585 [cm-1]
+     freq (   20) =       5.777461 [THz] =     192.715369 [cm-1]
+     freq (   21) =       6.265059 [THz] =     208.979861 [cm-1]
+     freq (   22) =       6.458038 [THz] =     215.416966 [cm-1]
+     freq (   23) =       6.677525 [THz] =     222.738251 [cm-1]
+     freq (   24) =       7.784834 [THz] =     259.674122 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :         15
+     [elph_tetra]  Highest band which contains FS :         20
+     [elph_tetra]    # of bands which contains FS :          6
+ 
+     Tetrahedron method
+     DOS =119.535948 states/spin/Ry/Unit Cell at Ef= 11.112997 eV
+     double delta at Ef =**********
+     lambda(    1)=  0.0000   gamma=    0.00 GHz
+     lambda(    2)=  0.0000   gamma=    0.00 GHz
+     lambda(    3)=  0.0000   gamma=    0.00 GHz
+     lambda(    4)=  0.0000   gamma=    0.00 GHz
+     lambda(    5)=  0.0000   gamma=    0.00 GHz
+     lambda(    6)=  0.0000   gamma=    0.00 GHz
+     lambda(    7)=  0.9782   gamma=  277.68 GHz
+     lambda(    8)=  0.2490   gamma=  111.20 GHz
+     lambda(    9)=  0.1844   gamma=  191.87 GHz
+     lambda(   10)=  0.1706   gamma=  228.19 GHz
+     lambda(   11)=  0.1786   gamma=  262.35 GHz
+     lambda(   12)=  0.0508   gamma=   80.85 GHz
+     lambda(   13)=  0.0259   gamma=   44.37 GHz
+     lambda(   14)=  0.1291   gamma=  236.48 GHz
+     lambda(   15)=  0.0870   gamma=  166.26 GHz
+     lambda(   16)=  0.0819   gamma=  163.07 GHz
+     lambda(   17)=  0.0707   gamma=  160.04 GHz
+     lambda(   18)=  0.0340   gamma=   84.15 GHz
+     lambda(   19)=  0.0212   gamma=   60.93 GHz
+     lambda(   20)=  0.0939   gamma=  357.74 GHz
+     lambda(   21)=  0.0269   gamma=  120.65 GHz
+     lambda(   22)=  0.0162   gamma=   76.91 GHz
+     lambda(   23)=  0.0184   gamma=   93.62 GHz
+     lambda(   24)=  0.0199   gamma=  137.82 GHz
+ 
+     Number of q in the star =   24
+     List of q in the star:
+          1   0.125000000   0.125000000   0.375000000
+          2   0.375000000   0.125000000   0.125000000
+          3   0.125000000   0.375000000   0.125000000
+          4   0.125000000  -0.125000000   0.375000000
+          5  -0.125000000   0.125000000   0.375000000
+          6   0.375000000  -0.125000000   0.125000000
+          7  -0.375000000  -0.125000000  -0.125000000
+          8   0.375000000   0.125000000  -0.125000000
+          9  -0.375000000   0.125000000   0.125000000
+         10  -0.125000000   0.375000000   0.125000000
+         11  -0.125000000  -0.375000000  -0.125000000
+         12   0.125000000   0.375000000  -0.125000000
+         13   0.125000000  -0.375000000   0.125000000
+         14  -0.125000000  -0.125000000   0.375000000
+         15  -0.125000000   0.375000000  -0.125000000
+         16   0.125000000  -0.375000000  -0.125000000
+         17  -0.125000000  -0.375000000   0.125000000
+         18  -0.125000000   0.125000000  -0.375000000
+         19   0.375000000  -0.125000000  -0.125000000
+         20  -0.375000000  -0.125000000   0.125000000
+         21  -0.375000000   0.125000000  -0.125000000
+         22  -0.125000000  -0.125000000  -0.375000000
+         23   0.125000000   0.125000000  -0.375000000
+         24   0.125000000  -0.125000000  -0.375000000
+
+     Calculation of q =    0.1250000   0.3750000   0.3750000
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         122     122     36                 4594     4594     745
+     Max         123     123     38                 4599     4599     749
+     Sum        2449    2449    741                91911    91911   14939
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for Nb6Sn2                                                
+
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     number of electrons       =        38.00
+     number of Kohn-Sham states=           23
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   9.829010  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   1.000000   0.000000   0.000000 )  
+               a(2) = (   0.000000   1.000000   0.000000 )  
+               a(3) = (   0.000000   0.000000   1.000000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.000000  0.000000  0.000000 )  
+               b(2) = (  0.000000  1.000000  0.000000 )  
+               b(3) = (  0.000000  0.000000  1.000000 )  
+
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        Nb             5.00    92.90638     Nb( 1.00)
+        Sn             4.00   118.71000     Sn( 1.00)
+
+     48 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Nb  tau(   1) = (   0.0000000   0.2500000   0.5000000  )
+         2           Nb  tau(   2) = (   0.0000000   0.7500000   0.5000000  )
+         3           Nb  tau(   3) = (   0.2500000   0.5000000   0.0000000  )
+         4           Nb  tau(   4) = (   0.7500000   0.5000000   0.0000000  )
+         5           Nb  tau(   5) = (   0.5000000   0.0000000   0.7500000  )
+         6           Nb  tau(   6) = (   0.5000000   0.0000000   0.2500000  )
+         7           Sn  tau(   7) = (   0.5000000   0.5000000   0.5000000  )
+         8           Sn  tau(   8) = (   0.0000000   0.0000000   0.0000000  )
+
+     number of k points=  4352 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    91911 G-vectors     FFT dimensions: (  60,  60,  60)
+
+     Estimated max dynamical RAM per process >       7.89 MB
+
+     Estimated total dynamical RAM >     157.78 MB
+
+     The potential is recalculated from file :
+     ./_ph0/Nb6Sn2.q_3/Nb6Sn2.save/charge-density
+
+     Starting wfcs are   72 atomic wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  2.63E-11,  avg # of iterations = 42.3
+
+     total cpu time spent up to now is     4895.9 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    11.1130 ev
+
+     Writing config to output data dir ./_ph0/Nb6Sn2.q_3/Nb6Sn2.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.2390719E+03
+
+      Electron-phonon for Nb6Sn2                                                
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    9.82901  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  1.0000  0.0000  0.0000 )  
+               a(2) = (  0.0000  1.0000  0.0000 )  
+               a(3) = (  0.0000  0.0000  1.0000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.0000  0.0000  0.0000 )  
+               b(2) = (  0.0000  1.0000  0.0000 )  
+               b(3) = (  0.0000  0.0000  1.0000 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Nb  92.9064   tau(    1) = (    0.00000    0.25000    0.50000  )
+        2     Nb  92.9064   tau(    2) = (    0.00000    0.75000    0.50000  )
+        3     Nb  92.9064   tau(    3) = (    0.25000    0.50000    0.00000  )
+        4     Nb  92.9064   tau(    4) = (    0.75000    0.50000    0.00000  )
+        5     Nb  92.9064   tau(    5) = (    0.50000    0.00000    0.75000  )
+        6     Nb  92.9064   tau(    6) = (    0.50000    0.00000    0.25000  )
+        7     Sn 118.7100   tau(    7) = (    0.50000    0.50000    0.50000  )
+        8     Sn 118.7100   tau(    8) = (    0.00000    0.00000    0.00000  )
+
+     Computing dynamical matrix for 
+                    q = (   0.1250000   0.3750000   0.3750000 )
+ 
+      2 Sym.Ops. (no q -> -q+G )
+
+
+     G cutoff =  783.0866  (   4599 G-vectors)     FFT grid: ( 60, 60, 60)
+     number of k points=  4352
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_s (m)     point group:
+
+
+     Atomic displacements:
+     There are   24 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      1 modes -  To be done
+
+     Representation    10      1 modes -  To be done
+
+     Representation    11      1 modes -  To be done
+
+     Representation    12      1 modes -  To be done
+
+     Representation    13      1 modes -  To be done
+
+     Representation    14      1 modes -  To be done
+
+     Representation    15      1 modes -  To be done
+
+     Representation    16      1 modes -  To be done
+
+     Representation    17      1 modes -  To be done
+
+     Representation    18      1 modes -  To be done
+
+     Representation    19      1 modes -  To be done
+
+     Representation    20      1 modes -  To be done
+
+     Representation    21      1 modes -  To be done
+
+     Representation    22      1 modes -  To be done
+
+     Representation    23      1 modes -  To be done
+
+     Representation    24      1 modes -  To be done
+
+
+     PHONON       :      1h27m CPU      1h36m WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file Nb6Sn2.dyn3
+
+     Diagonalizing the dynamical matrix
+
+     q = (    0.125000000   0.375000000   0.375000000 ) 
+
+ **************************************************************************
+     freq (    1) =      -5.661619 [THz] =    -188.851290 [cm-1]
+     freq (    2) =      -5.455810 [THz] =    -181.986223 [cm-1]
+     freq (    3) =      -3.978184 [THz] =    -132.697923 [cm-1]
+     freq (    4) =      -2.066488 [THz] =     -68.930623 [cm-1]
+     freq (    5) =      -1.689165 [THz] =     -56.344481 [cm-1]
+     freq (    6) =       1.285289 [THz] =      42.872610 [cm-1]
+     freq (    7) =       2.450219 [THz] =      81.730500 [cm-1]
+     freq (    8) =       2.451147 [THz] =      81.761474 [cm-1]
+     freq (    9) =       2.831884 [THz] =      94.461489 [cm-1]
+     freq (   10) =       3.103370 [THz] =     103.517273 [cm-1]
+     freq (   11) =       3.421870 [THz] =     114.141287 [cm-1]
+     freq (   12) =       3.675010 [THz] =     122.585152 [cm-1]
+     freq (   13) =       3.935459 [THz] =     131.272781 [cm-1]
+     freq (   14) =       4.008088 [THz] =     133.695435 [cm-1]
+     freq (   15) =       4.095589 [THz] =     136.614142 [cm-1]
+     freq (   16) =       4.276319 [THz] =     142.642660 [cm-1]
+     freq (   17) =       4.542365 [THz] =     151.516990 [cm-1]
+     freq (   18) =       4.786180 [THz] =     159.649770 [cm-1]
+     freq (   19) =       5.226954 [THz] =     174.352424 [cm-1]
+     freq (   20) =       5.576658 [THz] =     186.017274 [cm-1]
+     freq (   21) =       5.759230 [THz] =     192.107220 [cm-1]
+     freq (   22) =       6.343504 [THz] =     211.596505 [cm-1]
+     freq (   23) =       6.631705 [THz] =     221.209858 [cm-1]
+     freq (   24) =       7.291282 [THz] =     243.210995 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :         15
+     [elph_tetra]  Highest band which contains FS :         20
+     [elph_tetra]    # of bands which contains FS :          6
+ 
+     Tetrahedron method
+     DOS =119.535948 states/spin/Ry/Unit Cell at Ef= 11.112997 eV
+     double delta at Ef =**********
+     lambda(    1)=  0.0000   gamma=    0.00 GHz
+     lambda(    2)=  0.0000   gamma=    0.00 GHz
+     lambda(    3)=  0.0000   gamma=    0.00 GHz
+     lambda(    4)=  0.0000   gamma=    0.00 GHz
+     lambda(    5)=  0.0000   gamma=    0.00 GHz
+     lambda(    6)=  1.1225   gamma=  211.67 GHz
+     lambda(    7)=  0.2359   gamma=  161.70 GHz
+     lambda(    8)=  0.2309   gamma=  158.38 GHz
+     lambda(    9)=  0.2240   gamma=  205.07 GHz
+     lambda(   10)=  0.0819   gamma=   90.04 GHz
+     lambda(   11)=  0.1535   gamma=  205.15 GHz
+     lambda(   12)=  0.1331   gamma=  205.21 GHz
+     lambda(   13)=  0.0557   gamma=   98.43 GHz
+     lambda(   14)=  0.0904   gamma=  165.72 GHz
+     lambda(   15)=  0.0313   gamma=   59.86 GHz
+     lambda(   16)=  0.0371   gamma=   77.48 GHz
+     lambda(   17)=  0.0928   gamma=  218.46 GHz
+     lambda(   18)=  0.0405   gamma=  105.88 GHz
+     lambda(   19)=  0.0491   gamma=  153.11 GHz
+     lambda(   20)=  0.0252   gamma=   89.46 GHz
+     lambda(   21)=  0.0354   gamma=  134.00 GHz
+     lambda(   22)=  0.0282   gamma=  129.51 GHz
+     lambda(   23)=  0.0298   gamma=  149.58 GHz
+     lambda(   24)=  0.0406   gamma=  246.36 GHz
+ 
+     Number of q in the star =   24
+     List of q in the star:
+          1   0.125000000   0.375000000   0.375000000
+          2   0.375000000   0.125000000   0.375000000
+          3   0.375000000   0.375000000   0.125000000
+          4   0.375000000  -0.125000000   0.375000000
+          5  -0.375000000   0.125000000   0.375000000
+          6   0.375000000  -0.375000000   0.125000000
+          7  -0.375000000  -0.375000000  -0.125000000
+          8   0.375000000   0.375000000  -0.125000000
+          9  -0.375000000   0.375000000   0.125000000
+         10  -0.125000000   0.375000000   0.375000000
+         11  -0.125000000  -0.375000000  -0.375000000
+         12   0.125000000   0.375000000  -0.375000000
+         13   0.125000000  -0.375000000   0.375000000
+         14  -0.125000000  -0.375000000   0.375000000
+         15  -0.375000000   0.375000000  -0.125000000
+         16   0.375000000  -0.375000000  -0.125000000
+         17  -0.375000000  -0.375000000   0.125000000
+         18  -0.125000000   0.375000000  -0.375000000
+         19   0.375000000  -0.125000000  -0.375000000
+         20  -0.375000000  -0.125000000   0.375000000
+         21  -0.375000000   0.125000000  -0.375000000
+         22   0.125000000  -0.375000000  -0.375000000
+         23   0.375000000   0.125000000  -0.375000000
+         24  -0.375000000  -0.125000000  -0.375000000
+
+     Calculation of q =    0.3750000   0.3750000   0.3750000
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         122     122     37                 4594     4594     769
+     Max         123     123     38                 4599     4599     774
+     Sum        2449    2449    749                91911    91911   15419
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for Nb6Sn2                                                
+
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     number of electrons       =        38.00
+     number of Kohn-Sham states=           23
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   9.829010  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   1.000000   0.000000   0.000000 )  
+               a(2) = (   0.000000   1.000000   0.000000 )  
+               a(3) = (   0.000000   0.000000   1.000000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.000000  0.000000  0.000000 )  
+               b(2) = (  0.000000  1.000000  0.000000 )  
+               b(3) = (  0.000000  0.000000  1.000000 )  
+
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        Nb             5.00    92.90638     Nb( 1.00)
+        Sn             4.00   118.71000     Sn( 1.00)
+
+     48 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Nb  tau(   1) = (   0.0000000   0.2500000   0.5000000  )
+         2           Nb  tau(   2) = (   0.0000000   0.7500000   0.5000000  )
+         3           Nb  tau(   3) = (   0.2500000   0.5000000   0.0000000  )
+         4           Nb  tau(   4) = (   0.7500000   0.5000000   0.0000000  )
+         5           Nb  tau(   5) = (   0.5000000   0.0000000   0.7500000  )
+         6           Nb  tau(   6) = (   0.5000000   0.0000000   0.2500000  )
+         7           Sn  tau(   7) = (   0.5000000   0.5000000   0.5000000  )
+         8           Sn  tau(   8) = (   0.0000000   0.0000000   0.0000000  )
+
+     number of k points=  1632 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    91911 G-vectors     FFT dimensions: (  60,  60,  60)
+
+     Estimated max dynamical RAM per process >       7.90 MB
+
+     Estimated total dynamical RAM >     158.01 MB
+
+     The potential is recalculated from file :
+     ./_ph0/Nb6Sn2.q_4/Nb6Sn2.save/charge-density
+
+     Starting wfcs are   72 atomic wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  2.63E-11,  avg # of iterations = 41.5
+
+     total cpu time spent up to now is     5400.3 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    11.1130 ev
+
+     Writing config to output data dir ./_ph0/Nb6Sn2.q_4/Nb6Sn2.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.2390719E+03
+
+      Electron-phonon for Nb6Sn2                                                
+
+     bravais-lattice index     =            1
+     lattice parameter (alat)  =       9.8290  a.u.
+     unit-cell volume          =     949.5752 (a.u.)^3
+     number of atoms/cell      =            8
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    9.82901  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  1.0000  0.0000  0.0000 )  
+               a(2) = (  0.0000  1.0000  0.0000 )  
+               a(3) = (  0.0000  0.0000  1.0000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  1.0000  0.0000  0.0000 )  
+               b(2) = (  0.0000  1.0000  0.0000 )  
+               b(3) = (  0.0000  0.0000  1.0000 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Nb  92.9064   tau(    1) = (    0.00000    0.25000    0.50000  )
+        2     Nb  92.9064   tau(    2) = (    0.00000    0.75000    0.50000  )
+        3     Nb  92.9064   tau(    3) = (    0.25000    0.50000    0.00000  )
+        4     Nb  92.9064   tau(    4) = (    0.75000    0.50000    0.00000  )
+        5     Nb  92.9064   tau(    5) = (    0.50000    0.00000    0.75000  )
+        6     Nb  92.9064   tau(    6) = (    0.50000    0.00000    0.25000  )
+        7     Sn 118.7100   tau(    7) = (    0.50000    0.50000    0.50000  )
+        8     Sn 118.7100   tau(    8) = (    0.00000    0.00000    0.00000  )
+
+     Computing dynamical matrix for 
+                    q = (   0.3750000   0.3750000   0.3750000 )
+ 
+      6 Sym.Ops. (no q -> -q+G )
+
+
+     G cutoff =  783.0866  (   4599 G-vectors)     FFT grid: ( 60, 60, 60)
+     number of k points=  1632
+
+     PseudoPot. # 1 for Nb read from file:
+     ./Nb.UPF
+     MD5 check sum: 4335c075938b94a0f4813d578df0c53c
+     Pseudo is Norm-conserving, Zval =  5.0
+     Generated in analytical, separable form
+     Using radial grid of 1227 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     PseudoPot. # 2 for Sn read from file:
+     ./Sn.UPF
+     MD5 check sum: b65e524b1c53ebbf64659f6ebf110e16
+     Pseudo is Norm-conserving, Zval =  4.0
+     Generated in analytical, separable form
+     Using radial grid of 1243 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_3v (3m)   point group:
+
+
+     Atomic displacements:
+     There are   16 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      2 modes -  To be done
+
+     Representation    10      2 modes -  To be done
+
+     Representation    11      2 modes -  To be done
+
+     Representation    12      2 modes -  To be done
+
+     Representation    13      2 modes -  To be done
+
+     Representation    14      2 modes -  To be done
+
+     Representation    15      2 modes -  To be done
+
+     Representation    16      2 modes -  To be done
+
+
+     PHONON       :      1h44m CPU      1h53m WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file Nb6Sn2.dyn4
+
+     Diagonalizing the dynamical matrix
+
+     q = (    0.375000000   0.375000000   0.375000000 ) 
+
+ **************************************************************************
+     freq (    1) =      -1.872458 [THz] =     -62.458488 [cm-1]
+     freq (    2) =      -0.600519 [THz] =     -20.031168 [cm-1]
+     freq (    3) =      -0.539372 [THz] =     -17.991515 [cm-1]
+     freq (    4) =      -0.539372 [THz] =     -17.991513 [cm-1]
+     freq (    5) =       2.557688 [THz] =      85.315272 [cm-1]
+     freq (    6) =       2.557688 [THz] =      85.315274 [cm-1]
+     freq (    7) =       2.949138 [THz] =      98.372670 [cm-1]
+     freq (    8) =       2.949139 [THz] =      98.372675 [cm-1]
+     freq (    9) =       3.341000 [THz] =     111.443775 [cm-1]
+     freq (   10) =       3.341000 [THz] =     111.443775 [cm-1]
+     freq (   11) =       3.751703 [THz] =     125.143331 [cm-1]
+     freq (   12) =       4.038400 [THz] =     134.706537 [cm-1]
+     freq (   13) =       4.038400 [THz] =     134.706540 [cm-1]
+     freq (   14) =       4.317784 [THz] =     144.025766 [cm-1]
+     freq (   15) =       4.367321 [THz] =     145.678149 [cm-1]
+     freq (   16) =       4.433597 [THz] =     147.888882 [cm-1]
+     freq (   17) =       4.433597 [THz] =     147.888882 [cm-1]
+     freq (   18) =       6.018927 [THz] =     200.769803 [cm-1]
+     freq (   19) =       7.787382 [THz] =     259.759109 [cm-1]
+     freq (   20) =       9.121226 [THz] =     304.251341 [cm-1]
+     freq (   21) =       9.212565 [THz] =     307.298104 [cm-1]
+     freq (   22) =       9.212565 [THz] =     307.298105 [cm-1]
+     freq (   23) =      10.095253 [THz] =     336.741396 [cm-1]
+     freq (   24) =      10.095253 [THz] =     336.741396 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :         15
+     [elph_tetra]  Highest band which contains FS :         20
+     [elph_tetra]    # of bands which contains FS :          6
+ 
+     Tetrahedron method
+     DOS =119.535948 states/spin/Ry/Unit Cell at Ef= 11.112997 eV
+     double delta at Ef =**********
+     lambda(    1)=  0.0000   gamma=    0.00 GHz
+     lambda(    2)=  0.0000   gamma=    0.00 GHz
+     lambda(    3)=  0.0000   gamma=    0.00 GHz
+     lambda(    4)=  0.0000   gamma=    0.00 GHz
+     lambda(    5)=  0.3343   gamma=  249.64 GHz
+     lambda(    6)=  0.3343   gamma=  249.64 GHz
+     lambda(    7)=  0.2152   gamma=  213.66 GHz
+     lambda(    8)=  0.2152   gamma=  213.66 GHz
+     lambda(    9)=  0.1133   gamma=  144.41 GHz
+     lambda(   10)=  0.1133   gamma=  144.41 GHz
+     lambda(   11)=  0.0708   gamma=  113.75 GHz
+     lambda(   12)=  0.0929   gamma=  172.86 GHz
+     lambda(   13)=  0.0929   gamma=  172.86 GHz
+     lambda(   14)=  0.0393   gamma=   83.62 GHz
+     lambda(   15)=  0.0778   gamma=  169.29 GHz
+     lambda(   16)=  0.0885   gamma=  198.54 GHz
+     lambda(   17)=  0.0885   gamma=  198.54 GHz
+     lambda(   18)=  0.0460   gamma=  190.14 GHz
+     lambda(   19)=  0.0381   gamma=  263.47 GHz
+     lambda(   20)=  0.0104   gamma=   98.33 GHz
+     lambda(   21)=  0.0191   gamma=  185.51 GHz
+     lambda(   22)=  0.0191   gamma=  185.51 GHz
+     lambda(   23)=  0.0173   gamma=  201.58 GHz
+     lambda(   24)=  0.0173   gamma=  201.58 GHz
+ 
+     Number of q in the star =    8
+     List of q in the star:
+          1   0.375000000   0.375000000   0.375000000
+          2   0.375000000  -0.375000000   0.375000000
+          3  -0.375000000   0.375000000   0.375000000
+          4  -0.375000000  -0.375000000  -0.375000000
+          5   0.375000000   0.375000000  -0.375000000
+          6  -0.375000000  -0.375000000   0.375000000
+          7  -0.375000000   0.375000000  -0.375000000
+          8   0.375000000  -0.375000000  -0.375000000
+ 
+     init_run     :      0.88s CPU      1.17s WALL (       4 calls)
+     electrons    :   4976.39s CPU   5396.66s WALL (       4 calls)
+
+     Called by init_run:
+     wfcinit      :      0.00s CPU      0.01s WALL (       4 calls)
+     potinit      :      0.01s CPU      0.28s WALL (       4 calls)
+     hinit0       :      0.11s CPU      0.11s WALL (       4 calls)
+
+     Called by electrons:
+     c_bands      :   4960.99s CPU   5381.21s WALL (       4 calls)
+     v_of_rho     :      0.01s CPU      0.01s WALL (       5 calls)
+
+     Called by c_bands:
+     init_us_2    :     67.61s CPU     70.56s WALL (  148512 calls)
+     init_us_2:cp :     67.08s CPU     70.19s WALL (  148512 calls)
+     cegterg      :   3070.15s CPU   3131.41s WALL (   30603 calls)
+
+     Called by *egterg:
+     cdiaghg      :    866.38s CPU    874.40s WALL (  515985 calls)
+     h_psi        :   2018.36s CPU   2073.93s WALL (  546588 calls)
+     g_psi        :     13.44s CPU     13.65s WALL (  504017 calls)
+
+     Called by h_psi:
+     h_psi:calbec :    222.58s CPU    228.35s WALL (  546588 calls)
+     vloc_psi     :   1604.06s CPU   1650.74s WALL (  546588 calls)
+     add_vuspsi   :    174.74s CPU    178.13s WALL (  546588 calls)
+
+     General routines
+     calbec       :    231.32s CPU    238.31s WALL (  570524 calls)
+     fft          :      0.01s CPU      0.12s WALL (      15 calls)
+     ffts         :     28.59s CPU     34.59s WALL (  143616 calls)
+     fftw         :   2186.78s CPU   2258.55s WALL (23073190 calls)
+     davcio       :     23.33s CPU    377.19s WALL (  285317 calls)
+ 
+     Parallel routines
+ 
+     PHONON       :      1h48m CPU      1h57m WALL
+
+     INITIALIZATION: 
+     phq_setup    :      1.80s CPU     15.35s WALL (       4 calls)
+     phq_init     :     15.55s CPU     16.82s WALL (       4 calls)
+ 
+     phq_init     :     15.55s CPU     16.82s WALL (       4 calls)
+     init_vloc    :      0.04s CPU      0.04s WALL (       5 calls)
+     init_us_1    :      0.07s CPU      0.08s WALL (       5 calls)
+     init_us_2    :     67.61s CPU     70.56s WALL (  148512 calls)
+ 
+ 
+ 
+ 
+     dvqpsi_us    :   1163.48s CPU   1209.17s WALL (  143616 calls)
+     apply_dpot_b :    204.86s CPU    210.45s WALL (  143616 calls)
+     vpsifft      :    210.74s CPU    216.60s WALL (  143616 calls)
+ 
+     dvqpsi_us    :   1163.48s CPU   1209.17s WALL (  143616 calls)
+     dvqpsi_us_on :    411.97s CPU    416.67s WALL (  143616 calls)
+ 
+ 
+     h_psi        :   2018.36s CPU   2073.93s WALL (  546588 calls)
+ 
+     h_psi        :   2018.36s CPU   2073.93s WALL (  546588 calls)
+     add_vuspsi   :    174.74s CPU    178.13s WALL (  546588 calls)
+ 
+ 
+ 
+      Electron-phonon coupling
+     elphon       :   1466.64s CPU   1525.36s WALL (       4 calls)
+     elphel       :   1466.48s CPU   1524.42s WALL (      80 calls)
+ 
+      General routines
+     calbec       :    231.32s CPU    238.31s WALL (  570524 calls)
+     fft          :      0.01s CPU      0.12s WALL (      15 calls)
+     ffts         :     28.59s CPU     34.59s WALL (  143616 calls)
+     fftw         :   2186.78s CPU   2258.55s WALL (23073190 calls)
+     davcio       :     23.33s CPU    377.19s WALL (  285317 calls)
+ 
+ 
+     PHONON       :      1h48m CPU      1h57m WALL
+
+ 
+   This run was terminated on:  13:37:13  26May2022            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

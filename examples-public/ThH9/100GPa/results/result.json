@@ -1,0 +1,104 @@
+{
+    "formula": "ThH9",
+    "# of chemical formula units (f.u.)": 2,
+    "Smoothing, THz": 3,
+    "Resolution, pts": 1000,
+    "mu": 0.1,
+    "volume, A^3": 73.967,
+    "volume of chemical formula unit, A^3": 36.983,
+    "density, g/cm^3": 10.826,
+    "lambda": {
+        "direct": {
+            "lambda": 1.428,
+            "gamma": 1.428
+        },
+        "a2f": {
+            "lambda": 1.432,
+            "gamma": 1.432
+        }
+    },
+    "wlog, K": {
+        "direct": {
+            "lambda": 847,
+            "gamma": 847
+        },
+        "a2f": {
+            "lambda": 851,
+            "gamma": 851
+        }
+    },
+    "w2, K": {
+        "direct": {
+            "lambda": 1183,
+            "gamma": 1183
+        },
+        "a2f": {
+            "lambda": 1186,
+            "gamma": 1186
+        }
+    },
+    "Tc, K": {
+        "McMillan": {
+            "direct": {
+                "lambda": 92.075,
+                "gamma": 92.075
+            },
+            "a2f": {
+                "lambda": 92.674,
+                "gamma": 92.674
+            }
+        },
+        "Allen-Dynes": {
+            "direct": {
+                "lambda": 107.252,
+                "gamma": 107.251
+            },
+            "a2f": {
+                "lambda": 107.929,
+                "gamma": 107.929
+            }
+        },
+        "Eliashberg": 117.585
+    },
+    "Sommerfeld gamma": {
+        "mJ/mol/K^2": 3.44,
+        "mJ/g/K^2": 0.01427,
+        "mJ/cm^3/K^2": 0.1545
+    },
+    "DeltaC/Tc": {
+        "mJ/mol/K^2": 9.32,
+        "mJ/g/K^2": 0.039,
+        "mJ/cm^3/K^2": 0.4184
+    },
+    "Delta": {
+        "meV": 23.401,
+        "2Delta/kBTc": 4.619,
+        "J": "3.749251E-21"
+    },
+    "Hc2, T": [
+        26.704
+    ],
+    "beta (McMillan isotope coefficient)": 0.4845,
+    "DOS": {
+        "per Unit cell": {
+            "states/spin/Ry": 8.18,
+            "states/spin/eV": 0.6012
+        },
+        "per chemical formula unit (ThH9)": {
+            "states/spin/Ry": 4.09,
+            "states/spin/eV": 0.3006
+        },
+        "per A^3": {
+            "states/spin/Ry": 0.1106,
+            "states/spin/eV": 0.0081
+        },
+        "per mole of ThH9": {
+            "states/spin/Ry": "2.463061E+24",
+            "states/spin/eV": "1.810316E+23"
+        },
+        "per g": {
+            "states/spin/Ry": "1.021553E+22",
+            "states/spin/eV": "7.508273E+20"
+        }
+    }
+}

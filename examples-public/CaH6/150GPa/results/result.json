@@ -1,0 +1,104 @@
+{
+    "formula": "CaH6",
+    "# of chemical formula units (f.u.)": 1,
+    "Smoothing, THz": 3,
+    "Resolution, pts": 1000,
+    "mu": 0.1,
+    "volume, A^3": 16.865,
+    "volume of chemical formula unit, A^3": 16.865,
+    "density, g/cm^3": 4.541,
+    "lambda": {
+        "direct": {
+            "lambda": 3.246,
+            "gamma": 3.246
+        },
+        "a2f": {
+            "lambda": 3.25,
+            "gamma": 3.25
+        }
+    },
+    "wlog, K": {
+        "direct": {
+            "lambda": 727,
+            "gamma": 727
+        },
+        "a2f": {
+            "lambda": 752,
+            "gamma": 752
+        }
+    },
+    "w2, K": {
+        "direct": {
+            "lambda": 1059,
+            "gamma": 1059
+        },
+        "a2f": {
+            "lambda": 1075,
+            "gamma": 1075
+        }
+    },
+    "Tc, K": {
+        "McMillan": {
+            "direct": {
+                "lambda": 135.281,
+                "gamma": 135.281
+            },
+            "a2f": {
+                "lambda": 139.922,
+                "gamma": 139.922
+            }
+        },
+        "Allen-Dynes": {
+            "direct": {
+                "lambda": 210.469,
+                "gamma": 210.47
+            },
+            "a2f": {
+                "lambda": 215.293,
+                "gamma": 215.293
+            }
+        },
+        "Eliashberg": 232.158
+    },
+    "Sommerfeld gamma": {
+        "mJ/mol/K^2": 4.792,
+        "mJ/g/K^2": 0.10388,
+        "mJ/cm^3/K^2": 0.4718
+    },
+    "DeltaC/Tc": {
+        "mJ/mol/K^2": 8.464,
+        "mJ/g/K^2": 0.183,
+        "mJ/cm^3/K^2": 0.8333
+    },
+    "Delta": {
+        "meV": 55.494,
+        "2Delta/kBTc": 5.548,
+        "J": "8.891156E-21"
+    },
+    "Hc2, T": [
+        57.013
+    ],
+    "beta (McMillan isotope coefficient)": 0.49233,
+    "DOS": {
+        "per Unit cell": {
+            "states/spin/Ry": 3.2569,
+            "states/spin/eV": 0.2394
+        },
+        "per chemical formula unit (CaH6)": {
+            "states/spin/Ry": 3.2569,
+            "states/spin/eV": 0.2394
+        },
+        "per A^3": {
+            "states/spin/Ry": 0.1931,
+            "states/spin/eV": 0.0142
+        },
+        "per mole of CaH6": {
+            "states/spin/Ry": "1.961331E+24",
+            "states/spin/eV": "1.441551E+23"
+        },
+        "per g": {
+            "states/spin/Ry": "4.252148E+22",
+            "states/spin/eV": "3.12527E+21"
+        }
+    }
+}

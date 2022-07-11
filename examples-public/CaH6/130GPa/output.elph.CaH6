@@ -1,0 +1,1348 @@
+
+     Program PHONON v.7.0 starts on 31May2022 at  3: 1: 3 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on    20 processors
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =      20
+     88443 MiB available memory on the printing compute node when the environment starts
+ 
+     Reading input from /cephfs/home/mgrebenyuk/QE/Examples/CaH6/130GPa/2x2x2/elph.in
+
+     Reading xml data from directory:
+
+     ./CaH6.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          34      34     12                  575      575     124
+     Max          35      35     13                  578      578     126
+     Sum         693     693    249                11537    11537    2491
+ 
+     Using Slab Decomposition
+ 
+     Reading collected, re-writing distributed wavefunctions
+
+
+     Dynamical matrices for ( 2, 2, 2)  uniform grid of q-points
+     With a half shift
+     (   4 q-points):
+       N         xq(1)         xq(2)         xq(3) 
+       1   0.433044223   0.433034963  -0.433045932
+       2   0.433043368  -0.000001869  -0.000002724
+       3  -0.000001869   0.433017805  -0.000019028
+       4  -0.000002724  -0.000019028   0.433024180
+     Because shifted q grid is used, q2r will not work !
+
+     Saving dvscf to file. Distribute only q points, not irreducible represetations.
+
+     Calculation of q =    0.4330442   0.4330350  -0.4330459
+
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          34      34     13                  575      575     138
+     Max          35      35     14                  578      578     141
+     Sum         693     693    265                11537    11537    2779
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for CaH6                                                  
+
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     number of electrons       =         8.00
+     number of Kohn-Sham states=            8
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   5.380563  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   0.577316   0.577371   0.577364 )  
+               a(2) = (   0.577303  -0.577366  -0.577357 )  
+               a(3) = (  -0.577311   0.577316  -0.577313 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.866083  0.866032 -0.000044 )  
+               b(2) = (  0.866092  0.000034 -0.866054 )  
+               b(3) = (  0.000002  0.866074 -0.866086 )  
+
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        H              1.00     1.00794     H ( 1.00)
+        Ca             2.00    40.07800     Ca( 1.00)
+
+      2 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Ca  tau(   1) = (   0.0000004   0.0000001  -0.0000001  )
+         2           H   tau(   2) = (   0.2886511  -0.0000241  -0.5773319  )
+         3           H   tau(   3) = (   0.2886569   0.5773448   0.0000260  )
+         4           H   tau(   4) = (   0.5773109   0.2886738   0.0000092  )
+         5           H   tau(   5) = (  -0.0000027   0.2886468  -0.5773151  )
+         6           H   tau(   6) = (   0.5773062  -0.0000030  -0.2886636  )
+         7           H   tau(   7) = (   0.0000020   0.5773234  -0.2886424  )
+
+     number of k points=  1024 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    11537 G-vectors     FFT dimensions: (  32,  32,  32)
+
+     Estimated max dynamical RAM per process >       3.40 MB
+
+     Estimated total dynamical RAM >      67.94 MB
+
+     The potential is recalculated from file :
+     ./_ph0/CaH6.q_1/CaH6.save/charge-density
+
+     Starting wfcs are    6 atomic +    2 random wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  1.25E-10,  avg # of iterations = 21.5
+
+     total cpu time spent up to now is       50.3 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    10.4218 ev
+
+     Writing config to output data dir ./_ph0/CaH6.q_1/CaH6.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.6546949E+01
+
+      Electron-phonon for CaH6                                                  
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    5.38056  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  0.5773  0.5774  0.5774 )  
+               a(2) = (  0.5773 -0.5774 -0.5774 )  
+               a(3) = ( -0.5773  0.5773 -0.5773 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.8661  0.8660 -0.0000 )  
+               b(2) = (  0.8661  0.0000 -0.8661 )  
+               b(3) = (  0.0000  0.8661 -0.8661 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Ca  40.0780   tau(    1) = (    0.00000    0.00000   -0.00000  )
+        2     H    1.0079   tau(    2) = (    0.28865   -0.00002   -0.57733  )
+        3     H    1.0079   tau(    3) = (    0.28866    0.57734    0.00003  )
+        4     H    1.0079   tau(    4) = (    0.57731    0.28867    0.00001  )
+        5     H    1.0079   tau(    5) = (   -0.00000    0.28865   -0.57732  )
+        6     H    1.0079   tau(    6) = (    0.57731   -0.00000   -0.28866  )
+        7     H    1.0079   tau(    7) = (    0.00000    0.57732   -0.28864  )
+
+     Computing dynamical matrix for 
+                    q = (   0.4330442   0.4330350  -0.4330459 )
+ 
+     No symmetry!
+
+     G cutoff =  234.6636  (    578 G-vectors)     FFT grid: ( 32, 32, 32)
+     number of k points=  1024
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_1 (1)     point group:
+
+
+     Atomic displacements:
+     There are   21 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      1 modes -  To be done
+
+     Representation    10      1 modes -  To be done
+
+     Representation    11      1 modes -  To be done
+
+     Representation    12      1 modes -  To be done
+
+     Representation    13      1 modes -  To be done
+
+     Representation    14      1 modes -  To be done
+
+     Representation    15      1 modes -  To be done
+
+     Representation    16      1 modes -  To be done
+
+     Representation    17      1 modes -  To be done
+
+     Representation    18      1 modes -  To be done
+
+     Representation    19      1 modes -  To be done
+
+     Representation    20      1 modes -  To be done
+
+     Representation    21      1 modes -  To be done
+
+
+     PHONON       :     48.99s CPU   1m 0.89s WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file CaH6.dyn1
+
+     Diagonalizing the dynamical matrix
+
+     q = (    0.433044223   0.433034963  -0.433045932 ) 
+
+ **************************************************************************
+     freq (    1) =      -4.686145 [THz] =    -156.312977 [cm-1]
+     freq (    2) =       5.674081 [THz] =     189.266971 [cm-1]
+     freq (    3) =       5.825097 [THz] =     194.304328 [cm-1]
+     freq (    4) =       6.102309 [THz] =     203.551117 [cm-1]
+     freq (    5) =      17.153196 [THz] =     572.169022 [cm-1]
+     freq (    6) =      18.073721 [THz] =     602.874432 [cm-1]
+     freq (    7) =      19.507664 [THz] =     650.705621 [cm-1]
+     freq (    8) =      19.789442 [THz] =     660.104743 [cm-1]
+     freq (    9) =      20.282195 [THz] =     676.541207 [cm-1]
+     freq (   10) =      24.865959 [THz] =     829.439121 [cm-1]
+     freq (   11) =      25.914492 [THz] =     864.414419 [cm-1]
+     freq (   12) =      26.720897 [THz] =     891.313168 [cm-1]
+     freq (   13) =      27.229511 [THz] =     908.278726 [cm-1]
+     freq (   14) =      28.800051 [THz] =     960.666301 [cm-1]
+     freq (   15) =      33.638889 [THz] =    1122.072571 [cm-1]
+     freq (   16) =      43.766205 [THz] =    1459.883457 [cm-1]
+     freq (   17) =      44.026851 [THz] =    1468.577664 [cm-1]
+     freq (   18) =      44.110301 [THz] =    1471.361257 [cm-1]
+     freq (   19) =      47.691021 [THz] =    1590.801215 [cm-1]
+     freq (   20) =      49.020419 [THz] =    1635.145161 [cm-1]
+     freq (   21) =      49.656093 [THz] =    1656.348969 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :          4
+     [elph_tetra]  Highest band which contains FS :          6
+     [elph_tetra]    # of bands which contains FS :          3
+ 
+     Tetrahedron method
+     DOS =  3.273475 states/spin/Ry/Unit Cell at Ef= 10.421783 eV
+     double delta at Ef =  7.709971
+     lambda(    1)=  0.0000   gamma=    0.00 GHz
+     lambda(    2)=  0.1372   gamma=   13.80 GHz
+     lambda(    3)=  0.1861   gamma=   19.74 GHz
+     lambda(    4)=  0.0660   gamma=    7.69 GHz
+     lambda(    5)=  0.2671   gamma=  245.70 GHz
+     lambda(    6)=  0.2204   gamma=  225.10 GHz
+     lambda(    7)=  0.1224   gamma=  145.62 GHz
+     lambda(    8)=  0.1487   gamma=  182.01 GHz
+     lambda(    9)=  0.0799   gamma=  102.71 GHz
+     lambda(   10)=  0.0606   gamma=  117.08 GHz
+     lambda(   11)=  0.0251   gamma=   52.76 GHz
+     lambda(   12)=  0.0631   gamma=  140.77 GHz
+     lambda(   13)=  0.0583   gamma=  135.21 GHz
+     lambda(   14)=  0.0449   gamma=  116.43 GHz
+     lambda(   15)=  0.0015   gamma=    5.15 GHz
+     lambda(   16)=  0.0207   gamma=  123.82 GHz
+     lambda(   17)=  0.0114   gamma=   68.80 GHz
+     lambda(   18)=  0.0130   gamma=   79.12 GHz
+     lambda(   19)=  0.0235   gamma=  166.75 GHz
+     lambda(   20)=  0.0176   gamma=  132.28 GHz
+     lambda(   21)=  0.0131   gamma=  100.97 GHz
+ 
+     Number of q in the star =    2
+     List of q in the star:
+          1   0.433044223   0.433034963  -0.433045932
+          2  -0.433044223  -0.433034963   0.433045932
+
+     Calculation of q =    0.4330434  -0.0000019  -0.0000027
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          34      34     12                  575      575     124
+     Max          35      35     13                  578      578     126
+     Sum         693     693    249                11537    11537    2491
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for CaH6                                                  
+
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     number of electrons       =         8.00
+     number of Kohn-Sham states=            8
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   5.380563  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   0.577316   0.577371   0.577364 )  
+               a(2) = (   0.577303  -0.577366  -0.577357 )  
+               a(3) = (  -0.577311   0.577316  -0.577313 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.866083  0.866032 -0.000044 )  
+               b(2) = (  0.866092  0.000034 -0.866054 )  
+               b(3) = (  0.000002  0.866074 -0.866086 )  
+
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        H              1.00     1.00794     H ( 1.00)
+        Ca             2.00    40.07800     Ca( 1.00)
+
+      2 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Ca  tau(   1) = (   0.0000004   0.0000001  -0.0000001  )
+         2           H   tau(   2) = (   0.2886511  -0.0000241  -0.5773319  )
+         3           H   tau(   3) = (   0.2886569   0.5773448   0.0000260  )
+         4           H   tau(   4) = (   0.5773109   0.2886738   0.0000092  )
+         5           H   tau(   5) = (  -0.0000027   0.2886468  -0.5773151  )
+         6           H   tau(   6) = (   0.5773062  -0.0000030  -0.2886636  )
+         7           H   tau(   7) = (   0.0000020   0.5773234  -0.2886424  )
+
+     number of k points=  1024 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    11537 G-vectors     FFT dimensions: (  32,  32,  32)
+
+     Estimated max dynamical RAM per process >       3.34 MB
+
+     Estimated total dynamical RAM >      66.75 MB
+
+     The potential is recalculated from file :
+     ./_ph0/CaH6.q_2/CaH6.save/charge-density
+
+     Starting wfcs are    6 atomic +    2 random wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  1.25E-10,  avg # of iterations = 21.6
+
+     total cpu time spent up to now is       93.6 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    10.4218 ev
+
+     Writing config to output data dir ./_ph0/CaH6.q_2/CaH6.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.6546949E+01
+
+      Electron-phonon for CaH6                                                  
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    5.38056  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  0.5773  0.5774  0.5774 )  
+               a(2) = (  0.5773 -0.5774 -0.5774 )  
+               a(3) = ( -0.5773  0.5773 -0.5773 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.8661  0.8660 -0.0000 )  
+               b(2) = (  0.8661  0.0000 -0.8661 )  
+               b(3) = (  0.0000  0.8661 -0.8661 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Ca  40.0780   tau(    1) = (    0.00000    0.00000   -0.00000  )
+        2     H    1.0079   tau(    2) = (    0.28865   -0.00002   -0.57733  )
+        3     H    1.0079   tau(    3) = (    0.28866    0.57734    0.00003  )
+        4     H    1.0079   tau(    4) = (    0.57731    0.28867    0.00001  )
+        5     H    1.0079   tau(    5) = (   -0.00000    0.28865   -0.57732  )
+        6     H    1.0079   tau(    6) = (    0.57731   -0.00000   -0.28866  )
+        7     H    1.0079   tau(    7) = (    0.00000    0.57732   -0.28864  )
+
+     Computing dynamical matrix for 
+                    q = (   0.4330434  -0.0000019  -0.0000027 )
+ 
+     No symmetry!
+
+     G cutoff =  234.6636  (    578 G-vectors)     FFT grid: ( 32, 32, 32)
+     number of k points=  1024
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_1 (1)     point group:
+
+
+     Atomic displacements:
+     There are   21 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      1 modes -  To be done
+
+     Representation    10      1 modes -  To be done
+
+     Representation    11      1 modes -  To be done
+
+     Representation    12      1 modes -  To be done
+
+     Representation    13      1 modes -  To be done
+
+     Representation    14      1 modes -  To be done
+
+     Representation    15      1 modes -  To be done
+
+     Representation    16      1 modes -  To be done
+
+     Representation    17      1 modes -  To be done
+
+     Representation    18      1 modes -  To be done
+
+     Representation    19      1 modes -  To be done
+
+     Representation    20      1 modes -  To be done
+
+     Representation    21      1 modes -  To be done
+
+
+     PHONON       :   1m38.17s CPU   1m56.76s WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file CaH6.dyn2
+
+     Diagonalizing the dynamical matrix
+
+     q = (    0.433043368  -0.000001869  -0.000002724 ) 
+
+ **************************************************************************
+     freq (    1) =       6.010415 [THz] =     200.485880 [cm-1]
+     freq (    2) =       7.013464 [THz] =     233.943988 [cm-1]
+     freq (    3) =       7.149559 [THz] =     238.483625 [cm-1]
+     freq (    4) =      18.401224 [THz] =     613.798757 [cm-1]
+     freq (    5) =      19.099004 [THz] =     637.074214 [cm-1]
+     freq (    6) =      19.815606 [THz] =     660.977459 [cm-1]
+     freq (    7) =      21.274557 [THz] =     709.642828 [cm-1]
+     freq (    8) =      21.492412 [THz] =     716.909689 [cm-1]
+     freq (    9) =      26.503531 [THz] =     884.062617 [cm-1]
+     freq (   10) =      27.411216 [THz] =     914.339762 [cm-1]
+     freq (   11) =      28.776528 [THz] =     959.881657 [cm-1]
+     freq (   12) =      29.717182 [THz] =     991.258507 [cm-1]
+     freq (   13) =      31.976774 [THz] =    1066.630370 [cm-1]
+     freq (   14) =      34.672688 [THz] =    1156.556379 [cm-1]
+     freq (   15) =      35.309901 [THz] =    1177.811507 [cm-1]
+     freq (   16) =      37.248353 [THz] =    1242.471305 [cm-1]
+     freq (   17) =      39.734215 [THz] =    1325.390736 [cm-1]
+     freq (   18) =      42.114533 [THz] =    1404.789598 [cm-1]
+     freq (   19) =      44.189133 [THz] =    1473.990828 [cm-1]
+     freq (   20) =      55.432796 [THz] =    1849.039054 [cm-1]
+     freq (   21) =      64.220657 [THz] =    2142.170524 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :          4
+     [elph_tetra]  Highest band which contains FS :          6
+     [elph_tetra]    # of bands which contains FS :          3
+ 
+     Tetrahedron method
+     DOS =  3.273475 states/spin/Ry/Unit Cell at Ef= 10.421783 eV
+     double delta at Ef = 25.826562
+     lambda(    1)=  0.7546   gamma=   85.21 GHz
+     lambda(    2)=  0.1394   gamma=   21.44 GHz
+     lambda(    3)=  0.1531   gamma=   24.46 GHz
+     lambda(    4)=  0.5430   gamma=  574.77 GHz
+     lambda(    5)=  0.8736   gamma=  996.18 GHz
+     lambda(    6)=  0.2826   gamma=  346.89 GHz
+     lambda(    7)=  0.1426   gamma=  201.70 GHz
+     lambda(    8)=  0.0839   gamma=  121.10 GHz
+     lambda(    9)=  0.0990   gamma=  217.28 GHz
+     lambda(   10)=  0.0703   gamma=  165.02 GHz
+     lambda(   11)=  0.0259   gamma=   67.11 GHz
+     lambda(   12)=  0.1154   gamma=  318.64 GHz
+     lambda(   13)=  0.1819   gamma=  581.31 GHz
+     lambda(   14)=  0.0314   gamma=  117.83 GHz
+     lambda(   15)=  0.0279   gamma=  108.58 GHz
+     lambda(   16)=  0.0936   gamma=  405.83 GHz
+     lambda(   17)=  0.0511   gamma=  251.96 GHz
+     lambda(   18)=  0.0607   gamma=  336.65 GHz
+     lambda(   19)=  0.0687   gamma=  419.50 GHz
+     lambda(   20)=  0.0169   gamma=  162.03 GHz
+     lambda(   21)=  0.0304   gamma=  391.46 GHz
+ 
+     Number of q in the star =    2
+     List of q in the star:
+          1   0.433043368  -0.000001869  -0.000002724
+          2  -0.433043368   0.000001869   0.000002724
+
+     Calculation of q =   -0.0000019   0.4330178  -0.0000190
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          34      34     12                  575      575     124
+     Max          35      35     13                  578      578     126
+     Sum         693     693    249                11537    11537    2491
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for CaH6                                                  
+
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     number of electrons       =         8.00
+     number of Kohn-Sham states=            8
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   5.380563  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   0.577316   0.577371   0.577364 )  
+               a(2) = (   0.577303  -0.577366  -0.577357 )  
+               a(3) = (  -0.577311   0.577316  -0.577313 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.866083  0.866032 -0.000044 )  
+               b(2) = (  0.866092  0.000034 -0.866054 )  
+               b(3) = (  0.000002  0.866074 -0.866086 )  
+
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        H              1.00     1.00794     H ( 1.00)
+        Ca             2.00    40.07800     Ca( 1.00)
+
+      2 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Ca  tau(   1) = (   0.0000004   0.0000001  -0.0000001  )
+         2           H   tau(   2) = (   0.2886511  -0.0000241  -0.5773319  )
+         3           H   tau(   3) = (   0.2886569   0.5773448   0.0000260  )
+         4           H   tau(   4) = (   0.5773109   0.2886738   0.0000092  )
+         5           H   tau(   5) = (  -0.0000027   0.2886468  -0.5773151  )
+         6           H   tau(   6) = (   0.5773062  -0.0000030  -0.2886636  )
+         7           H   tau(   7) = (   0.0000020   0.5773234  -0.2886424  )
+
+     number of k points=  1024 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    11537 G-vectors     FFT dimensions: (  32,  32,  32)
+
+     Estimated max dynamical RAM per process >       3.34 MB
+
+     Estimated total dynamical RAM >      66.75 MB
+
+     The potential is recalculated from file :
+     ./_ph0/CaH6.q_3/CaH6.save/charge-density
+
+     Starting wfcs are    6 atomic +    2 random wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  1.25E-10,  avg # of iterations = 21.5
+
+     total cpu time spent up to now is      134.5 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    10.4218 ev
+
+     Writing config to output data dir ./_ph0/CaH6.q_3/CaH6.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.6546949E+01
+
+      Electron-phonon for CaH6                                                  
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    5.38056  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  0.5773  0.5774  0.5774 )  
+               a(2) = (  0.5773 -0.5774 -0.5774 )  
+               a(3) = ( -0.5773  0.5773 -0.5773 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.8661  0.8660 -0.0000 )  
+               b(2) = (  0.8661  0.0000 -0.8661 )  
+               b(3) = (  0.0000  0.8661 -0.8661 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Ca  40.0780   tau(    1) = (    0.00000    0.00000   -0.00000  )
+        2     H    1.0079   tau(    2) = (    0.28865   -0.00002   -0.57733  )
+        3     H    1.0079   tau(    3) = (    0.28866    0.57734    0.00003  )
+        4     H    1.0079   tau(    4) = (    0.57731    0.28867    0.00001  )
+        5     H    1.0079   tau(    5) = (   -0.00000    0.28865   -0.57732  )
+        6     H    1.0079   tau(    6) = (    0.57731   -0.00000   -0.28866  )
+        7     H    1.0079   tau(    7) = (    0.00000    0.57732   -0.28864  )
+
+     Computing dynamical matrix for 
+                    q = (  -0.0000019   0.4330178  -0.0000190 )
+ 
+     No symmetry!
+
+     G cutoff =  234.6636  (    578 G-vectors)     FFT grid: ( 32, 32, 32)
+     number of k points=  1024
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_1 (1)     point group:
+
+
+     Atomic displacements:
+     There are   21 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      1 modes -  To be done
+
+     Representation    10      1 modes -  To be done
+
+     Representation    11      1 modes -  To be done
+
+     Representation    12      1 modes -  To be done
+
+     Representation    13      1 modes -  To be done
+
+     Representation    14      1 modes -  To be done
+
+     Representation    15      1 modes -  To be done
+
+     Representation    16      1 modes -  To be done
+
+     Representation    17      1 modes -  To be done
+
+     Representation    18      1 modes -  To be done
+
+     Representation    19      1 modes -  To be done
+
+     Representation    20      1 modes -  To be done
+
+     Representation    21      1 modes -  To be done
+
+
+     PHONON       :   2m23.63s CPU   2m49.71s WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file CaH6.dyn3
+
+     Diagonalizing the dynamical matrix
+
+     q = (   -0.000001869   0.433017805  -0.000019028 ) 
+
+ **************************************************************************
+     freq (    1) =       5.554809 [THz] =     185.288495 [cm-1]
+     freq (    2) =       6.330416 [THz] =     211.159964 [cm-1]
+     freq (    3) =       6.919940 [THz] =     230.824346 [cm-1]
+     freq (    4) =      14.279200 [THz] =     476.302827 [cm-1]
+     freq (    5) =      15.026275 [THz] =     501.222585 [cm-1]
+     freq (    6) =      18.962362 [THz] =     632.516326 [cm-1]
+     freq (    7) =      19.391234 [THz] =     646.821942 [cm-1]
+     freq (    8) =      21.424188 [THz] =     714.633976 [cm-1]
+     freq (    9) =      26.842463 [THz] =     895.368189 [cm-1]
+     freq (   10) =      28.095714 [THz] =     937.172140 [cm-1]
+     freq (   11) =      28.778134 [THz] =     959.935226 [cm-1]
+     freq (   12) =      31.546054 [THz] =    1052.263084 [cm-1]
+     freq (   13) =      34.457321 [THz] =    1149.372504 [cm-1]
+     freq (   14) =      34.973105 [THz] =    1166.577204 [cm-1]
+     freq (   15) =      35.377313 [THz] =    1180.060125 [cm-1]
+     freq (   16) =      37.994931 [THz] =    1267.374475 [cm-1]
+     freq (   17) =      40.591358 [THz] =    1353.981963 [cm-1]
+     freq (   18) =      45.336527 [THz] =    1512.263768 [cm-1]
+     freq (   19) =      46.286767 [THz] =    1543.960357 [cm-1]
+     freq (   20) =      54.194467 [THz] =    1807.732834 [cm-1]
+     freq (   21) =      66.189478 [THz] =    2207.843347 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :          4
+     [elph_tetra]  Highest band which contains FS :          6
+     [elph_tetra]    # of bands which contains FS :          3
+ 
+     Tetrahedron method
+     DOS =  3.273475 states/spin/Ry/Unit Cell at Ef= 10.421783 eV
+     double delta at Ef = 33.106347
+     lambda(    1)=  1.2772   gamma=  123.19 GHz
+     lambda(    2)=  0.4741   gamma=   59.39 GHz
+     lambda(    3)=  0.2283   gamma=   34.18 GHz
+     lambda(    4)=  1.9007   gamma= 1211.47 GHz
+     lambda(    5)=  1.6523   gamma= 1166.20 GHz
+     lambda(    6)=  0.5210   gamma=  585.63 GHz
+     lambda(    7)=  0.1545   gamma=  181.57 GHz
+     lambda(    8)=  0.1519   gamma=  218.01 GHz
+     lambda(    9)=  0.1333   gamma=  300.27 GHz
+     lambda(   10)=  0.0907   gamma=  223.72 GHz
+     lambda(   11)=  0.0350   gamma=   90.65 GHz
+     lambda(   12)=  0.1304   gamma=  405.52 GHz
+     lambda(   13)=  0.0828   gamma=  307.34 GHz
+     lambda(   14)=  0.0801   gamma=  306.15 GHz
+     lambda(   15)=  0.1138   gamma=  445.12 GHz
+     lambda(   16)=  0.0725   gamma=  327.06 GHz
+     lambda(   17)=  0.0615   gamma=  316.66 GHz
+     lambda(   18)=  0.0555   gamma=  356.78 GHz
+     lambda(   19)=  0.0460   gamma=  307.80 GHz
+     lambda(   20)=  0.0203   gamma=  186.32 GHz
+     lambda(   21)=  0.0426   gamma=  583.79 GHz
+ 
+     Number of q in the star =    2
+     List of q in the star:
+          1  -0.000001869   0.433017805  -0.000019028
+          2   0.000001869  -0.433017805   0.000019028
+
+     Calculation of q =   -0.0000027  -0.0000190   0.4330242
+     [opt_tetra]  Optimized tetrahedron method is used.
+ 
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          34      34     13                  575      575     136
+     Max          35      35     14                  578      578     139
+     Sum         693     693    265                11537    11537    2731
+ 
+     Using Slab Decomposition
+ 
+
+     Title: 
+      Electron-phonon for CaH6                                                  
+
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     number of electrons       =         8.00
+     number of Kohn-Sham states=            8
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+     celldm(1)=   5.380563  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (   0.577316   0.577371   0.577364 )  
+               a(2) = (   0.577303  -0.577366  -0.577357 )  
+               a(3) = (  -0.577311   0.577316  -0.577313 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.866083  0.866032 -0.000044 )  
+               b(2) = (  0.866092  0.000034 -0.866054 )  
+               b(3) = (  0.000002  0.866074 -0.866086 )  
+
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+        H              1.00     1.00794     H ( 1.00)
+        Ca             2.00    40.07800     Ca( 1.00)
+
+      2 Sym. Ops., with inversion, found
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1           Ca  tau(   1) = (   0.0000004   0.0000001  -0.0000001  )
+         2           H   tau(   2) = (   0.2886511  -0.0000241  -0.5773319  )
+         3           H   tau(   3) = (   0.2886569   0.5773448   0.0000260  )
+         4           H   tau(   4) = (   0.5773109   0.2886738   0.0000092  )
+         5           H   tau(   5) = (  -0.0000027   0.2886468  -0.5773151  )
+         6           H   tau(   6) = (   0.5773062  -0.0000030  -0.2886636  )
+         7           H   tau(   7) = (   0.0000020   0.5773234  -0.2886424  )
+
+     number of k points=  1024 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    11537 G-vectors     FFT dimensions: (  32,  32,  32)
+
+     Estimated max dynamical RAM per process >       3.34 MB
+
+     Estimated total dynamical RAM >      66.75 MB
+
+     The potential is recalculated from file :
+     ./_ph0/CaH6.q_4/CaH6.save/charge-density
+
+     Starting wfcs are    6 atomic +    2 random wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  1.25E-10,  avg # of iterations = 21.5
+
+     total cpu time spent up to now is      182.6 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is    10.4218 ev
+
+     Writing config to output data dir ./_ph0/CaH6.q_4/CaH6.save/
+ 
+     [dfpt_tetra]  Dos(E_F)[/Ry] :   0.6546949E+01
+
+      Electron-phonon for CaH6                                                  
+
+     bravais-lattice index     =            0
+     lattice parameter (alat)  =       5.3806  a.u.
+     unit-cell volume          =     119.8986 (a.u.)^3
+     number of atoms/cell      =            7
+     number of atomic types    =            2
+     kinetic-energy cut-off    =      80.0000  Ry
+     charge density cut-off    =     320.0000  Ry
+     convergence threshold     =      1.0E-08
+     beta                      =       0.7000
+     number of iterations used =            4
+     Exchange-correlation= PZ
+                           (   1   1   0   0   0   0   0)
+
+
+     celldm(1)=    5.38056  celldm(2)=    0.00000  celldm(3)=    0.00000
+     celldm(4)=    0.00000  celldm(5)=    0.00000  celldm(6)=    0.00000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  0.5773  0.5774  0.5774 )  
+               a(2) = (  0.5773 -0.5774 -0.5774 )  
+               a(3) = ( -0.5773  0.5773 -0.5773 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = (  0.8661  0.8660 -0.0000 )  
+               b(2) = (  0.8661  0.0000 -0.8661 )  
+               b(3) = (  0.0000  0.8661 -0.8661 )  
+
+
+     Atoms inside the unit cell: 
+
+     Cartesian axes
+
+     site n.  atom      mass           positions (alat units)
+        1     Ca  40.0780   tau(    1) = (    0.00000    0.00000   -0.00000  )
+        2     H    1.0079   tau(    2) = (    0.28865   -0.00002   -0.57733  )
+        3     H    1.0079   tau(    3) = (    0.28866    0.57734    0.00003  )
+        4     H    1.0079   tau(    4) = (    0.57731    0.28867    0.00001  )
+        5     H    1.0079   tau(    5) = (   -0.00000    0.28865   -0.57732  )
+        6     H    1.0079   tau(    6) = (    0.57731   -0.00000   -0.28866  )
+        7     H    1.0079   tau(    7) = (    0.00000    0.57732   -0.28864  )
+
+     Computing dynamical matrix for 
+                    q = (  -0.0000027  -0.0000190   0.4330242 )
+ 
+     No symmetry!
+
+     G cutoff =  234.6636  (    578 G-vectors)     FFT grid: ( 32, 32, 32)
+     number of k points=  1024
+
+     PseudoPot. # 1 for H  read from file:
+     ./H.UPF
+     MD5 check sum: df8e43189db5a2d7f03d0dd74d71ce72
+     Pseudo is Norm-conserving, Zval =  1.0
+     Generated in analytical, separable form
+     Using radial grid of  929 points,  0 beta functions with: 
+
+     PseudoPot. # 2 for Ca read from file:
+     ./Ca.UPF
+     MD5 check sum: 3d0b95105a6fbfe7d4b72bf2bbe3cdff
+     Pseudo is Norm-conserving, Zval =  2.0
+     Generated in analytical, separable form
+     Using radial grid of 1169 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   0
+                l(4) =   1
+                l(5) =   1
+                l(6) =   2
+
+     Mode symmetry, C_1 (1)     point group:
+
+
+     Atomic displacements:
+     There are   21 irreducible representations
+
+     Representation     1      1 modes -  To be done
+
+     Representation     2      1 modes -  To be done
+
+     Representation     3      1 modes -  To be done
+
+     Representation     4      1 modes -  To be done
+
+     Representation     5      1 modes -  To be done
+
+     Representation     6      1 modes -  To be done
+
+     Representation     7      1 modes -  To be done
+
+     Representation     8      1 modes -  To be done
+
+     Representation     9      1 modes -  To be done
+
+     Representation    10      1 modes -  To be done
+
+     Representation    11      1 modes -  To be done
+
+     Representation    12      1 modes -  To be done
+
+     Representation    13      1 modes -  To be done
+
+     Representation    14      1 modes -  To be done
+
+     Representation    15      1 modes -  To be done
+
+     Representation    16      1 modes -  To be done
+
+     Representation    17      1 modes -  To be done
+
+     Representation    18      1 modes -  To be done
+
+     Representation    19      1 modes -  To be done
+
+     Representation    20      1 modes -  To be done
+
+     Representation    21      1 modes -  To be done
+
+
+     PHONON       :   3m17.23s CPU   3m49.90s WALL
+
+     Reading dVscf from file dv
+     Reading dynamics matrix from file CaH6.dyn4
+
+     Diagonalizing the dynamical matrix
+
+     q = (   -0.000002724  -0.000019028   0.433024180 ) 
+
+ **************************************************************************
+     freq (    1) =       5.927940 [THz] =     197.734800 [cm-1]
+     freq (    2) =       6.387414 [THz] =     213.061206 [cm-1]
+     freq (    3) =       7.078349 [THz] =     236.108295 [cm-1]
+     freq (    4) =      15.889231 [THz] =     530.007686 [cm-1]
+     freq (    5) =      16.919738 [THz] =     564.381710 [cm-1]
+     freq (    6) =      19.613349 [THz] =     654.230886 [cm-1]
+     freq (    7) =      21.083128 [THz] =     703.257459 [cm-1]
+     freq (    8) =      21.878720 [THz] =     729.795549 [cm-1]
+     freq (    9) =      26.474875 [THz] =     883.106767 [cm-1]
+     freq (   10) =      28.185397 [THz] =     940.163653 [cm-1]
+     freq (   11) =      28.397525 [THz] =     947.239458 [cm-1]
+     freq (   12) =      29.504252 [THz] =     984.155902 [cm-1]
+     freq (   13) =      31.704052 [THz] =    1057.533340 [cm-1]
+     freq (   14) =      34.629373 [THz] =    1155.111538 [cm-1]
+     freq (   15) =      35.384253 [THz] =    1180.291622 [cm-1]
+     freq (   16) =      37.915235 [THz] =    1264.716110 [cm-1]
+     freq (   17) =      39.815103 [THz] =    1328.088871 [cm-1]
+     freq (   18) =      44.156638 [THz] =    1472.906902 [cm-1]
+     freq (   19) =      46.751367 [THz] =    1559.457746 [cm-1]
+     freq (   20) =      55.258547 [THz] =    1843.226709 [cm-1]
+     freq (   21) =      64.313146 [THz] =    2145.255648 [cm-1]
+ **************************************************************************
+
+     [elph_tetra]   Lowest band which contains FS :          4
+     [elph_tetra]  Highest band which contains FS :          6
+     [elph_tetra]    # of bands which contains FS :          3
+ 
+     Tetrahedron method
+     DOS =  3.273475 states/spin/Ry/Unit Cell at Ef= 10.421783 eV
+     double delta at Ef = 25.842052
+     lambda(    1)=  0.7811   gamma=   85.80 GHz
+     lambda(    2)=  0.2542   gamma=   32.42 GHz
+     lambda(    3)=  0.1789   gamma=   28.02 GHz
+     lambda(    4)=  0.6432   gamma=  507.63 GHz
+     lambda(    5)=  0.9542   gamma=  853.89 GHz
+     lambda(    6)=  0.4967   gamma=  597.24 GHz
+     lambda(    7)=  0.0587   gamma=   81.54 GHz
+     lambda(    8)=  0.1416   gamma=  211.87 GHz
+     lambda(    9)=  0.0832   gamma=  182.39 GHz
+     lambda(   10)=  0.0703   gamma=  174.60 GHz
+     lambda(   11)=  0.0599   gamma=  151.03 GHz
+     lambda(   12)=  0.0970   gamma=  263.85 GHz
+     lambda(   13)=  0.1891   gamma=  594.18 GHz
+     lambda(   14)=  0.0302   gamma=  113.23 GHz
+     lambda(   15)=  0.0296   gamma=  115.70 GHz
+     lambda(   16)=  0.0982   gamma=  441.07 GHz
+     lambda(   17)=  0.0693   gamma=  343.60 GHz
+     lambda(   18)=  0.0593   gamma=  361.60 GHz
+     lambda(   19)=  0.0401   gamma=  274.05 GHz
+     lambda(   20)=  0.0193   gamma=  183.86 GHz
+     lambda(   21)=  0.0276   gamma=  357.08 GHz
+ 
+     Number of q in the star =    2
+     List of q in the star:
+          1  -0.000002724  -0.000019028   0.433024180
+          2   0.000002724   0.000019028  -0.433024180
+ 
+     init_run     :      0.10s CPU      0.29s WALL (       4 calls)
+     electrons    :    160.57s CPU    182.02s WALL (       4 calls)
+
+     Called by init_run:
+     wfcinit      :      0.00s CPU      0.03s WALL (       4 calls)
+     potinit      :      0.00s CPU      0.14s WALL (       4 calls)
+     hinit0       :      0.05s CPU      0.05s WALL (       4 calls)
+
+     Called by electrons:
+     c_bands      :    159.96s CPU    181.41s WALL (       4 calls)
+     v_of_rho     :      0.00s CPU      0.00s WALL (       5 calls)
+
+     Called by c_bands:
+     init_us_2    :      1.26s CPU      1.36s WALL (   49152 calls)
+     init_us_2:cp :      1.16s CPU      1.27s WALL (   49152 calls)
+     cegterg      :     67.34s CPU     71.34s WALL (    5818 calls)
+
+     Called by *egterg:
+     cdiaghg      :     17.37s CPU     18.39s WALL (   92214 calls)
+     h_psi        :     46.60s CPU     49.57s WALL (   98032 calls)
+     g_psi        :      0.22s CPU      0.24s WALL (   88118 calls)
+
+     Called by h_psi:
+     h_psi:calbec :      2.83s CPU      3.00s WALL (   98032 calls)
+     vloc_psi     :     42.48s CPU     45.19s WALL (   98032 calls)
+     add_vuspsi   :      0.60s CPU      0.65s WALL (   98032 calls)
+
+     General routines
+     calbec       :      2.72s CPU      2.91s WALL (  106224 calls)
+     fft          :      0.01s CPU      0.12s WALL (      15 calls)
+     ffts         :      1.92s CPU      2.13s WALL (   43008 calls)
+     fftw         :     70.14s CPU     75.82s WALL ( 1993876 calls)
+     davcio       :      1.99s CPU     19.57s WALL (   94552 calls)
+ 
+     Parallel routines
+ 
+     PHONON       :   3m27.98s CPU   4m 1.94s WALL
+
+     INITIALIZATION: 
+     phq_setup    :      0.04s CPU      0.22s WALL (       4 calls)
+     phq_init     :      0.28s CPU      0.34s WALL (       4 calls)
+ 
+     phq_init     :      0.28s CPU      0.34s WALL (       4 calls)
+     init_vloc    :      0.05s CPU      0.05s WALL (       5 calls)
+     init_us_1    :      0.04s CPU      0.04s WALL (       5 calls)
+     init_us_2    :      1.26s CPU      1.36s WALL (   49152 calls)
+ 
+ 
+ 
+ 
+     dvqpsi_us    :     28.83s CPU     31.91s WALL (   43008 calls)
+     apply_dpot_b :     10.03s CPU     11.03s WALL (   43008 calls)
+     vpsifft      :     10.16s CPU     11.18s WALL (   43008 calls)
+ 
+     dvqpsi_us    :     28.83s CPU     31.91s WALL (   43008 calls)
+     dvqpsi_us_on :      1.82s CPU      2.01s WALL (   43008 calls)
+ 
+ 
+     h_psi        :     46.60s CPU     49.57s WALL (   98032 calls)
+ 
+     h_psi        :     46.60s CPU     49.57s WALL (   98032 calls)
+     add_vuspsi   :      0.60s CPU      0.65s WALL (   98032 calls)
+ 
+ 
+ 
+      Electron-phonon coupling
+     elphon       :     42.71s CPU     47.72s WALL (       4 calls)
+     elphel       :     42.68s CPU     47.09s WALL (      84 calls)
+ 
+      General routines
+     calbec       :      2.72s CPU      2.91s WALL (  106224 calls)
+     fft          :      0.01s CPU      0.12s WALL (      15 calls)
+     ffts         :      1.92s CPU      2.13s WALL (   43008 calls)
+     fftw         :     70.14s CPU     75.82s WALL ( 1993876 calls)
+     davcio       :      1.99s CPU     19.57s WALL (   94552 calls)
+ 
+ 
+     PHONON       :   3m27.99s CPU   4m 1.94s WALL
+
+ 
+   This run was terminated on:   3: 5: 5  31May2022            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

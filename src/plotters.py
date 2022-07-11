@@ -103,9 +103,9 @@ def plot_article_view(system, formula, path):
     x = a2f['freqs, THz']
 
     ax1 = HostAxes(fig, [0.15, 0.1, 0.65, 0.8])
-    # ax1.axis["top"].set_visible(False)
     ax1.axis["right"].set_visible(False)
-    ax1.set_xlim(min(x), max(x))
+    ax1.set_xlim(0, max(x))
+    # ax1.set_xticks(np.linspace(0, 7 * np.round(np.max(x) / 7), 8))
     ax2 = ParasiteAxes(ax1, sharex=ax1)
     ax3 = ParasiteAxes(ax1, sharex=ax1)
     ax4 = ParasiteAxes(ax1, sharex=ax1)
@@ -125,23 +125,23 @@ def plot_article_view(system, formula, path):
     ax2.axis["right2"] = new_axisline(loc="right", axes=ax2)
     ax2.set_ylim(0, 1.05 * max(y))
     ax2.plot(x, y, color='steelblue')
-    ax2.set_ylabel('$\lambda$', color='steelblue')
+    ax2.set_ylabel('$\lambda$', color='steelblue', labelpad=1)
 
     y = a2f['wlog (gamma), K']
     new_axisline = ax3.get_grid_helper().new_fixed_axis
-    ax3.axis["right2"] = new_axisline(loc="right", axes=ax3, offset=(80, 0))
+    ax3.axis["right2"] = new_axisline(loc="right", axes=ax3, offset=(90, 0))
     ax3.set_ylim(0, 1.1 * max(y))
     ax3.set_yticks(np.linspace(0, 5 * np.round(np.max(y) / 5), 6))
     ax3.plot(x, y, linestyle='-', color='darkorange')
-    ax3.set_ylabel(r'$\omega_{\mathrm{log}}$, K', color='darkorange')
+    ax3.set_ylabel(r'$\omega_{\mathrm{log}}$, K', color='darkorange', labelpad=1)
 
     y = a2f['Tc_AD (gamma), K']
     new_axisline = ax4.get_grid_helper().new_fixed_axis
-    ax4.axis["right2"] = new_axisline(loc="right", axes=ax4, offset=(160, 0))
+    ax4.axis["right2"] = new_axisline(loc="right", axes=ax4, offset=(180, 0))
     ax4.set_ylim(0, 1.15 * max(y))
     ax4.set_yticks(np.linspace(0, 5 * np.round(np.max(y) / 5), 6))
     ax4.plot(x, y, linestyle='-', color='darkgreen')
-    ax4.set_ylabel(r'Allen-Dynes $T_{\mathrm{C}}$, K', color='darkgreen')
+    ax4.set_ylabel(r'Allen-Dynes $T_{\mathrm{C}}$, K', color='darkgreen', labelpad=1)
 
     smoothing, resolution, sigma = system.smoothing, system.resolution, system.sigma
     fig.savefig(os.path.join(path, 'results', f'plot_article_{formula}.pdf'), bbox_inches='tight')
