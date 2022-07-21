@@ -90,8 +90,10 @@ class Superconducting(object):
                 dt = dt * 0.1
             if dt < 0.001:
                 dt = 0.001
-            self.tc_e = t - dt
-        print(f'Eliashberg Tc = {stround(t)}+-{stround(dt)} K')
+        self.tc_e = t - dt
+        if self.tc_e <= 0:
+            self.tc_e = 0.001
+        print(f'Eliashberg Tc = {stround(self.tc_e)}+-{stround(dt)} K')
         return t
 
     def get_all(self, system, nef, structure):
