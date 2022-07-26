@@ -31,7 +31,7 @@ def interp_manager(name):
         return 1
 
 
-def interp_lambda(x, direct_lambda, direct_lambda_smooth, r, sigma):
+def interp_lambda(x, direct_lambda, direct_lambda_smooth, r, sigma, smoothing):
     """
     Interpolation using for a2f calculation by the formula:
     a2f(w) = w * d(lambda(w))/dw
@@ -39,6 +39,7 @@ def interp_lambda(x, direct_lambda, direct_lambda_smooth, r, sigma):
     x_smooth = x
     x, y = pre_interpolation(x, direct_lambda)
     x_new = np.linspace(np.min((0.001, np.min(x))), np.max(x), r)
+    # x_new = np.linspace(0, np.max(x), r)
     dx = x_new[1] - x_new[0]
     lambdas = np.insert(y, 0, 0) / 2
     x = np.insert(x, 0, 0)
@@ -48,7 +49,7 @@ def interp_lambda(x, direct_lambda, direct_lambda_smooth, r, sigma):
     a2w = np.insert(a2w, 0, 0)
     a2w = a2w * x_new / dx
     y_new = gaussian_filter(a2w, sigma=sigma)
-    smooth = np.exp(-np.square(3 / x_new))
+    smooth = np.exp(-np.square(smoothing / x_new))
     y_new = y_new * smooth
     diff = 2 * integrate.simps(y_new / x_new, x=x_new) / direct_lambda_smooth[-1]
     y_new = y_new / diff
