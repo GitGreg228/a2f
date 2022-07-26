@@ -42,6 +42,7 @@ def lambdas_direct(qpoints, smoothing, dtype=np.float16):
     Computes lambdas directly from lambdas and gammas without any integration.
     WARNING: Avoid using dtype=np.float32 or better, sometimes it leads to computational errors.
     """
+    freqs_smooth, lambdas_lambda_smooth, lambdas_gamma_smooth = list(), list(), list()
     freqs, lambdas_lambda, lambdas_gamma = list(), list(), list()
     for q_point in qpoints:
         dyn_elph = q_point['DynElph']
@@ -51,23 +52,36 @@ def lambdas_direct(qpoints, smoothing, dtype=np.float16):
         weight = q_point['weight']
         q_freqs = np.sqrt(np.abs(dyn_elph.sqr_freqs)) * np.sign(dyn_elph.sqr_freqs) * k_Ry_THz
         smooth = np.exp(-np.square(smoothing / q_freqs))
-        q_lambdas_lambda = smooth * lambdas * weight
-        q_lambdas_gamma = smooth * gammas * weight / np.square(q_freqs) / nef * k_Ry_THz / 1000 / np.pi
+        q_lambdas_lambda_smooth = smooth * lambdas * weight
+        q_lambdas_gamma_smooth = smooth * gammas * weight / np.square(q_freqs) / nef * k_Ry_THz / 1000 / np.pi
+        q_lambdas_lambda = lambdas * weight
+        q_lambdas_gamma = gammas * weight / np.square(q_freqs) / nef * k_Ry_THz / 1000 / np.pi
+        lambdas_lambda_smooth.append(q_lambdas_lambda_smooth)
+        lambdas_gamma_smooth.append(q_lambdas_gamma_smooth)
         lambdas_lambda.append(q_lambdas_lambda)
         lambdas_gamma.append(q_lambdas_gamma)
+        freqs_smooth.append(q_freqs)
         freqs.append(q_freqs)
+    freqs_smooth, lambdas_lambda_smooth, lambdas_gamma_smooth = map(lambda x: np.array(x).flatten(), (
+        freqs_smooth, lambdas_lambda_smooth, lambdas_gamma_smooth))
     freqs, lambdas_lambda, lambdas_gamma = map(lambda x: np.array(x).flatten(), (freqs, lambdas_lambda, lambdas_gamma))
+    idxs = freqs_smooth.argsort()
+    lambdas_lambda_smooth = lambdas_lambda_smooth[idxs]
+    lambdas_gamma_smooth = lambdas_gamma_smooth[idxs]
+    lambda_lambda_stairs_smooth = stairs(lambdas_lambda_smooth)
+    lambda_gamma_stairs_smooth = stairs(lambdas_gamma_smooth)
     idxs = freqs.argsort()
-    # freqs = freqs[idxs]
     lambdas_lambda = lambdas_lambda[idxs]
     lambdas_gamma = lambdas_gamma[idxs]
     lambda_lambda_stairs = stairs(lambdas_lambda)
     lambda_gamma_stairs = stairs(lambdas_gamma)
     out_dict = {
-        'lambdas (lambda)': lambdas_lambda,
-        'lambdas (gamma)': lambdas_gamma,
-        'lambda (lambda)': lambda_lambda_stairs,
-        'lambda (gamma)': lambda_gamma_stairs
+        'lambdas (lambda)': lambdas_lambda_smooth,
+        'lambdas (gamma)': lambdas_gamma_smooth,
+        'lambda (lambda)': lambda_lambda_stairs_smooth,
+        'lambda (gamma)': lambda_gamma_stairs_smooth,
+        'lambda (lambda, not smooth)': lambda_lambda_stairs,
+        'lambda (gamma, not smooth)': lambda_gamma_stairs
     }
     return out_dict
 

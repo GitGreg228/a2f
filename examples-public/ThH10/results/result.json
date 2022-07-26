@@ -13,8 +13,8 @@
             "gamma": 1.907
         },
         "a2f": {
-            "lambda": 1.908,
-            "gamma": 1.908
+            "lambda": 1.907,
+            "gamma": 1.907
         }
     },
     "wlog, K": {
@@ -23,8 +23,8 @@
             "gamma": 1190
         },
         "a2f": {
-            "lambda": 1204,
-            "gamma": 1204
+            "lambda": 1198,
+            "gamma": 1198
         }
     },
     "w2, K": {
@@ -33,8 +33,8 @@
             "gamma": 1424
         },
         "a2f": {
-            "lambda": 1430,
-            "gamma": 1430
+            "lambda": 1427,
+            "gamma": 1427
         }
     },
     "Tc, K": {
@@ -44,8 +44,8 @@
                 "gamma": 165.601
             },
             "a2f": {
-                "lambda": 167.484,
-                "gamma": 167.484
+                "lambda": 166.602,
+                "gamma": 166.602
             }
         },
         "Allen-Dynes": {
@@ -54,11 +54,11 @@
                 "gamma": 196.847
             },
             "a2f": {
-                "lambda": 198.643,
-                "gamma": 198.643
+                "lambda": 197.793,
+                "gamma": 197.793
             }
         },
-        "Eliashberg": 214.249
+        "Eliashberg": 213.593
     },
     "Sommerfeld gamma": {
         "mJ/mol/K^2": 3.821,
@@ -66,17 +66,17 @@
         "mJ/cm^3/K^2": 0.1989
     },
     "DeltaC/Tc": {
-        "mJ/mol/K^2": 11.247,
+        "mJ/mol/K^2": 11.24,
         "mJ/g/K^2": 0.046,
-        "mJ/cm^3/K^2": 0.5853
+        "mJ/cm^3/K^2": 0.585
     },
     "Delta": {
-        "meV": 46.073,
-        "2Delta/kBTc": 4.991,
-        "J": "7.381674E-21"
+        "meV": 45.89,
+        "2Delta/kBTc": 4.986,
+        "J": "7.352329E-21"
     },
     "Hc2, T": [
-        52.542
+        52.372
     ],
     "beta (McMillan isotope coefficient)": 0.48843,
     "DOS": {

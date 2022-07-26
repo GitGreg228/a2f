@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.interpolate import interp1d
+from scipy import integrate
 from scipy.ndimage.filters import gaussian_filter
 
 from utils import stairs
@@ -13,8 +14,8 @@ def pre_interpolation(x, y):
     # print(x, idxs)
     # _x = np.insert(x[x > 0], 0, 0)
     # _y = np.insert(y[x > 0], 0, 0)
-    _x = x[x > 0]
     _y = y[x > 0]
+    _x = x[x > 0]
     return _x, _y
 
 
@@ -30,21 +31,16 @@ def interp_manager(name):
         return 1
 
 
-def interp_lambda(x, y, r, sigma):
+def interp_lambda(x, direct_lambda, direct_lambda_smooth, r, sigma):
     """
     Interpolation using for a2f calculation by the formula:
     a2f(w) = w * d(lambda(w))/dw
-    :param x: frequencies
-    :param y: a2f
-    :param r: resolution of desired output a2f
-    :param sigma: gaussian filter parameter
-    :return: new frequencies, new a2f
     """
-    x, y = pre_interpolation(x, y)
+    x_smooth = x
+    x, y = pre_interpolation(x, direct_lambda)
     x_new = np.linspace(np.min((0.001, np.min(x))), np.max(x), r)
     dx = x_new[1] - x_new[0]
-    lambdas = stairs(y / x)
-    lambdas = np.insert(lambdas, 0, 0)
+    lambdas = np.insert(y, 0, 0) / 2
     x = np.insert(x, 0, 0)
     f = interp1d(x, lambdas, kind='linear')
     lambdas = f(x_new)
@@ -52,5 +48,19 @@ def interp_lambda(x, y, r, sigma):
     a2w = np.insert(a2w, 0, 0)
     a2w = a2w * x_new / dx
     y_new = gaussian_filter(a2w, sigma=sigma)
-    # print(y_new, x_new)
+    smooth = np.exp(-np.square(3 / x_new))
+    y_new = y_new * smooth
+    diff = 2 * integrate.simps(y_new / x_new, x=x_new) / direct_lambda_smooth[-1]
+    y_new = y_new / diff
+    # x_smooth, y = pre_interpolation(x_smooth, direct_lambda_smooth)
+    # x_smooth = np.insert(x_smooth, 0, 0)
+    # lambdas_smooth = np.insert(y, 0, 0) / 2
+    # f = interp1d(x_smooth, lambdas_smooth, kind='linear')
+    # lambdas_smooth = f(x_new)
+    # c = np.diff(lambdas_smooth)
+    # c = np.insert(c, 0, 0)
+    # c = x_new * c / dx - y_new
+    # a2f_lambda_smooth = 2 * integrate.simps(c / x_new, x=x_new)
+    # y_new = y_new + c
+    # print(f'a2f_lambda not smooth = {a2f_lambda}, direct_lambda = {direct_lambda_smooth[-1]}')
     return x_new, y_new

@@ -47,10 +47,10 @@ class System(object):
         if not self.resolution:
             self.resolution = len(self.direct['freqs, THz'][self.direct['freqs, THz'] > 0])
         interpolator = interp_lambda
-        freqs, a2f_lambda = interpolator(self.direct['freqs, THz'], self.direct['a2f (lambda), THz'],
-                                         self.resolution, sigma)
-        _, a2f_gamma = interpolator(self.direct['freqs, THz'], self.direct['a2f (gamma), THz'],
-                                    self.resolution, sigma)
+        freqs, a2f_lambda = interpolator(self.direct['freqs, THz'], self.direct['lambda (lambda, not smooth)'],
+                                         self.direct['lambda (lambda)'], self.resolution, sigma)
+        _, a2f_gamma = interpolator(self.direct['freqs, THz'], self.direct['lambda (gamma, not smooth)'],
+                                         self.direct['lambda (gamma)'], self.resolution, sigma)
         self.a2f['freqs, THz'], self.a2f['a2f (lambda), THz'], self.a2f['a2f (gamma), THz'] = \
             freqs, a2f_lambda, a2f_gamma
         self.a2f.update(lambdas_a2f(self))
