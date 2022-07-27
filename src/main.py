@@ -37,15 +37,32 @@ def main():
         structure = 'Unknown'
         pass
     try:
+        assert len(folder.dyn_paths) == len(folder.dyn_elph_paths)
         dyns = [Dyn(path) for path in folder.dyn_paths]
         q_points = [dyn.q_point for dyn in dyns]
         weights = [dyn.weight for dyn in dyns]
         weights_sum = sum(weights)
         weights = [weight / weights_sum for weight in weights]
         weights = list(zip(q_points, weights))
-    except TypeError or FileNotFoundError:
-        print('Found no Dyn files, trying to extract weight info from ph.out file(s)')
-        weights = ph_outs.weights()
+    except TypeError:
+        print('WARNING: Found no dyn files')
+        weights = list()
+    except AssertionError or FileNotFoundError:
+        print('WARNING: Number of dyn files is not equal to the number of dyn elph files')
+        weights = list()
+    if not weights:
+        try:
+            print('Trying to extract weight info from ph.out file(s)')
+            weights = ph_outs.weights()
+        except FileNotFoundError:
+            print('No weights available. Assuming each q-point has the same weigth')
+            for dyn_elph in dyn_elphs:
+                weights.append(1)
+                weights_sum = sum(weights)
+                weights = [weight / weights_sum for weight in weights]
+                q_points = dyn_elph.q_point
+                weights = list(zip(q_points, weights))
+
     system = System(dyn_elphs, weights)
 
     if args.s == int(args.s):

@@ -1,12 +1,12 @@
 {
+    "volume, A^3": 31.909,
+    "density, g/cm^3": 12.6,
+    "volume of chemical formula unit, A^3": 31.909,
     "formula": "ThH10",
     "# of chemical formula units (f.u.)": 1,
     "Smoothing, THz": 3,
     "Resolution, pts": 1000,
     "mu": 0.1,
-    "volume, A^3": 31.909,
-    "volume of chemical formula unit, A^3": 31.909,
-    "density, g/cm^3": 12.6,
     "lambda": {
         "direct": {
             "lambda": 1.907,
