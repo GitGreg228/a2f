@@ -28,40 +28,58 @@ def main():
 
     folder = Folder(args.p)
     dyn_elphs = [DynElph(path) for path in folder.dyn_elph_paths]
-    try:
+    if folder.dyn_paths:
+        dyns = [Dyn(path) for path in folder.dyn_paths]
+    else:
+        dyns = list()
+
+    if folder.ph_outs_paths:
         ph_outs = PhOuts(folder.ph_outs_paths)
+    else:
+        print('WARNING: Found no ph.out file(s). The structure will not be read and written.')
+        ph_outs = list()
+
+    if ph_outs:
         structure = ph_outs.struc()
         save_structure(structure, args.tol, args.p)
-    except FileNotFoundError or KeyError:
-        print('Found no ph.out files. The structure will not be read and written.')
+    else:
         structure = 'Unknown'
-        pass
-    try:
-        assert len(folder.dyn_paths) == len(folder.dyn_elph_paths)
-        dyns = [Dyn(path) for path in folder.dyn_paths]
-        q_points = [dyn.q_point for dyn in dyns]
-        weights = [dyn.weight for dyn in dyns]
+
+    if dyns:
+        if len(folder.dyn_paths) == len(folder.dyn_elph_paths):
+            print('Everything\'s ok with the weights. They will be used from *.dyn* files.')
+            q_points = [dyn.q_point for dyn in dyns]
+            weights = [dyn.weight for dyn in dyns]
+            weights_sum = sum(weights)
+            weights = [weight / weights_sum for weight in weights]
+            weights = list(zip(q_points, weights))
+        else:
+            print('WARNING: The number of *.dyn* files is not equal to the number of *.dyn*.elph* files. '
+                  'Weights from *.dyn* files won\'t be used.')
+            weights = list()
+    else:
+        weights = list()
+
+    if not weights:
+        if ph_outs:
+            print('Trying to get weights out of ph.out ...')
+            weights = ph_outs.weights()
+            if not len(weights) == len(folder.dyn_elph_paths):
+                print('WARNING: Number of weights found in ph.out is not equal to the number of *.dyn*.elph* files. '
+                      'Weights from ph.out won\'t be used.')
+                weights = list()
+            else:
+                print('Everything\'s ok with the weights. They will be used from ph.out file(s).')
+
+    if not weights:
+        print('WARNING: Weights are not found. They will be set to equal values for all q-points')
+        q_points = list()
+        for dyn_elph in dyn_elphs:
+            weights.append(1)
+            q_points.append(dyn_elph.q_point)
         weights_sum = sum(weights)
         weights = [weight / weights_sum for weight in weights]
         weights = list(zip(q_points, weights))
-    except TypeError:
-        print('WARNING: Found no dyn files')
-        weights = list()
-    except AssertionError or FileNotFoundError:
-        print('WARNING: Number of dyn files is not equal to the number of dyn elph files')
-        weights = list()
-    if not weights:
-        try:
-            print('Trying to extract weight info from ph.out file(s)')
-            weights = ph_outs.weights()
-        except FileNotFoundError:
-            print('No weights available. Assuming each q-point has the same weigth')
-            for dyn_elph in dyn_elphs:
-                weights.append(1)
-                weights_sum = sum(weights)
-                weights = [weight / weights_sum for weight in weights]
-                q_points = dyn_elph.q_point
-                weights = list(zip(q_points, weights))
 
     system = System(dyn_elphs, weights)
 

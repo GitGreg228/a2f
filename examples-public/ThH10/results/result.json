@@ -9,76 +9,76 @@
     "mu": 0.1,
     "lambda": {
         "direct": {
-            "lambda": 1.907,
-            "gamma": 1.907
+            "lambda": 1.697,
+            "gamma": 1.697
         },
         "a2f": {
-            "lambda": 1.907,
-            "gamma": 1.907
+            "lambda": 1.697,
+            "gamma": 1.697
         }
     },
     "wlog, K": {
         "direct": {
-            "lambda": 1190,
-            "gamma": 1190
+            "lambda": 1204,
+            "gamma": 1204
         },
         "a2f": {
-            "lambda": 1198,
-            "gamma": 1198
+            "lambda": 1210,
+            "gamma": 1210
         }
     },
     "w2, K": {
         "direct": {
-            "lambda": 1424,
-            "gamma": 1424
+            "lambda": 1458,
+            "gamma": 1458
         },
         "a2f": {
-            "lambda": 1427,
-            "gamma": 1427
+            "lambda": 1461,
+            "gamma": 1461
         }
     },
     "Tc, K": {
         "McMillan": {
             "direct": {
-                "lambda": 165.601,
-                "gamma": 165.601
+                "lambda": 153.097,
+                "gamma": 153.097
             },
             "a2f": {
-                "lambda": 166.602,
-                "gamma": 166.602
+                "lambda": 153.797,
+                "gamma": 153.797
             }
         },
         "Allen-Dynes": {
             "direct": {
-                "lambda": 196.846,
-                "gamma": 196.847
+                "lambda": 178.227,
+                "gamma": 178.227
             },
             "a2f": {
-                "lambda": 197.793,
-                "gamma": 197.793
+                "lambda": 178.812,
+                "gamma": 178.812
             }
         },
-        "Eliashberg": 213.593
+        "Eliashberg": 193.385
     },
     "Sommerfeld gamma": {
-        "mJ/mol/K^2": 3.821,
-        "mJ/g/K^2": 0.01578,
-        "mJ/cm^3/K^2": 0.1989
+        "mJ/mol/K^2": 3.545,
+        "mJ/g/K^2": 0.01464,
+        "mJ/cm^3/K^2": 0.1845
     },
     "DeltaC/Tc": {
-        "mJ/mol/K^2": 11.24,
-        "mJ/g/K^2": 0.046,
-        "mJ/cm^3/K^2": 0.585
+        "mJ/mol/K^2": 10.131,
+        "mJ/g/K^2": 0.042,
+        "mJ/cm^3/K^2": 0.5272
     },
     "Delta": {
-        "meV": 45.89,
-        "2Delta/kBTc": 4.986,
-        "J": "7.352329E-21"
+        "meV": 40.184,
+        "2Delta/kBTc": 4.823,
+        "J": "6.438208E-21"
     },
     "Hc2, T": [
-        52.372
+        45.27
     ],
-    "beta (McMillan isotope coefficient)": 0.48843,
+    "beta (McMillan isotope coefficient)": 0.48707,
     "DOS": {
         "per Unit cell": {
             "states/spin/Ry": 3.7935,

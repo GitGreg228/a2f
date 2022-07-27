@@ -53,7 +53,7 @@ class Folder(object):
             return full_ph_outs_paths
         else:
             print('Warning: Unable to detect ph.out files in ', self.__path)
-            return [self.__path]
+            return list()
 
     def a2f_dats(self, *p):
         a2f_dats_paths = list(filter(lambda x: 'a2F.dat' in x, os.listdir(self.__path)))
@@ -215,7 +215,7 @@ class PhOuts(object):
         Output format: (q-points, weights)
         :return:
         """
-        weights = list()
+        self.weights = list()
         q_points = list()
         if self.__lines:
             for _lines in self.__lines:
@@ -227,12 +227,12 @@ class PhOuts(object):
                     print(f'q = ({", ".join(["%.3f" % round(_q, 3) for _q in q_point])}) '
                           f'with number of q in the star {weight}')
                     q_points.append(q_point)
-                    weights.append(weight)
+                    self.weights.append(weight)
         else:
             print('Assuming no-symmetry calculation, consequently setting uniform weights')
-            weights = [1] * len(Folder(self.__paths[0]).dyn_elphs())
-        weights_sum = sum(weights)
-        weights = [weight / weights_sum for weight in weights]
+            self.weights = [1] * len(Folder(self.__paths[0]).dyn_elphs())
+        weights_sum = sum(self.weights)
+        weights = [weight / weights_sum for weight in self.weights]
         self.weights = list(zip(q_points, weights))
         return self.weights
 
