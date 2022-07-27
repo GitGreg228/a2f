@@ -15,11 +15,23 @@ class Folder(object):
     """
     __path = ''
     dyn_elph_paths = list()
+    ph_outs_paths = list()
+    dyns = list()
 
     def __init__(self, path):
         self.__path = path
+        self.dyn_paths = self.dyns()
         self.dyn_elph_paths = self.dyn_elphs()
         self.ph_outs_paths = self.ph_outs()
+
+    def dyns(self):
+        dyn_paths = list(filter(lambda x: 'dyn' in x and 'elph' not in x and 'dyn0' not in x, os.listdir(self.__path)))
+        full_dyns_paths = [os.path.join(self.__path, dyn_path) for dyn_path in dyn_paths]
+        if full_dyns_paths:
+            print(f'Found dyns in {", ".join(full_dyns_paths)}')
+            return full_dyns_paths
+        else:
+            print(f'Error: Unable to detect *dyn* files in {self.__path}')
 
     def dyn_elphs(self):
         dyn_elphs_paths = list(filter(lambda x: 'dyn' in x and 'elph' in x,
@@ -40,7 +52,7 @@ class Folder(object):
             print(f'Found ph.outs in {", ".join(full_ph_outs_paths)}')
             return full_ph_outs_paths
         else:
-            print('Warning: Unable to detech ph.out files in ', self.__path)
+            print('Warning: Unable to detect ph.out files in ', self.__path)
             return [self.__path]
 
     def a2f_dats(self, *p):
@@ -59,6 +71,40 @@ class Folder(object):
     def formula(self):
         formula = os.path.basename(self.dyn_elphs()[0]).split(".")[0]
         return formula
+
+
+class Dyn(object):
+    """
+    Parses a single *dyn*.elph* file,
+    returning all it contains:
+    q-point, lambdas, gammas and squared frequencies
+    """
+    lines = list()
+    q_point = tuple()
+    weight = float()
+
+    def __init__(self, path):
+        with open(path) as read_obj:
+            lines = read_obj.readlines()
+            read_obj.close()
+        self.lines = lines
+        self.q_point()
+        self.weight()
+        print(f'q = ({", ".join(["%.3f" % round(_q, 3) for _q in self.q_point])}) '
+              f'with number of q in the star {int(self.weight)}')
+
+    def q_point(self):
+        q_idx = int()
+        for idx, line in enumerate(self.lines):
+            if 'q = (' in line:
+                q_idx = idx
+                break
+        self.q_point = tuple(float(x) for x in self.lines[q_idx].split()[-4:-1])
+        return self.q_point
+
+    def weight(self):
+        self.weight = float(self.lines[2].split()[1])
+        return self.weight
 
 
 class DynElph(object):

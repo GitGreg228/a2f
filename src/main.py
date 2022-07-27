@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from plotters import plot_system, plot_article_view
-from qe_outputs import Folder, PhOuts, DynElph
+from qe_outputs import Folder, PhOuts, DynElph, Dyn
 from sc_e import Superconducting
 from system import System
 from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc, save_result
@@ -28,11 +28,24 @@ def main():
 
     folder = Folder(args.p)
     dyn_elphs = [DynElph(path) for path in folder.dyn_elph_paths]
-    ph_outs = PhOuts(folder.ph_outs_paths)
-    structure = ph_outs.struc()
-    save_structure(structure, args.tol, args.p)
-
-    weights = ph_outs.weights()
+    try:
+        ph_outs = PhOuts(folder.ph_outs_paths)
+        structure = ph_outs.struc()
+        save_structure(structure, args.tol, args.p)
+    except FileNotFoundError or KeyError:
+        print('Found no ph.out files. The structure will not be read and written.')
+        structure = 'Unknown'
+        pass
+    try:
+        dyns = [Dyn(path) for path in folder.dyn_paths]
+        q_points = [dyn.q_point for dyn in dyns]
+        weights = [dyn.weight for dyn in dyns]
+        weights_sum = sum(weights)
+        weights = [weight / weights_sum for weight in weights]
+        weights = list(zip(q_points, weights))
+    except TypeError or FileNotFoundError:
+        print('Found no Dyn files, trying to extract weight info from ph.out file(s)')
+        weights = ph_outs.weights()
     system = System(dyn_elphs, weights)
 
     if args.s == int(args.s):
@@ -48,24 +61,18 @@ def main():
     print_tc(system)
 
     save_dict(system, args.p)
-    plot_system(system, parse_formula(structure), args.p)
-    plot_article_view(system, parse_formula(structure), args.p)
+    if isinstance(structure, str):
+        plot_system(system, 'Unknown', args.p)
+        plot_article_view(system, 'Unknown', args.p)
+    else:
+        plot_system(system, parse_formula(structure), args.p)
+        plot_article_view(system, parse_formula(structure), args.p)
 
     sc = Superconducting(a2f)
     sc.get_tc_e(args.mu)
     nef = dyn_elphs[0].dos()
     result = sc.get_all(system, nef, structure)
     save_result(result, args.p)
-
-    # k = sc.k[-1]
-    # X = np.arange(0, k.shape[0])
-    # Y = np.arange(0, k.shape[1])
-    # X, Y = np.meshgrid(X, Y)
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # ax.plot_surface(X, Y, k)
-    #
-    # plt.show()
 
 
 if __name__ == '__main__':

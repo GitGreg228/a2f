@@ -99,15 +99,18 @@ class Superconducting(object):
     def get_all(self, system, nef, structure):
         direct = system.direct
         a2f = system.a2f
-        formula, fu = parse_formula(structure, get_gcd=True)
+        if isinstance(structure, str):
+            formula, fu = 'Unknown', 1
+        else:
+            formula, fu = parse_formula(structure, get_gcd=True)
+            self.result['volume, A^3'] = floatround(structure.volume)
+            self.result['density, g/cm^3'] = floatround(structure.density)
+            self.result['volume of chemical formula unit, A^3'] = floatround(structure.volume / fu)
         self.result['formula'] = formula
         self.result["# of chemical formula units (f.u.)"] = fu
         self.result['Smoothing, THz'] = system.smoothing
         self.result['Resolution, pts'] = system.resolution
         self.result['mu'] = system.mu
-        self.result['volume, A^3'] = floatround(structure.volume)
-        self.result['volume of chemical formula unit, A^3'] = floatround(structure.volume / fu)
-        self.result['density, g/cm^3'] = floatround(structure.density)
         tc = self.tc_e
         self.result['lambda'] = {
             'direct': {
@@ -166,18 +169,28 @@ class Superconducting(object):
         wlog = direct['wlog (gamma), K'][-1]
         gamma = 2 / 3 * (np.pi * k_B) ** 2 * nef * (1 + _lambda) / k_Ry_J  # J/Unit cell/K^2
         self.gamma = gamma
-        self.result['Sommerfeld gamma'] = {
-            'mJ/mol/K^2': round(1000 * gamma * N_A / fu, 3),
-            'mJ/g/K^2': round(1000 * gamma / structure.volume / structure.density / k_A_cm ** 3, 5),
-            'mJ/cm^3/K^2': round(1000 * gamma / structure.volume / k_A_cm ** 3, 4),
-            # 'Erg/cm^3/K^2': round(10000000 * gamma / structure.volume / k_A_cm ** 3, 4),
-        }
+        if isinstance(structure, str):
+            self.result['Sommerfeld gamma'] = {
+                'mJ/mol/K^2': round(1000 * gamma * N_A / fu, 3),
+            }
+        else:
+            self.result['Sommerfeld gamma'] = {
+                'mJ/mol/K^2': round(1000 * gamma * N_A / fu, 3),
+                'mJ/g/K^2': round(1000 * gamma / structure.volume / structure.density / k_A_cm ** 3, 5),
+                'mJ/cm^3/K^2': round(1000 * gamma / structure.volume / k_A_cm ** 3, 4),
+                # 'Erg/cm^3/K^2': round(10000000 * gamma / structure.volume / k_A_cm ** 3, 4),
+            }
         self.dctc = dctc(tc, wlog, gamma)
-        self.result['DeltaC/Tc'] = {
-            'mJ/mol/K^2': round(1000 * self.dctc * N_A / fu, 3),
-            'mJ/g/K^2': round(1000 * self.dctc / structure.volume / structure.density / k_A_cm ** 3, 3),
-            'mJ/cm^3/K^2': round(1000 * self.dctc / structure.volume / k_A_cm ** 3, 4)
-        }
+        if isinstance(structure, str):
+            self.result['DeltaC/Tc'] = {
+                'mJ/mol/K^2': round(1000 * self.dctc * N_A / fu, 3),
+            }
+        else:
+            self.result['DeltaC/Tc'] = {
+                'mJ/mol/K^2': round(1000 * self.dctc * N_A / fu, 3),
+                'mJ/g/K^2': round(1000 * self.dctc / structure.volume / structure.density / k_A_cm ** 3, 3),
+                'mJ/cm^3/K^2': round(1000 * self.dctc / structure.volume / k_A_cm ** 3, 4)
+            }
         self.delta = delta(tc, wlog)
         self.result['Delta'] = {
             'meV': round(self.delta * k_J_meV, 3),
@@ -188,37 +201,58 @@ class Superconducting(object):
         self.result['Hc2, T'] = round(self.hc, 3),
         self.beta = beta(_lambda, system.mu)
         self.result['beta (McMillan isotope coefficient)'] = round(self.beta, 5)
-        self.result['DOS'] = {
-            'per Unit cell': {
-                'states/spin/Ry': round(nef, 4),
-                'states/spin/eV': round(nef / k_Ry_eV, 4),
-            },
-            f'per chemical formula unit ({formula})': {
-                'states/spin/Ry': round(nef / fu, 4),
-                'states/spin/eV': round(nef / k_Ry_eV / fu, 4),
-            },
-            'per A^3': {
-                'states/spin/Ry': round(nef / structure.volume, 4),
-                'states/spin/eV': round(nef / k_Ry_eV / structure.volume, 4),
-            },
-            f'per mole of {formula}': {
-                'states/spin/Ry': format_e(nef / fu * N_A),
-                'states/spin/eV': format_e(nef / k_Ry_eV / fu * N_A),
-            },
-            'per g': {
-                'states/spin/Ry': format_e(nef / structure.volume / structure.density / k_A_cm ** 3),
-                'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume / structure.density / k_A_cm ** 3),
+        if isinstance(structure, str):
+            self.result['DOS'] = {
+                'per Unit cell': {
+                    'states/spin/Ry': round(nef, 4),
+                    'states/spin/eV': round(nef / k_Ry_eV, 4),
+                },
+                f'per chemical formula unit ({formula})': {
+                    'states/spin/Ry': round(nef / fu, 4),
+                    'states/spin/eV': round(nef / k_Ry_eV / fu, 4),
+                },
+                f'per mole of {formula}': {
+                    'states/spin/Ry': format_e(nef / fu * N_A),
+                    'states/spin/eV': format_e(nef / k_Ry_eV / fu * N_A),
+                },
             }
-        }
+        else:
+            self.result['DOS'] = {
+                'per Unit cell': {
+                    'states/spin/Ry': round(nef, 4),
+                    'states/spin/eV': round(nef / k_Ry_eV, 4),
+                },
+                f'per chemical formula unit ({formula})': {
+                    'states/spin/Ry': round(nef / fu, 4),
+                    'states/spin/eV': round(nef / k_Ry_eV / fu, 4),
+                },
+                'per A^3': {
+                    'states/spin/Ry': round(nef / structure.volume, 4),
+                    'states/spin/eV': round(nef / k_Ry_eV / structure.volume, 4),
+                },
+                f'per mole of {formula}': {
+                    'states/spin/Ry': format_e(nef / fu * N_A),
+                    'states/spin/eV': format_e(nef / k_Ry_eV / fu * N_A),
+                },
+                'per g': {
+                    'states/spin/Ry': format_e(nef / structure.volume / structure.density / k_A_cm ** 3),
+                    'states/spin/eV': format_e(nef / k_Ry_eV / structure.volume / structure.density / k_A_cm ** 3),
+                }
+            }
         print(f"lambda: {'%.3f' % round(direct['lambda (gamma)'][-1], 3)}")
         print(f"wlog: {round(direct['wlog (gamma), K'][-1])} K")
         print(f"w2: {round(direct['w2 (gamma), K'][-1])} K")
         print(f"McM Tc: {round(direct['Tc_McM (gamma), K'][-1], 1)} K")
         print(f"AD Tc: {round(direct['Tc_AD (gamma), K'][-1], 1)} K")
         print(f"E Tc: {round(tc, 1)} K")
-        print(f"DOS: {'%.3f' % round(self.result['DOS']['per A^3']['states/spin/Ry'], 3)} states/spin/Ry/A^3")
-        print(f"Sommerfeld gamma: {'%.3f' % round(self.result['Sommerfeld gamma']['mJ/cm^3/K^2'], 3)} mJ/cm^3/K^2")
-        print(f"DeltaC/Tc: {'%.3f' % round(self.result['DeltaC/Tc']['mJ/cm^3/K^2'], 3)} mJ/cm^3/K^2")
+        try:
+            print(f"DOS: {'%.3f' % round(self.result['DOS']['per A^3']['states/spin/Ry'], 3)} states/spin/Ry/A^3")
+            print(f"Sommerfeld gamma: {'%.3f' % round(self.result['Sommerfeld gamma']['mJ/cm^3/K^2'], 3)} mJ/cm^3/K^2")
+            print(f"DeltaC/Tc: {'%.3f' % round(self.result['DeltaC/Tc']['mJ/cm^3/K^2'], 3)} mJ/cm^3/K^2")
+        except KeyError:
+            print(f"DOS: {'%.3f' % round(self.result['DOS']['per Unit cell']['states/spin/Ry'], 3)} states/spin/Ry/u.c.")
+            print(f"Sommerfeld gamma: {'%.3f' % round(self.result['Sommerfeld gamma']['mJ/mol/K^2'], 3)} mJ/mol/K^2")
+            print(f"DeltaC/Tc: {'%.3f' % round(self.result['DeltaC/Tc']['mJ/mol/K^2'], 3)} mJ/mol/K^2")
         print(f"Delta: {'%.1f' % round(self.result['Delta']['meV'], 1)} meV")
         print(f"2Delta/kBTc: {'%.2f' % round(self.result['Delta']['2Delta/kBTc'], 2)}")
         print(f"Hc2: {'%.1f' % round(self.result['Hc2, T'][0], 1)} T")

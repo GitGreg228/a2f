@@ -53,15 +53,4 @@ def interp_lambda(x, direct_lambda, direct_lambda_smooth, r, sigma, smoothing):
     y_new = y_new * smooth
     diff = 2 * integrate.simps(y_new / x_new, x=x_new) / direct_lambda_smooth[-1]
     y_new = y_new / diff
-    # x_smooth, y = pre_interpolation(x_smooth, direct_lambda_smooth)
-    # x_smooth = np.insert(x_smooth, 0, 0)
-    # lambdas_smooth = np.insert(y, 0, 0) / 2
-    # f = interp1d(x_smooth, lambdas_smooth, kind='linear')
-    # lambdas_smooth = f(x_new)
-    # c = np.diff(lambdas_smooth)
-    # c = np.insert(c, 0, 0)
-    # c = x_new * c / dx - y_new
-    # a2f_lambda_smooth = 2 * integrate.simps(c / x_new, x=x_new)
-    # y_new = y_new + c
-    # print(f'a2f_lambda not smooth = {a2f_lambda}, direct_lambda = {direct_lambda_smooth[-1]}')
     return x_new, y_new
