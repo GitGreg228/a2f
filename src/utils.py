@@ -69,29 +69,29 @@ def save_dict(system, path, float_format='%.8f'):
 
 def parse_formula(structure, get_gcd=False):
     formula = structure.formula
-    split = formula.split()
-    if len(split) == 1:
-        return formula
-    else:
-        split = re.split(r'(\d+)', formula)
-        numeric = list()
-        alpha = list()
-        for word in split:
-            if word.isnumeric():
-                numeric.append(int(word))
-            else:
-                alpha.append(word)
-        GCD = reduce(gcd, numeric)
-        result = str()
-        for i in range(len(alpha)):
-            result = result + alpha[i]
-            if not i == len(numeric):
-                if not numeric[i] // GCD == 1:
-                    result = result + str(numeric[i] // GCD)
-        if get_gcd:
-            return result.replace(' ', ''), GCD
+    # split = formula.split()
+    split = re.split(r'(\d+)', formula)
+    numeric = list()
+    alpha = list()
+    for word in split:
+        if word.isnumeric():
+            numeric.append(int(word))
         else:
-            return result.replace(' ', '')
+            alpha.append(word)
+    if numeric:
+        GCD = reduce(gcd, numeric)
+    else:
+        GCD = 1
+    result = str()
+    for i in range(len(alpha)):
+        result = result + alpha[i]
+        if not i == len(numeric):
+            if not numeric[i] // GCD == 1:
+                result = result + str(numeric[i] // GCD)
+    if get_gcd:
+        return result.replace(' ', ''), GCD
+    else:
+        return result.replace(' ', '')
 
 
 def save_structure(struct, tol, path):
