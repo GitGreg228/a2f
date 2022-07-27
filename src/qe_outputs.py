@@ -26,7 +26,7 @@ class Folder(object):
 
     def dyns(self):
         dyn_paths = list(filter(lambda x: 'dyn' in x and 'elph' not in x and 'dyn0' not in x, os.listdir(self.__path)))
-        full_dyns_paths = [os.path.join(self.__path, dyn_path) for dyn_path in dyn_paths]
+        full_dyns_paths = sorted([os.path.join(self.__path, dyn_path) for dyn_path in dyn_paths])
         if full_dyns_paths:
             print(f'Found dyns in {", ".join(full_dyns_paths)}')
             return full_dyns_paths
@@ -36,12 +36,12 @@ class Folder(object):
     def dyn_elphs(self):
         dyn_elphs_paths = list(filter(lambda x: 'dyn' in x and 'elph' in x,
                                       os.listdir(self.__path)))
-        full_dyn_elphs_paths = [os.path.join(self.__path, dyn_elphs_path) for dyn_elphs_path in dyn_elphs_paths]
+        full_dyn_elphs_paths = sorted([os.path.join(self.__path, dyn_elphs_path) for dyn_elphs_path in dyn_elphs_paths])
         if full_dyn_elphs_paths:
             print(f'Found dyn_elphs in {", ".join(full_dyn_elphs_paths)}')
             return full_dyn_elphs_paths
         else:
-            print(f'Error: Unable to detect *dyn*.elph* files in {self.__path}')
+            print(f'WARNING: Unable to detect *dyn*.elph* files in {self.__path}')
             raise FileNotFoundError
 
     def ph_outs(self):

@@ -59,12 +59,12 @@ def save_dict(system, path, float_format='%.8f'):
     if system.direct:
         name = os.path.join(path, 'results', f'direct_s{smoothing}.csv')
         df = pd.DataFrame.from_dict(system.direct)
-        df.to_csv(name, float_format=float_format)
+        df.to_csv(name, float_format=float_format, index=False)
     if system.a2f:
         resolution, sigma = system.resolution, system.sigma
         name = os.path.join(path, 'results', f'a2f_s{smoothing}_r{resolution}_g{sigma}.csv')
         df = pd.DataFrame.from_dict(system.a2f)
-        df.to_csv(name, float_format=float_format)
+        df.to_csv(name, float_format=float_format, index=False)
 
 
 def parse_formula(structure, get_gcd=False):
