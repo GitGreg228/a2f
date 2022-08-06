@@ -103,7 +103,13 @@ class Dyn(object):
         return self.q_point
 
     def weight(self):
-        self.weight = float(self.lines[2].split()[1])
+        self.weight = 0
+        for line in self.lines:
+            if 'Diagonalizing the dynamical matrix' in line:
+                break
+            if 'q = (' in line:
+                self.weight = self.weight + 1
+        # self.weight = float(self.lines[2].split()[1])
         return self.weight
 
 

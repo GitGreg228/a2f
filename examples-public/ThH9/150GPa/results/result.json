@@ -1,20 +1,20 @@
 {
+    "volume, A^3": 67.51,
+    "density, g/cm^3": 11.861,
+    "volume of chemical formula unit, A^3": 33.755,
     "formula": "ThH9",
     "# of chemical formula units (f.u.)": 2,
     "Smoothing, THz": 3,
     "Resolution, pts": 1000,
     "mu": 0.1,
-    "volume, A^3": 67.51,
-    "volume of chemical formula unit, A^3": 33.755,
-    "density, g/cm^3": 11.861,
     "lambda": {
         "direct": {
             "lambda": 0.992,
             "gamma": 0.992
         },
         "a2f": {
-            "lambda": 0.995,
-            "gamma": 0.995
+            "lambda": 0.992,
+            "gamma": 0.992
         }
     },
     "wlog, K": {
@@ -23,8 +23,8 @@
             "gamma": 1042
         },
         "a2f": {
-            "lambda": 1046,
-            "gamma": 1046
+            "lambda": 1041,
+            "gamma": 1041
         }
     },
     "w2, K": {
@@ -33,8 +33,8 @@
             "gamma": 1462
         },
         "a2f": {
-            "lambda": 1467,
-            "gamma": 1467
+            "lambda": 1466,
+            "gamma": 1466
         }
     },
     "Tc, K": {
@@ -44,8 +44,8 @@
                 "gamma": 71.707
             },
             "a2f": {
-                "lambda": 72.249,
-                "gamma": 72.249
+                "lambda": 71.622,
+                "gamma": 71.622
             }
         },
         "Allen-Dynes": {
@@ -54,11 +54,11 @@
                 "gamma": 78.333
             },
             "a2f": {
-                "lambda": 78.97,
-                "gamma": 78.97
+                "lambda": 78.301,
+                "gamma": 78.301
             }
         },
-        "Eliashberg": 84.936
+        "Eliashberg": 83.979
     },
     "Sommerfeld gamma": {
         "mJ/mol/K^2": 2.703,
@@ -66,17 +66,17 @@
         "mJ/cm^3/K^2": 0.133
     },
     "DeltaC/Tc": {
-        "mJ/mol/K^2": 5.783,
+        "mJ/mol/K^2": 5.755,
         "mJ/g/K^2": 0.024,
-        "mJ/cm^3/K^2": 0.2845
+        "mJ/cm^3/K^2": 0.2831
     },
     "Delta": {
-        "meV": 14.865,
-        "2Delta/kBTc": 4.062,
-        "J": "2.381562E-21"
+        "meV": 14.666,
+        "2Delta/kBTc": 4.053,
+        "J": "2.349703E-21"
     },
     "Hc2, T": [
-        16.189
+        15.992
     ],
     "beta (McMillan isotope coefficient)": 0.47575,
     "DOS": {
