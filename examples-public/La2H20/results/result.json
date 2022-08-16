@@ -19,22 +19,46 @@
     },
     "wlog, K": {
         "direct": {
-            "lambda": 733,
-            "gamma": 736
+            "lambda": {
+                "K": 733,
+                "THz": 15
+            },
+            "gamma": {
+                "K": 736,
+                "THz": 15
+            }
         },
         "a2f": {
-            "lambda": 745,
-            "gamma": 745
+            "lambda": {
+                "K": 745,
+                "THz": 15
+            },
+            "gamma": {
+                "K": 745,
+                "THz": 15
+            }
         }
     },
     "w2, K": {
         "direct": {
-            "lambda": 1112,
-            "gamma": 1112
+            "lambda": {
+                "K": 1112,
+                "THz": 23
+            },
+            "gamma": {
+                "K": 1112,
+                "THz": 23
+            }
         },
         "a2f": {
-            "lambda": 1114,
-            "gamma": 1114
+            "lambda": {
+                "K": 1114,
+                "THz": 23
+            },
+            "gamma": {
+                "K": 1114,
+                "THz": 23
+            }
         }
     },
     "Tc, K": {

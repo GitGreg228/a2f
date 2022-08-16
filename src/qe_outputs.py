@@ -31,7 +31,7 @@ class Folder(object):
             print(f'Found dyns in {", ".join(full_dyns_paths)}')
             return full_dyns_paths
         else:
-            print(f'Error: Unable to detect *dyn* files in {self.__path}')
+            print(f'WARNING: Unable to detect *dyn* files in {self.__path}')
 
     def dyn_elphs(self):
         dyn_elphs_paths = list(filter(lambda x: 'dyn' in x and 'elph' in x,
@@ -41,7 +41,7 @@ class Folder(object):
             print(f'Found dyn_elphs in {", ".join(full_dyn_elphs_paths)}')
             return full_dyn_elphs_paths
         else:
-            print(f'WARNING: Unable to detect *dyn*.elph* files in {self.__path}')
+            print(f'ERROR: Unable to detect *dyn*.elph* files in {self.__path}')
             raise FileNotFoundError
 
     def ph_outs(self):

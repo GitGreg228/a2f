@@ -122,24 +122,34 @@ class Superconducting(object):
                 'gamma': floatround(a2f['lambda (gamma)'][-1])
             },
         }
+        {'K': 1,
+         'THz': 1 * k_K_THz}
         self.result['wlog, K'] = {
             'direct': {
-                'lambda': int(direct['wlog (lambda), K'][-1]),
-                'gamma': int(direct['wlog (gamma), K'][-1])
+                'lambda': {'K': int(direct['wlog (lambda), K'][-1]),
+                           'THz': int(direct['wlog (lambda), K'][-1] * k_K_THz)},
+                'gamma': {'K': int(direct['wlog (gamma), K'][-1]),
+                           'THz': int(direct['wlog (gamma), K'][-1] * k_K_THz)}
             },
             'a2f': {
-                'lambda': int(a2f['wlog (lambda), K'][-1]),
-                'gamma': int(a2f['wlog (gamma), K'][-1])
+                'lambda': {'K': int(a2f['wlog (lambda), K'][-1]),
+                           'THz': int(a2f['wlog (lambda), K'][-1] * k_K_THz)},
+                'gamma':  {'K': int(a2f['wlog (gamma), K'][-1]),
+                           'THz': int(a2f['wlog (gamma), K'][-1] * k_K_THz)}
             },
         }
         self.result['w2, K'] = {
             'direct': {
-                'lambda': int(direct['w2 (lambda), K'][-1]),
-                'gamma': int(direct['w2 (gamma), K'][-1])
+                'lambda': {'K': int(direct['w2 (lambda), K'][-1]),
+                           'THz': int(direct['w2 (lambda), K'][-1] * k_K_THz)},
+                'gamma': {'K': int(direct['w2 (gamma), K'][-1]),
+                          'THz': int(direct['w2 (gamma), K'][-1] * k_K_THz)}
             },
             'a2f': {
-                'lambda': int(a2f['w2 (lambda), K'][-1]),
-                'gamma': int(a2f['w2 (gamma), K'][-1])
+                'lambda': {'K': int(a2f['w2 (lambda), K'][-1]),
+                           'THz': int(a2f['w2 (lambda), K'][-1] * k_K_THz)},
+                'gamma': {'K': int(a2f['w2 (gamma), K'][-1]),
+                          'THz': int(a2f['w2 (gamma), K'][-1] * k_K_THz)}
             },
         }
         self.result['Tc, K'] = {
