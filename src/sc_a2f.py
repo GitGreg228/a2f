@@ -37,8 +37,11 @@ def wlogs_a2f(system, dtype=np.float16):
     wlog_lambda = wlog_gamma = np.zeros(freqs.shape, dtype=dtype)
     for i in range(1, len(freqs)):
         if system.integration == 'simps':
-            wlog_lambda[i] = np.exp(2 / lambda_lambda * integrate.simps(a2f_lambda[:i + 1] * np.log(freqs[:i + 1] / k_K_THz) / freqs[:i + 1], x=freqs[:i + 1]))
-            wlog_gamma[i] = np.exp(2 / lambda_gamma * integrate.simps(a2f_gamma[:i + 1] * np.log(freqs[:i + 1] / k_K_THz) / freqs[:i + 1], x=freqs[:i + 1]))
+            wlog_lambda[i] = np.exp(2 / lambda_lambda * integrate.simps(
+                a2f_lambda[:i + 1] * np.log(freqs[:i + 1] / k_K_THz) / freqs[:i + 1], x=freqs[:i + 1]))
+            wlog_gamma[i] = np.exp(
+                2 / lambda_gamma * integrate.simps(a2f_gamma[:i + 1] * np.log(freqs[:i + 1] / k_K_THz) / freqs[:i + 1],
+                                                   x=freqs[:i + 1]))
         elif system.integration == 'sum':
             dw = freqs[1] - freqs[0]
             wlog_lambda[i] = np.exp(
