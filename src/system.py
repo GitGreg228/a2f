@@ -24,6 +24,7 @@ class System(object):
         :param dyn_elphs: list of DynElph objects (the class is defined in qe_outputs)
         :param weights: the list of weights taken from ph.out
         """
+        self.q_points = list()
         for dyn_elph in dyn_elphs:
             q_point = dyn_elph.q_point
             for weight in weights:
@@ -50,7 +51,7 @@ class System(object):
         freqs, a2f_lambda = interpolator(self.direct['freqs, THz'], self.direct['lambda (lambda, not smooth)'],
                                          self.direct['lambda (lambda)'], self.resolution, sigma, self.smoothing)
         _, a2f_gamma = interpolator(self.direct['freqs, THz'], self.direct['lambda (gamma, not smooth)'],
-                                         self.direct['lambda (gamma)'], self.resolution, sigma, self.smoothing)
+                                    self.direct['lambda (gamma)'], self.resolution, sigma, self.smoothing)
         self.a2f['freqs, THz'], self.a2f['a2f (lambda), THz'], self.a2f['a2f (gamma), THz'] = \
             freqs, a2f_lambda, a2f_gamma
         self.a2f.update(lambdas_a2f(self))

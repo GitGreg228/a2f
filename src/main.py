@@ -1,13 +1,13 @@
 import argparse
+import os
+from copy import deepcopy
 
-import matplotlib.pyplot as plt
-import numpy as np
-
-from plotters import plot_system, plot_article_view
+from plotters import plot_system, plot_article_view, plot_summary
 from qe_outputs import Folder, PhOuts, DynElph, Dyn
 from sc_e import Superconducting
 from system import System
-from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc, save_result
+from utils import save_dict, mkdirs, save_structure, parse_formula, print_direct, print_a2f, print_tc, save_result, \
+    update_summary
 
 
 def main():
@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--mu', type=float, default=0.1, help='Coulomb pseudopotential')
     parser.add_argument('--tol', type=float, default=0.2, help='Structure tolerance')
     parser.add_argument('--int', type=str, choices=['simps', 'sum'], default='sum', help='Integration method')
+    # parser.add_argument('--del', type=str, choices=['yes', 'no'], default='yes', help='Delete negative lambdas')
     args = parser.parse_args()
     mkdirs(args.p, 'results')
 
@@ -44,6 +45,11 @@ def main():
         save_structure(structure, args.tol, args.p)
     else:
         structure = 'Unknown'
+
+    if isinstance(structure, str):
+        formula = 'Unknown'
+    else:
+        formula = parse_formula(structure)
 
     if dyns:
         if len(folder.dyn_paths) == len(folder.dyn_elph_paths):
@@ -81,33 +87,56 @@ def main():
         weights = [weight / weights_sum for weight in weights]
         weights = list(zip(q_points, weights))
 
-    system = System(dyn_elphs, weights)
-
     if args.s == int(args.s):
         args.s = int(args.s)
     if args.g == int(args.g):
         args.g = int(args.g)
 
-    direct = system.get_direct(args.s)
-    print_direct(system)
-    a2f = system.get_a2f(args.r, args.g, args.int)
-    print_a2f(system)
-    system.get_tc(args.mu)
-    print_tc(system)
-
-    save_dict(system, args.p)
-    if isinstance(structure, str):
-        plot_system(system, 'Unknown', args.p)
-        plot_article_view(system, 'Unknown', args.p)
+    length = list()
+    for dyn_elph in dyn_elphs:
+        length.append(dyn_elph.length)
+    assert all(l == length[0] for l in length)
+    l = length[0]
+    if l == 1:
+        print('Assuming a Tetrahedron method')
+        # print(dyn_elphs[0].headers[0])
     else:
-        plot_system(system, parse_formula(structure), args.p)
-        plot_article_view(system, parse_formula(structure), args.p)
-
-    sc = Superconducting(a2f)
-    sc.get_tc_e(args.mu)
-    nef = dyn_elphs[0].dos()
-    result = sc.get_all(system, nef, structure)
-    save_result(result, args.p)
+        print('Assuming a Gaussian Broadening method with broadenings:')
+        headers = dyn_elphs[0].headers
+        print(headers)
+        summary = dict()
+    for i in range(l):
+        if l > 1:
+            print(f'\nBroadening: {headers[i]}')
+        _dyn_elphs = deepcopy(dyn_elphs)
+        for dyn_elph in _dyn_elphs:
+            dyn_elph.lambdas = dyn_elph.lambdas[i]
+            dyn_elph.gammas = dyn_elph.gammas[i]
+            dyn_elph.DOS = dyn_elph.DOS[i]
+            dyn_elph.E_F = dyn_elph.E_F[i]
+        system = System(_dyn_elphs, weights)
+        _ = system.get_direct(args.s)
+        print_direct(system)
+        a2f = system.get_a2f(args.r, args.g, args.int)
+        print_a2f(system)
+        system.get_tc(args.mu)
+        print_tc(system)
+        if l > 1:
+            result_dir = os.path.join(args.p, 'results', f'{headers[i]}')
+            mkdirs(os.path.join(args.p, 'results'), f'{headers[i]}')
+        else:
+            result_dir = os.path.join(args.p, 'results')
+        save_dict(system, result_dir)
+        plot_system(system, formula, result_dir)
+        plot_article_view(system, formula, result_dir)
+        sc = Superconducting(a2f)
+        sc.get_tc_e(args.mu)
+        nef = _dyn_elphs[0].DOS
+        result = sc.get_all(system, nef, structure)
+        save_result(result, result_dir)
+        if l > 1:
+            summary = update_summary(summary, result, headers[i], os.path.join(args.p, 'results'))
+            plot_summary(summary, formula, args.s, args.r, args.g, args.mu, os.path.join(args.p, 'results'))
 
 
 if __name__ == '__main__':

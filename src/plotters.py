@@ -43,6 +43,7 @@ def plot_entities(system, xname, yname, ax, label='', direct=True, a2f=True, fp=
 
 
 def plot_system(system, formula, path):
+    plt.close('all')
     plt.rcParams['lines.markersize'] = 1
     plt.rcParams['lines.linewidth'] = 1
     plt.rcParams['font.size'] = 12
@@ -88,11 +89,12 @@ def plot_system(system, formula, path):
     fig.suptitle(f'{formula}\n{info}')
 
     fig.tight_layout(rect=[0, 0, 1, 0.95], h_pad=2.5)
-    plt.savefig(os.path.join(path, 'results', f'plot_s{smoothing}_r{resolution}_g{sigma}.pdf'))
+    plt.savefig(os.path.join(path, f'plot_s{smoothing}_r{resolution}_g{sigma}.pdf'))
     # plt.show()
 
 
 def plot_article_view(system, formula, path):
+    plt.close('all')
     plt.rcParams['lines.markersize'] = 3
     plt.rcParams['lines.linewidth'] = 3
     plt.rcParams['font.size'] = 20
@@ -144,6 +146,50 @@ def plot_article_view(system, formula, path):
     ax4.set_ylabel(r'Allen-Dynes $T_{\mathrm{C}}$, K', color='darkgreen', labelpad=1)
 
     smoothing, resolution, sigma = system.smoothing, system.resolution, system.sigma
-    fig.savefig(os.path.join(path, 'results', f'plot_article_{formula}.pdf'), bbox_inches='tight')
+    fig.savefig(os.path.join(path, f'plot_article_{formula}.pdf'), bbox_inches='tight')
 
     # plt.show()
+
+
+def plot_summary(summary, formula, smoothing, sigma, resolution, mu, path):
+    plt.close('all')
+    plt.rcParams['lines.markersize'] = 3
+    plt.rcParams['lines.linewidth'] = 2
+    plt.rcParams['font.size'] = 15
+
+    fig = plt.figure(figsize=(12, 6))
+
+    ax1 = HostAxes(fig, [0.15, 0.1, 0.65, 0.8])
+    ax1.axis["right"].set_visible(False)
+    # ax1.set_xlim(0, np.max(summary['Broadening, Ry']))
+    # ax1.set_xticks(np.linspace(0, 7 * np.round(np.max(x) / 7), 8))
+    ax2 = ParasiteAxes(ax1, sharex=ax1)
+    ax1.parasites.append(ax2)
+    fig.add_axes(ax1)
+    new_axisline = ax2.get_grid_helper().new_fixed_axis
+    ax2.axis["right2"] = new_axisline(loc="right", axes=ax2)
+
+    keys = sorted([key for key in summary.keys() if key.startswith('Tc')])
+    for key in keys:
+        x = summary['Broadening, Ry']
+        y = summary[key]
+        fancy_key = key.replace('Tc', r'$T_{\mathrm{C}}$').replace('McM', '(McMillan)').replace('AD',
+                                                                                                '(Allen-Dynes)').replace(
+            'E', ('Eliashberg'))
+        ax1.plot(x, y, label=fancy_key)
+    keys = sorted([key for key in summary.keys() if key.startswith('lambda')])
+    for key in keys:
+        x = summary['Broadening, Ry']
+        y = summary[key]
+        fancy_key = key.replace('lambda', r'$\lambda$')
+        ax2.plot(x, y, 'k--', label=fancy_key)
+    ax1.legend()
+    ax2.legend()
+    ax1.set_xticks(summary['Broadening, Ry'])
+    ax1.set_xticklabels(list([str(label) for label in summary['Broadening, Ry']]), rotation=45)
+    ax1.set_xlabel('Broadening, Ry')
+    ax1.set_ylabel(r'$T_{\mathrm{C}}$')
+    ax2.set_ylabel('$\lambda$', color='k')
+    info = f'Smoothing: {smoothing} THz, resolution = {resolution}, $\sigma$ = {sigma}, $\mu$=' + f'{mu}'
+    ax1.set_title(f'Convergence of {formula}\n{info}')
+    fig.savefig(os.path.join(path, 'summary.pdf'), bbox_inches='tight')

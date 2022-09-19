@@ -1,7 +1,6 @@
+import json
 import os
 import re
-import json
-import yaml
 from functools import reduce
 from math import gcd
 
@@ -57,12 +56,12 @@ def save_dict(system, path, float_format='%.8f'):
     smoothing = system.smoothing
     smoothing = str(smoothing).replace('.', ',')
     if system.direct:
-        name = os.path.join(path, 'results', f'direct_s{smoothing}.csv')
+        name = os.path.join(path, f'direct_s{smoothing}.csv')
         df = pd.DataFrame.from_dict(system.direct)
         df.to_csv(name, float_format=float_format, index=False)
     if system.a2f:
         resolution, sigma = system.resolution, system.sigma
-        name = os.path.join(path, 'results', f'a2f_s{smoothing}_r{resolution}_g{sigma}.csv')
+        name = os.path.join(path, f'a2f_s{smoothing}_r{resolution}_g{sigma}.csv')
         df = pd.DataFrame.from_dict(system.a2f)
         df.to_csv(name, float_format=float_format, index=False)
 
@@ -158,5 +157,49 @@ def print_tc(system):
 
 
 def save_result(result, path):
-    with open(os.path.join(path, 'results', 'result.json'), 'w', encoding='utf-8') as f:
+    with open(os.path.join(path, 'result.json'), 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, sort_keys=False, indent=4)
+
+
+def update_summary(summary, result, broadening, path):
+    keys = ['Broadening, Ry',
+            'lambda (direct)',
+            'lambda (interp)',
+            'wlog, K (direct)',
+            'wlog, K (interp)',
+            'w2, K (direct)',
+            'w2, K (interp)',
+            'Tc McM, K (direct)',
+            'Tc McM, K (interp)',
+            'Tc AD, K (direct)',
+            'Tc AD, K (interp)',
+            'Tc E, K',
+            'Sommerfeld gamma, mJ/cm^3/K^2',
+            'DOS, states/spin/Ry/A^3',
+            'DeltaC/Tc, mJ/cm^3/K^2',
+            'Delta, meV',
+            'Hc2, T',
+            'beta']
+    if not summary:
+        summary = {key: list() for key in keys}
+    summary['Broadening, Ry'].append(broadening)
+    summary['lambda (direct)'].append(result['lambda']['direct']['gamma'])
+    summary['lambda (interp)'].append(result['lambda']['a2f']['gamma'])
+    summary['wlog, K (direct)'].append(result['wlog, K']['direct']['gamma']['K'])
+    summary['wlog, K (interp)'].append(result['wlog, K']['a2f']['gamma']['K'])
+    summary['w2, K (direct)'].append(result['w2, K']['direct']['gamma']['K'])
+    summary['w2, K (interp)'].append(result['w2, K']['a2f']['gamma']['K'])
+    summary['Tc McM, K (direct)'].append(result['Tc, K']['McMillan']['direct']['gamma'])
+    summary['Tc McM, K (interp)'].append(result['Tc, K']['McMillan']['a2f']['gamma'])
+    summary['Tc AD, K (direct)'].append(result['Tc, K']['Allen-Dynes']['direct']['gamma'])
+    summary['Tc AD, K (interp)'].append(result['Tc, K']['Allen-Dynes']['a2f']['gamma'])
+    summary['Tc E, K'].append(result['Tc, K']['Eliashberg'])
+    summary['Sommerfeld gamma, mJ/cm^3/K^2'].append(result['Sommerfeld gamma']['mJ/cm^3/K^2'])
+    summary['DOS, states/spin/Ry/A^3'].append(result['DOS']['per A^3']['states/spin/Ry'])
+    summary['DeltaC/Tc, mJ/cm^3/K^2'].append(result['DeltaC/Tc']['mJ/cm^3/K^2'])
+    summary['Delta, meV'].append(result['Delta']['meV'])
+    summary['Hc2, T'].append(result['Hc2, T'][0])
+    summary['beta'].append(result['beta (McMillan isotope coefficient)'])
+    df = pd.DataFrame.from_dict(summary)
+    df.to_csv(os.path.join(path, 'summary.csv'), index=False)
+    return summary

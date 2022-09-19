@@ -44,6 +44,7 @@ def lambdas_direct(qpoints, smoothing, dtype=np.float16):
     """
     freqs_smooth, lambdas_lambda_smooth, lambdas_gamma_smooth = list(), list(), list()
     freqs, lambdas_lambda, lambdas_gamma = list(), list(), list()
+    # print(len(qpoints))
     for q_point in qpoints:
         dyn_elph = q_point['DynElph']
         lambdas = dyn_elph.lambdas
@@ -67,6 +68,7 @@ def lambdas_direct(qpoints, smoothing, dtype=np.float16):
     freqs, lambdas_lambda, lambdas_gamma = map(lambda x: np.array(x).flatten(), (freqs, lambdas_lambda, lambdas_gamma))
     idxs = freqs_smooth.argsort()
     lambdas_lambda_smooth = lambdas_lambda_smooth[idxs]
+    # print(lambdas_lambda_smooth, np.sum(lambdas_lambda_smooth))
     lambdas_gamma_smooth = lambdas_gamma_smooth[idxs]
     lambda_lambda_stairs_smooth = stairs(lambdas_lambda_smooth)
     lambda_gamma_stairs_smooth = stairs(lambdas_gamma_smooth)

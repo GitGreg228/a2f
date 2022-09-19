@@ -134,14 +134,50 @@ class DynElph(object):
             lines = read_obj.readlines()
             read_obj.close()
         self.lines = lines
-        self.dos_line = next(line for line in lines if 'DOS' in line)
-        self.lambda_gamma_lines = list(filter(lambda x: 'lambda' in x and 'gamma' in x, lines))
+        headers = ['Gaussian Broadening', 'Tetrahedron method']
+        headers_idx = list()
+        for i, line in enumerate(lines):
+            for header in headers:
+                if header in line:
+                    headers_idx.append(i)
+        headers_idx.append(len(lines))
+        self.headers_idx = headers_idx
+        self.headers = list()
+        self.dos_lines = list()
+        self.lambda_gamma_lines = list()
+        for i in range(len(headers_idx) - 1):
+            i1 = headers_idx[i]
+            i2 = headers_idx[i + 1]
+            self.dos_lines.append(next(line for line in lines[i1:i2] if 'DOS' in line))
+            self.lambda_gamma_lines.append(list(filter(lambda x: 'lambda' in x and 'gamma' in x, lines[i1:i2])))
+            if 'Gaussian Broadening' in lines[i1]:
+                header = float(lines[i1].split()[2])
+            else:
+                header = lines[i1]
+            self.headers.append(header)
+        self.length = len(self.headers)
         self.q_point()
         self.sqr_freqs()
         self.e_fermi()
         self.dos()
         self.lambdas()
         self.gammas()
+        for i, lambdas in enumerate(self.lambdas):
+            # print(self.lambdas[i])
+            # print(self.gammas[i])
+            if np.any(lambdas < 0):
+                if self.length > 1:
+                    print(
+                        f'WARNING: found negative lambdas in {path} (Broadening = {self.headers[i]}). They and their gammas will be zeroed.')
+                else:
+                    print(f'WARNING: found negative lambdas in {path}. They and their gammas will be zeroed.')
+                idx = np.where(lambdas < 0)
+                self.lambdas[i][idx] = 0
+                self.gammas[i][idx] = 0
+                # rint(self.lambdas[i])
+                # rint(self.gammas[i])
+                # assert False
+            # print(np.sum(lambdas))
 
     def q_point(self):
         self.q_point = tuple(float(x) for x in self.lines[0].split()[0:3])
@@ -150,43 +186,51 @@ class DynElph(object):
     def sqr_freqs(self):
         lines = self.lines
         sqr_freqs = list()
-        idx = lines.index(next(line for line in lines if 'method' in line))
-        for line in lines[1:idx]:
+        # idx = lines.index(next(line for line in lines if 'method' in line))
+        for line in lines[1:self.headers_idx[0]]:
             for freq in line.strip().split():
                 sqr_freqs.append(float(freq))
         self.sqr_freqs = np.array(sqr_freqs)
         return self.sqr_freqs
 
     def e_fermi(self):
-        self.E_F = float(re.search('Ef(.*)eV', self.dos_line).group(1).replace('=', ''))
+        self.E_F = list()
+        for dos_line in self.dos_lines:
+            self.E_F.append(float(re.search('Ef(.*)eV', dos_line).group(1).replace('=', '')))
         return self.E_F
 
     def dos(self):
-        self.DOS = float(re.search('DOS(.*)states', self.dos_line).group(1).replace('=', ''))
+        self.DOS = list()
+        for dos_line in self.dos_lines:
+            self.DOS.append(float(re.search('DOS(.*)states', dos_line).group(1).replace('=', '')))
         return self.DOS
 
     def lambdas(self):
-        lambdas = list()
-        for line in self.lambda_gamma_lines:
-            lambdas.append(float(line.split('=')[1].split()[0]))
-        self.lambdas = np.array(lambdas)
+        self.lambdas = list()
+        for each in self.lambda_gamma_lines:
+            lambdas = list()
+            for line in each:
+                lambdas.append(float(line.split('=')[1].split()[0]))
+            self.lambdas.append(np.array(lambdas))
         return self.lambdas
 
     def gammas(self):
-        gammas = list()
-        for line in self.lambda_gamma_lines:
-            gammas.append(float(line.split('=')[2].split()[0]))
-        self.gammas = np.array(gammas)
+        self.gammas = list()
+        for each in self.lambda_gamma_lines:
+            gammas = list()
+            for line in each:
+                gammas.append(float(line.split('=')[2].split()[0]))
+            self.gammas.append(np.array(gammas))
         return self.gammas
 
     def as_dict(self):
         dyn_elph_dict = {
-            'q_point': self.q_point(),
-            'sqr_freqs': self.sqr_freqs(),
-            'e_fermi': self.e_fermi(),
-            'dos': self.dos(),
-            'lambdas': self.lambdas(),
-            'gammas': self.gammas()
+            'q_point': self.q_point,
+            'sqr_freqs': self.sqr_freqs,
+            'e_fermi': self.e_fermi,
+            'dos': self.dos,
+            'lambdas': self.lambdas,
+            'gammas': self.gammas
         }
         return dyn_elph_dict
 
