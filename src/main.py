@@ -108,6 +108,9 @@ def main():
     for i in range(l):
         if l > 1:
             print(f'\nBroadening: {headers[i]}')
+            b = float(headers[i])
+        else:
+            b = 0
         _dyn_elphs = deepcopy(dyn_elphs)
         for dyn_elph in _dyn_elphs:
             dyn_elph.lambdas = dyn_elph.lambdas[i]
@@ -126,16 +129,18 @@ def main():
             mkdirs(os.path.join(args.p, 'results'), f'{headers[i]}')
         else:
             result_dir = os.path.join(args.p, 'results')
-        save_dict(system, result_dir)
-        plot_system(system, formula, result_dir)
+        save_dict(system, result_dir, b=b)
+        plot_system(system, formula, result_dir, b=b)
         plot_article_view(system, formula, result_dir)
         sc = Superconducting(a2f)
         sc.get_tc_e(args.mu)
         nef = _dyn_elphs[0].DOS
         result = sc.get_all(system, nef, structure)
+        if b > 0:
+            result.update({'Broadening, Ry': b})
         save_result(result, result_dir)
         if l > 1:
-            summary = update_summary(summary, result, headers[i], os.path.join(args.p, 'results'))
+            summary = update_summary(summary, result, headers[i], formula, args.s, args.mu, os.path.join(args.p, 'results'))
             plot_summary(summary, formula, args.s, args.r, args.g, args.mu, os.path.join(args.p, 'results'))
 
 

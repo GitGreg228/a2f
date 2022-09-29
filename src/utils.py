@@ -52,16 +52,22 @@ def mkdirs(path, dirname):
         os.mkdir(dir_name)
 
 
-def save_dict(system, path, float_format='%.8f'):
+def save_dict(system, path, float_format='%.8f', b=0):
     smoothing = system.smoothing
     smoothing = str(smoothing).replace('.', ',')
     if system.direct:
-        name = os.path.join(path, f'direct_s{smoothing}.csv')
+        if b > 0:
+            name = os.path.join(path, f'direct_s{smoothing}_b{str(b).replace(".", ",")}.csv')
+        else:
+            name = os.path.join(path, f'direct_s{smoothing}.csv')
         df = pd.DataFrame.from_dict(system.direct)
         df.to_csv(name, float_format=float_format, index=False)
     if system.a2f:
         resolution, sigma = system.resolution, system.sigma
-        name = os.path.join(path, f'a2f_s{smoothing}_r{resolution}_g{sigma}.csv')
+        if b > 0:
+            name = os.path.join(path, f'a2f_s{smoothing}_r{resolution}_g{sigma}_b{str(b).replace(".", ",")}.csv')
+        else:
+            name = os.path.join(path, f'a2f_s{smoothing}_r{resolution}_g{sigma}.csv')
         df = pd.DataFrame.from_dict(system.a2f)
         df.to_csv(name, float_format=float_format, index=False)
 
@@ -161,7 +167,7 @@ def save_result(result, path):
         json.dump(result, f, ensure_ascii=False, sort_keys=False, indent=4)
 
 
-def update_summary(summary, result, broadening, path):
+def update_summary(summary, result, broadening, formula, s, mu, path):
     keys = ['Broadening, Ry',
             'lambda (direct)',
             'lambda (interp)',
@@ -201,5 +207,7 @@ def update_summary(summary, result, broadening, path):
     summary['Hc2, T'].append(result['Hc2, T'][0])
     summary['beta'].append(result['beta (McMillan isotope coefficient)'])
     df = pd.DataFrame.from_dict(summary)
-    df.to_csv(os.path.join(path, 'summary.csv'), index=False)
+    s = str(s).replace('.', ',')
+    mu = str(mu).replace('.', ',')
+    df.to_csv(os.path.join(path, f'summary_{formula}_s{s}_mu{mu}.csv'), index=False)
     return summary

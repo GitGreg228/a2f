@@ -7,7 +7,7 @@ from mpl_toolkits.axisartist.parasite_axes import HostAxes, ParasiteAxes
 from utils import stround
 
 
-def plot_entity(system, xname, yname, ax, label='', fp=True, linestyle='-'):
+def plot_entity(system, xname, yname, ax, label='', fp=True, lw=2.5, ms=2.5, zorder=1):
     x = system[xname]
     y = system[yname]
     _label = label
@@ -16,7 +16,16 @@ def plot_entity(system, xname, yname, ax, label='', fp=True, linestyle='-'):
             _label = _label + f' ({stround(y[-1])})'
         else:
             _label = _label + f' ({str(round(y[-1]))})'
-    ax.plot(x[x > 0], y[x > 0], linestyle=linestyle, label=_label)
+    style = 'o-'
+    if lw == 0:
+        style = 'o'
+    if ms == 0:
+        style = '-'
+    if 'gamma' in yname:
+        style = style.replace('o', 'x')
+        style = style.replace('-', ':')
+        zorder = zorder + 1
+    ax.plot(x[x > 0], y[x > 0], style, linewidth=lw, markersize=ms, label=_label, zorder=zorder)
 
 
 def fill_entity(system, xname, yname, ax, label='', linestyle='-', fc='lightgray', ec='gray'):
@@ -30,22 +39,22 @@ def plot_spectra(system, xname, yname, ax, label='', marker='o'):
     x = system[xname]
     y = system[yname]
     # ax.vlines(x[y > 0], 0, y[y > 0], color=color, linestyle=linestyle, linewidth=1, label=label)
-    ax.scatter(x[y > 0], y[y > 0], label=label, s=0.5, marker=marker)
+    ax.scatter(x[y > 0], y[y > 0], label=label, s=2.5, marker=marker)
     ax.legend()
 
 
 def plot_entities(system, xname, yname, ax, label='', direct=True, a2f=True, fp=True):
     if direct:
-        plot_entity(system.direct, xname, yname, ax, label='direct' + label, fp=fp, linestyle='--')
+        plot_entity(system.direct, xname, yname, ax, label='direct' + label, fp=fp, ms=4, lw=0, zorder=3)
     if a2f:
-        plot_entity(system.a2f, xname, yname, ax, label='interp' + label, fp=fp, linestyle='dotted')
+        plot_entity(system.a2f, xname, yname, ax, label='interp' + label, fp=fp, ms=0, lw=1.5, zorder=1)
     ax.legend()
 
 
-def plot_system(system, formula, path):
+def plot_system(system, formula, path, b=0):
     plt.close('all')
-    plt.rcParams['lines.markersize'] = 1
-    plt.rcParams['lines.linewidth'] = 1
+    plt.rcParams['lines.markersize'] = 2.5
+    plt.rcParams['lines.linewidth'] = 2.5
     plt.rcParams['font.size'] = 12
     fig, axs = plt.subplots(3, 2, figsize=(12, 16))
 
@@ -86,10 +95,17 @@ def plot_system(system, formula, path):
     smoothing, resolution, sigma = system.smoothing, system.resolution, system.sigma
 
     info = f'Smoothing: {smoothing} THz, resolution = {resolution}, $\sigma$ = {sigma}, $\mu$=' + f'{system.mu}'
+    if b > 0:
+        info = info + f', broadening = {str(b)} Ry'
     fig.suptitle(f'{formula}\n{info}')
 
     fig.tight_layout(rect=[0, 0, 1, 0.95], h_pad=2.5)
-    plt.savefig(os.path.join(path, f'plot_s{smoothing}_r{resolution}_g{sigma}.pdf'))
+
+    if b > 0:
+        name = f'plot_s{smoothing}_r{resolution}_g{sigma}_b{str(b).replace(".", ",")}.pdf'
+    else:
+        name = f'plot_s{smoothing}_r{resolution}_g{sigma}.pdf'
+    plt.savefig(os.path.join(path, name))
     # plt.show()
 
 
@@ -177,19 +193,23 @@ def plot_summary(summary, formula, smoothing, sigma, resolution, mu, path):
                                                                                                 '(Allen-Dynes)').replace(
             'E', ('Eliashberg'))
         ax1.plot(x, y, label=fancy_key)
-    keys = sorted([key for key in summary.keys() if key.startswith('lambda')])
+    # keys = sorted([key for key in summary.keys() if key.startswith('lambda')])
+    keys = ['lambda (direct)']
     for key in keys:
         x = summary['Broadening, Ry']
         y = summary[key]
         fancy_key = key.replace('lambda', r'$\lambda$')
-        ax2.plot(x, y, 'k--', label=fancy_key)
+        ax2.plot(x, y, 'o', markersize=4, label=fancy_key)
     ax1.legend()
-    ax2.legend()
+    # ax2.legend()
     ax1.set_xticks(summary['Broadening, Ry'])
-    ax1.set_xticklabels(list([str(label) for label in summary['Broadening, Ry']]), rotation=45)
-    ax1.set_xlabel('Broadening, Ry')
+    ax1.set_xticklabels(list([str(int(label*1000)) for label in summary['Broadening, Ry']]), fontsize=10)
+    ax1.set_xlabel('Broadening, mRy')
     ax1.set_ylabel(r'$T_{\mathrm{C}}$')
     ax2.set_ylabel('$\lambda$', color='k')
     info = f'Smoothing: {smoothing} THz, resolution = {resolution}, $\sigma$ = {sigma}, $\mu$=' + f'{mu}'
     ax1.set_title(f'Convergence of {formula}\n{info}')
-    fig.savefig(os.path.join(path, 'summary.pdf'), bbox_inches='tight')
+    s = str(smoothing).replace('.', ',')
+    # r = str(resolution).replace('.', ',')
+    mu = str(mu).replace('.', ',')
+    fig.savefig(os.path.join(path, f'summary_{formula}_s{s}_mu{mu}.pdf'), bbox_inches='tight')
