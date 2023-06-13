@@ -75,10 +75,10 @@ def hc(tc, wlog, gamma):
     Upper critical field
     :param tc: Tc in K
     :param wlog: wlog in K
-    :param gamma: Sommerfeld gamma in J/mol/K^2
+    :param gamma: Sommerfeld gamma in mJ/cm^3/K^2
     :return: Hc in Tesla
     """
-    return tc * np.sqrt(gamma / (0.168 * (1 - 12.2 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc)))))
+    return 0.01 * tc * np.sqrt(gamma / (0.168 * (1 - 12.2 * (tc / wlog) ** 2 * np.log(wlog / (3 * tc)))))
 
 
 def dctc(tc, wlog, gamma):

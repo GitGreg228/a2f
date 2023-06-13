@@ -122,8 +122,8 @@ class Superconducting(object):
                 'gamma': floatround(a2f['lambda (gamma)'][-1])
             },
         }
-        {'K': 1,
-         'THz': 1 * k_K_THz}
+        # {'K': 1,
+        #  'THz': 1 * k_K_THz}
         self.result['wlog, K'] = {
             'direct': {
                 'lambda': {'K': int(direct['wlog (lambda), K'][-1]),
@@ -193,7 +193,7 @@ class Superconducting(object):
         self.dctc = dctc(tc, wlog, gamma)
         if isinstance(structure, str):
             self.result['DeltaC/Tc'] = {
-                'mJ/mol/K^2': round(1000 * self.dctc * N_A / fu, 3),
+                'mJ/mol/K^2': round(self.dctc),
             }
         else:
             self.result['DeltaC/Tc'] = {
@@ -207,7 +207,7 @@ class Superconducting(object):
             '2Delta/kBTc': round(2 * self.delta / (k_B * tc), 3),
             'J': format_e(self.delta)
         }
-        self.hc = hc(tc, wlog, 2 * gamma * N_A / fu)
+        self.hc = hc(tc, wlog, 2 * 1000 * gamma / structure.volume / k_A_cm ** 3)
         self.result['Hc2, T'] = round(self.hc, 3),
         self.beta = beta(_lambda, system.mu)
         self.result['beta (McMillan isotope coefficient)'] = round(self.beta, 5)

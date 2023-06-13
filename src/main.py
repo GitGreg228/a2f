@@ -135,6 +135,7 @@ def main():
         sc = Superconducting(a2f)
         sc.get_tc_e(args.mu)
         nef = _dyn_elphs[0].DOS
+        print('nef: ', nef)
         result = sc.get_all(system, nef, structure)
         if b > 0:
             result.update({'Broadening, Ry': b})
